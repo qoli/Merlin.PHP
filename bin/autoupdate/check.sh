@@ -3,7 +3,7 @@
 way=0
 
 cd bin/autoupdate/
-echo 'Check for update.'
+echo 'Check update.'
 remote_md5=$(curl https://raw.githubusercontent.com/qoli/Merlin.PHP/master/bin/autoupdate/md5)
 local_md5=$(cat md5)
 echo
@@ -22,6 +22,11 @@ case $way in
   need)
   	echo 'need update.'
   	echo '請點擊上方「實行更新」'
-  	echo
     ;;
 esac
+
+echo
+cd bin/autoupdate/
+echo $local_md5 '->' $(cat md5)
+echo
+date
