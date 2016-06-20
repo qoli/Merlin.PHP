@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-yue-Hant" class="han-init">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="white">
+		<meta name="apple-mobile-web-app-title" content="Merlin.PHP">
+
+		<link rel="apple-touch-icon" sizes="57x57" href="images/apple-touch-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="images/apple-touch-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="images/apple-touch-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="images/apple-touch-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="images/apple-touch-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="images/apple-touch-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon-180x180.png">
+		<link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="images/android-chrome-192x192.png" sizes="192x192">
+		<link rel="icon" type="image/png" href="images/favicon-96x96.png" sizes="96x96">
+		<link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16">
+		<link rel="manifest" href="images/manifest.json">
+		<link rel="mask-icon" href="images/safari-pinned-tab.svg" color="#5bbad5">
+		<meta name="msapplication-TileColor" content="#da532c">
+		<meta name="msapplication-TileImage" content="images/mstile-144x144.png">
+		<meta name="theme-color" content="#ffffff">
+
+		<title>Merlin Tools</title>
+		<link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+		<link href="//cdn.bootcss.com/animate.css/3.3.0/animate.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css">
+		<!-- <link href="//cdn.bootcss.com/Han/3.2.5/han.min.css" rel="stylesheet"> -->
+		<link rel="stylesheet" href="assets/style.css">
+	</head>
+	<body class="body-center" >
+		<div id="scrolling" class="animated hide" ></div>
+
+		<div class="pull-left">
+			<a id="OpenMenu" type="button" class="animated btn btn-default menu" href="/" ><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+		</div>
+		<div class="pull-left">
+			<h1>幫助</h1>
+			<span class="model desc"><i class="fa fa-terminal"></i>  / merlin.php /  <b class="animated animated2 infinite fadeIn">help.php</b></span>
+		</div>
+		<div class="clearfix" ></div>
+		<hr/>
+		<div class="animated fadeInLeft">
+			<div class="row">
+				<div class="col-md-12" >
+				<!-- ⬇️ 正文 -->
+
+				<?php
+					require 'library/Markdown.php';
+					$Parsedown = new Parsedown();
+				?>
+
+<h5><a id="_0"></a>注意事項</h5>
+<ul>
+<li>第一次使用時候，請先使用「Game-Mode」或「Game-V2」進行初始化。</li>
+</ul>
+
+				<!-- ⬆️ 正文 END -->
+				</div>
+			</div>
+		</div>
+		<footer class="footer">
+			<div class="footer-container">
+				<!-- <hr/> -->
+				<p class="text-muted">
+					<i id="delay_icon" class="fa fa-circle red" aria-hidden="true"></i> Google：<span id="delay_time">testing</span>
+				</p>
+			</div>
+		</footer>
+	</body>
+	<script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<!-- <script src="//cdn.bootcss.com/Han/3.2.5/han.min.js"></script> -->
+	<!-- <script src="http://s.miwifi.com/d2r/js/base64.js"></script> -->
+	<!-- <script src="assets/dynamics.min.js"></script> -->
+	<!-- <script src="assets/list.min.js"></script> -->
+	<script src="assets/logs.js"></script>
+	<script src="assets/ui.js"></script>
+	<script src="assets/app.js"></script>
+</html>
