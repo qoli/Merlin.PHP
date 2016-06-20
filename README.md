@@ -87,7 +87,7 @@ Thx ❤️
 `app_set_enabled.sh lighttpd yes`
 
 
-**推薦安裝目錄：** /opt/share/www/
+**推薦安裝目錄：**/opt/share/www/
 
 
 
