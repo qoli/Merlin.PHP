@@ -23,6 +23,7 @@ FristCheck();
 
 function FristCheck() {
 	shell_exec("chmod +x /opt/share/www/bin/autoupdate/update.sh");
+	shell_exec("chmod +x /opt/share/www/bin/autoupdate/check.sh");
 }
 
 function TEST($way){
