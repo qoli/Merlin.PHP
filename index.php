@@ -33,7 +33,7 @@
 		<!-- <link href="//cdn.bootcss.com/Han/3.2.5/han.min.css" rel="stylesheet"> -->
 		<link rel="stylesheet" href="assets/style.css">
 	</head>
-	<body class="body-center" >
+	<body class="body-center" id="index" >
 		<div id="scrolling" class="animated hide" ></div>
 
 		<?php require 'pages/LeftMenu.php'; ?>
@@ -89,4 +89,5 @@
 	<script src="assets/logs.js"></script>
 	<script src="assets/ui.js"></script>
 	<script src="assets/app.js"></script>
+	<script src="assets/standalone.js"></script>
 </html>

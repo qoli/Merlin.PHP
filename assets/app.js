@@ -1,39 +1,37 @@
 host = 'http://192.168.1.1:81/';
+dev = false
 
 jQuery(document).ready(function($) {
 
+  l = $('#loadingDIV');
+  lname = $('#loading-Name');
+  m = $('#MessageDIV');
 
-// Mobile Safari in standalone mode
-if(("standalone" in window.navigator) && window.navigator.standalone){
+  if ($("#index").length > 0){
+    getApp('TEST', 'Clean', 'Google','google');
+    RunApp('GetExec','cat ss-mode',true,'SS 模式','模式');
+  }
 
-  // If you want to prevent remote links in standalone web apps opening Mobile Safari, change 'remotes' to true
-  var noddy, remotes = false;
+  if ($("#update").length > 0){
+    iframeBox('/exec.php?command=./bin/autoupdate/check.sh');
+    LoadingBox(false);
+  }
 
-  document.addEventListener('click', function(event) {
+  if ($("#NewsBox").length > 0){
+    $NewsBox = $('#NewsBox');
+    $articletitle = $('.article-title');
+    url = $NewsBox.attr('data-url');
 
-    noddy = event.target;
-
-    // Bubble up until we hit link or top HTML element. Warning: BODY element is not compulsory so better to stop on HTML
-    while(noddy.nodeName !== "A" && noddy.nodeName !== "HTML") {
-          noddy = noddy.parentNode;
-      }
-
-    if('href' in noddy && noddy.href.indexOf('http') !== -1 && (noddy.href.indexOf(document.location.host) !== -1 || remotes))
-    {
-      event.preventDefault();
-      document.location.href = noddy.href;
+    if (!dev) {
+      update_news('https://raw.githubusercontent.com/qoli/Merlin.PHP/master/'+url);
+    } else {
+      update_news(url);
     }
 
-  },false);
-}
+    console.log(getUrlParameter('a'));
 
-  // loading()
+  }
 
-  l = $('#loadingDIV');
-  m = $('#MessageDIV');
-  lname = $('#loading-Name');
-  getApp('TEST', 'Clean', 'Google','google');
-  RunApp('GetExec','cat ss-mode',true,'SS 模式','模式');
 
   $delay_time = $('#delay_time');
   $delay_icon = $('#delay_icon');
@@ -85,6 +83,12 @@ if(("standalone" in window.navigator) && window.navigator.standalone){
       case 'A':
       RunApp('RunExec','ls -l');
       break;
+
+      case '檢查更新':
+      iframeBox('/exec.php?command=./bin/autoupdate/update.sh');
+      LoadingBox(false);
+      break;
+
       default:
       console.log("nothing");
       break;
@@ -94,6 +98,46 @@ if(("standalone" in window.navigator) && window.navigator.standalone){
 
 
 });
+
+var getUrlParameter = function getUrlParameter(sParam) {
+  var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+    sURLVariables = sPageURL.split('&'),
+    sParameterName,
+    i;
+
+  for (i = 0; i < sURLVariables.length; i++) {
+    sParameterName = sURLVariables[i].split('=');
+
+    if (sParameterName[0] === sParam) {
+      return sParameterName[1] === undefined ? true : sParameterName[1];
+    }
+  }
+};
+
+function update_news(url) {
+
+  uArray = url.split( '/' );
+  $articletitle.text(uArray[uArray.length -1]);
+  // console.log("run");
+  $.ajax({
+    url: url,
+    dataType: "text",
+    beforeSend: function(){
+      LoadingBox(true,'加載內容……');
+    },
+    success: function(data) {
+      // console.log(data);
+      $NewsBox.html(markdown.toHTML(data));
+    },
+    error: function() {
+      console.log("News error");
+      LoadingBox(false);
+    },
+    complete: function(data) {
+      LoadingBox(false);
+    }
+  });
+}
 
 function heredoc(fn) {
     return fn.toString().split('\n').slice(1,-1).join('\n') + '\n'

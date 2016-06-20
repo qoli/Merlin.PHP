@@ -2,7 +2,8 @@
 
 way=0
 
-# cd ../../
+cd bin/autoupdate/
+echo 'update !!!'
 echo
 remote_md5=$(curl https://raw.githubusercontent.com/qoli/Merlin.PHP/master/bin/autoupdate/md5)
 local_md5=$(cat md5)
@@ -24,7 +25,7 @@ case $way in
   	echo
 
 		rm -rf /tmp/m_update
-		rm -rf /opt/share/www/new/
+		# rm -rf /opt/share/www/
 		mkdir /tmp/m_update
 		cd /tmp/m_update
 		wget https://github.com/qoli/Merlin.PHP/raw/master/bin/zip/merlin-php.tar.gz --no-check-certificate
@@ -33,9 +34,9 @@ case $way in
 		tar xvf merlin-php.tar.gz
 		echo 'copying...'
   	echo
-		mkdir /opt/share/www/new/ -p
+		mkdir /opt/share/www/ -p
 		cd /tmp/m_update/Merlin.PHP/
-		cp * /opt/share/www/new/ -R
+		cp * /opt/share/www/ -R
 		echo 'done'
   	echo
     ;;

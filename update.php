@@ -3,9 +3,10 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-		<meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="white">
 		<meta name="apple-mobile-web-app-title" content="Merlin.PHP">
+
 		<link rel="apple-touch-icon" sizes="57x57" href="images/apple-touch-icon-57x57.png">
 		<link rel="apple-touch-icon" sizes="60x60" href="images/apple-touch-icon-60x60.png">
 		<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
@@ -24,6 +25,7 @@
 		<meta name="msapplication-TileColor" content="#da532c">
 		<meta name="msapplication-TileImage" content="images/mstile-144x144.png">
 		<meta name="theme-color" content="#ffffff">
+
 		<title>Merlin Tools</title>
 		<link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 		<link href="//cdn.bootcss.com/animate.css/3.3.0/animate.min.css" rel="stylesheet">
@@ -31,24 +33,29 @@
 		<!-- <link href="//cdn.bootcss.com/Han/3.2.5/han.min.css" rel="stylesheet"> -->
 		<link rel="stylesheet" href="assets/style.css">
 	</head>
-	<body class="body-center" >
+	<body class="body-center" id="update" >
 		<div id="scrolling" class="animated hide" ></div>
+
 		<div class="pull-left">
 			<a id="OpenMenu" type="button" class="animated btn btn-default menu" href="/" ><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
 		</div>
 		<div class="pull-left">
-			<h1 class="article-title">article</h1>
-			<span class="model desc"><i class="fa fa-terminal"></i>  / merlin.php /  <b class="animated animated2 infinite fadeIn article-title">article</b></span>
+			<h1>梅林路由器拓展實用工具</h1>
+			<span class="model desc"><i class="fa fa-terminal"></i>  / merlin.php /  <b class="animated animated2 infinite fadeIn">update.php</b></span>
 		</div>
 		<div class="clearfix" ></div>
+		<hr/>
+
+		<?php require 'pages/ControlPanel_update.php'; ?>
+
 		<hr/>
 		<div class="animated fadeInLeft">
 			<div class="row">
 				<div class="col-md-12" >
+					<span class="mini-title"><i class="fa fa-terminal"></i> / merlin.php / </span>
 					<div class="contentBox" >
-						<!-- ⬇️ 正文 -->
-						<div id="NewsBox" data-url="article/help.md" ></div>
-						<!-- ⬆️ 正文 END -->
+						<iframe id="iframeBox" class="iframe hide" src="/exec.php" frameborder="0" allowfullscreen></iframe>
+						<div id="MessageDIV" ></div>
 						<div id="loadingDIV" class="animated animated2 infinite fadeIn" data-isOPEN="true">
 							<h5 id="loading-Name">載入中</h5>
 							<div class="" >
@@ -56,6 +63,13 @@
 							</div>
 						</div>
 					</div>
+					<br/>
+				</div>
+				<!-- ⬇️ 小屏幕不可見 -->
+				<div class="col-md-12 text-center over-hidden md-lg visible-lg-block" >
+				</div>
+				<!-- ⬇️ 大屏幕不可見 -->
+				<div class="col-sm-12 text-center over-hidden sm-xs hidden-lg" >
 				</div>
 			</div>
 		</div>
@@ -71,10 +85,6 @@
 	<script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
 	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 	<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<!-- <script src="//cdn.bootcss.com/Han/3.2.5/han.min.js"></script> -->
-	<!-- <script src="http://s.miwifi.com/d2r/js/base64.js"></script> -->
-	<!-- <script src="assets/dynamics.min.js"></script> -->
-	<script src="assets/markdown.min.js"></script>
 	<script src="assets/logs.js"></script>
 	<script src="assets/ui.js"></script>
 	<script src="assets/app.js"></script>

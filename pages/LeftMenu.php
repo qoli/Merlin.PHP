@@ -19,7 +19,7 @@
 -->
 
  		<li class="title"> <i class="fa fa-info-circle" aria-hidden="true"></i> 關於 <span class="mini-text">版本 0.1.160620</span></li>
-		<li> <a href="javascript: void(0)"><i class="fa fa-arrow-circle-up" aria-hidden="true"></i> 在線更新</a> </li>
+		<li> <a class="Menu" target="_self" href="update.php"><i class="fa fa-arrow-circle-up" aria-hidden="true"></i> 在線更新</a> </li>
 		<li> <a class="Menu" target="_self" href="article.php?a=help"><i class="fa fa-question-circle" aria-hidden="true"></i> 幫助</a> </li>
 		<li> <a href="/"><i class="fa fa-refresh" aria-hidden="true"></i> 重新載入</a> </li>
 	</ul>
