@@ -8,7 +8,7 @@ echo
 remote_md5=$(curl https://raw.githubusercontent.com/qoli/Merlin.PHP/master/bin/autoupdate/md5)
 local_md5=$(cat md5)
 echo
-echo "local :" $local_md5
+echo "local:" $local_md5
 echo "remote:" $remote_md5
 echo
 
@@ -23,7 +23,6 @@ case $way in
   need)
   	echo 'need update.'
   	echo
-
 		rm -rf /tmp/m_update
 		# rm -rf /opt/share/www/
 		mkdir /tmp/m_update

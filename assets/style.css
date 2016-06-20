@@ -17,7 +17,7 @@ iframe {
   height: calc(100vh - 420px);
   min-height: 120px;
   padding: 0.8em;
-  border: 1px solid #ccc;
+  border: 1px solid #efefef;
   border-radius: 4px;
   margin-top: 1em;
 }
