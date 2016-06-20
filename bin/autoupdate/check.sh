@@ -21,6 +21,7 @@ case $way in
     ;;
   need)
   	echo 'need update.'
+  	echo '請點擊上方「實行更新」'
   	echo
     ;;
 esac
