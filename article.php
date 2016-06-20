@@ -3,10 +3,9 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="white">
 		<meta name="apple-mobile-web-app-title" content="Merlin.PHP">
-
 		<link rel="apple-touch-icon" sizes="57x57" href="images/apple-touch-icon-57x57.png">
 		<link rel="apple-touch-icon" sizes="60x60" href="images/apple-touch-icon-60x60.png">
 		<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
@@ -25,7 +24,6 @@
 		<meta name="msapplication-TileColor" content="#da532c">
 		<meta name="msapplication-TileImage" content="images/mstile-144x144.png">
 		<meta name="theme-color" content="#ffffff">
-
 		<title>Merlin Tools</title>
 		<link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 		<link href="//cdn.bootcss.com/animate.css/3.3.0/animate.min.css" rel="stylesheet">
@@ -35,32 +33,29 @@
 	</head>
 	<body class="body-center" >
 		<div id="scrolling" class="animated hide" ></div>
-
 		<div class="pull-left">
 			<a id="OpenMenu" type="button" class="animated btn btn-default menu" href="/" ><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
 		</div>
 		<div class="pull-left">
-			<h1>幫助</h1>
-			<span class="model desc"><i class="fa fa-terminal"></i>  / merlin.php /  <b class="animated animated2 infinite fadeIn">help.php</b></span>
+			<h1 class="article-title">article</h1>
+			<span class="model desc"><i class="fa fa-terminal"></i>  / merlin.php /  <b class="animated animated2 infinite fadeIn article-title">article</b></span>
 		</div>
 		<div class="clearfix" ></div>
 		<hr/>
 		<div class="animated fadeInLeft">
 			<div class="row">
 				<div class="col-md-12" >
-				<!-- ⬇️ 正文 -->
-
-				<?php
-					require 'library/Markdown.php';
-					$Parsedown = new Parsedown();
-				?>
-
-<h5><a id="_0"></a>注意事項</h5>
-<ul>
-<li>第一次使用時候，請先使用「Game-Mode」或「Game-V2」進行初始化。</li>
-</ul>
-
-				<!-- ⬆️ 正文 END -->
+					<div class="contentBox" >
+						<!-- ⬇️ 正文 -->
+						<div id="NewsBox" data-url="article/help.md" ></div>
+						<!-- ⬆️ 正文 END -->
+						<div id="loadingDIV" class="animated animated2 infinite fadeIn" data-isOPEN="true">
+							<h5 id="loading-Name">載入中</h5>
+							<div class="" >
+								<p><span style="margin-top: -5px;" id="loading" class="rotating glyphicon glyphicon-refresh" aria-hidden="true"></span></p>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -79,8 +74,9 @@
 	<!-- <script src="//cdn.bootcss.com/Han/3.2.5/han.min.js"></script> -->
 	<!-- <script src="http://s.miwifi.com/d2r/js/base64.js"></script> -->
 	<!-- <script src="assets/dynamics.min.js"></script> -->
-	<!-- <script src="assets/list.min.js"></script> -->
+	<script src="assets/markdown.min.js"></script>
 	<script src="assets/logs.js"></script>
 	<script src="assets/ui.js"></script>
 	<script src="assets/app.js"></script>
+	<script src="assets/news.js"></script>
 </html>

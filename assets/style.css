@@ -26,6 +26,24 @@ a {
 
 }
 
+#NewsBox {
+  color: #555;
+}
+
+#NewsBox strong,#NewsBox b {
+  font-weight: 800;
+  color: #000;
+}
+
+#NewsBox p {
+  text-indent: 2em;
+}
+
+#NewsBox h5{
+  color: #333;
+  padding-top: 0.8em;
+}
+
 .command .btn {
   transition: all .2s ease-in-out;
 }
