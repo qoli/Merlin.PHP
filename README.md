@@ -92,6 +92,14 @@ sed -i 's/server.port                = 8081/server.port                = 81/g' "
 
 **推薦安裝目錄：** /opt/share/www/
 
+```
+cd ~
+wget https://github.com/qoli/Merlin.PHP/archive/master.zip --no-check-certificate
+unzip master.zip
+cd Merlin.PHP-master
+cp * /opt/share/www/
+```
+
 
 
 ## STEP
