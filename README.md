@@ -16,7 +16,7 @@ and please get me a STAR to me. Thx ❤️
 
 ## UI
 
-![iPhone-Safari](images/PV.PNG)
+![iPhone-Safari](images/PV.jpg)
 
 
 
