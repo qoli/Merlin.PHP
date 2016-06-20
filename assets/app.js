@@ -149,7 +149,7 @@ function update_news(url) {
 
       errorMessage = '# 錯誤 \n 遠程內容載入失敗\n\n'+
       '# 目標內容：\n' + url +
-      ' \n\n ' + data.responseText
+      '\n\n# 回報文字：\n' + data.responseText
 
       $NewsBox.html(markdown.toHTML(errorMessage));
     },
