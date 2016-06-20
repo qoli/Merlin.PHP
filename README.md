@@ -4,7 +4,7 @@
 
 只支持 http://koolshare.io 下的固件版本。
 
-##### Dribbble  
+##### Dribbble
 
 If u love this, please 'LOVE' on Dribbble.
 
