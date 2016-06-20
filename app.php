@@ -19,6 +19,12 @@ if ($o == 'unknow') {
 	}
 }
 
+FristCheck();
+
+function FristCheck() {
+	shell_exec("chmod +x /opt/share/www/bin/autoupdate/update.sh");
+}
+
 function TEST($way){
 	$o = array();
 	switch ($way) {

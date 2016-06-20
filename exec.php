@@ -2,7 +2,8 @@
 
 header('Content-Encoding: none;');
 
-require 'MainFunction.php';
+require 'library/MainFunction.php';
+
 echo '<link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">';
 echo '<link rel="stylesheet" href="assets/style.css">';
 echo '<div class="contentBox">';
@@ -30,7 +31,7 @@ echo str_pad('', 4096);
 
 ob_flush();
 flush();
-sleep(1);
+sleep(0.001);
 }
 
 pclose($handle);
