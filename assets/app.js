@@ -84,7 +84,12 @@ jQuery(document).ready(function($) {
       RunApp('RunExec','ls -l');
       break;
 
-      case '檢查更新':
+      case '檢查':
+      iframeBox('/exec.php?command=./bin/autoupdate/check.sh');
+      LoadingBox(false);
+      break;
+
+      case '實行更新':
       iframeBox('/exec.php?command=./bin/autoupdate/update.sh');
       LoadingBox(false);
       break;
