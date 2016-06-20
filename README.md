@@ -78,6 +78,10 @@ Thx ❤️
 
 打開「/opt/etc/lighttpd/lighttpd.conf」把 server.port 修改為 81。
 
+```
+sed -i 's/server.port                = 8081/server.port                = 81/g' "/opt/etc/lighttpd/lighttpd.conf"
+```
+
 **重啟 Web**
 
 `/opt/etc/init.d/S80lighttpd restart`
