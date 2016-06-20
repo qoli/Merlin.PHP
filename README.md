@@ -76,7 +76,7 @@ Thx ❤️
 
 ##### 修改端口
 
-`sed -i 's/server.port                = 8081/server.port                = 81/g' "/opt/etc/lighttpd/lighttpd.conf"`
+``sed -i 's/server.port                = 8081/server.port                = 81/g' "/opt/etc/lighttpd/lighttpd.conf"``
 
 **重啟 Web**
 
