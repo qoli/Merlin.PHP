@@ -76,7 +76,7 @@ Thx ❤️
 
 ##### 修改端口
 
-打開「/opt/etc/lighttpd/lighttpd.conf」把 server.port 修改為 81。
+打開「/opt/etc/lighttpd/lighttpd.conf」把 server.port 修改為 81，或運行下方代碼也可以。
 
 ```
 sed -i 's/server.port                = 8081/server.port                = 81/g' "/opt/etc/lighttpd/lighttpd.conf"
