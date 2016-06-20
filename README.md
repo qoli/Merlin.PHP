@@ -4,13 +4,19 @@
 
 只支持 http://koolshare.io 下的固件版本。
 
+
+
 ##### Dribbble
 
 If u love this, please 'LOVE' on Dribbble.
 
 https://dribbble.com/shots/2786309-Merlin-WEB-Tools
 
-and please get me a STAR to me. Thx ❤️
+##### Github
+
+And don't forget get me a STAR on github.
+
+Thx ❤️
 
 
 
