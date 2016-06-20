@@ -21,6 +21,7 @@ case $way in
     ;;
   need)
   	echo 'need update.'
+  	exit;
   	echo
 
 		rm -rf /tmp/m_update
