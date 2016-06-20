@@ -35,6 +35,11 @@ a {
   color: #000;
 }
 
+#NewsBox em {
+  text-decoration: none;
+  font-style: none !important;
+}
+
 #NewsBox p {
   text-indent: 2em;
 }
