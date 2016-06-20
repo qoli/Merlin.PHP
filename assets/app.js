@@ -18,17 +18,25 @@ jQuery(document).ready(function($) {
   }
 
   if ($("#NewsBox").length > 0){
+    // article/help.md
+
     $NewsBox = $('#NewsBox');
     $articletitle = $('.article-title');
-    url = $NewsBox.attr('data-url');
 
-    if (!dev) {
-      update_news('https://raw.githubusercontent.com/qoli/Merlin.PHP/master/'+url);
+    // if (!dev) {
+    //   update_news('https://raw.githubusercontent.com/qoli/Merlin.PHP/master/'+url);
+    // } else {
+    //   update_news(url);
+    // }
+
+    article = getUrlParameter('a');
+
+    if (article) {
+      update_news('https://raw.githubusercontent.com/qoli/Merlin.PHP/master/article/'+article+'.md');
     } else {
+      url = $NewsBox.attr('data-url');
       update_news(url);
     }
-
-    console.log(getUrlParameter('a'));
 
   }
 
@@ -134,9 +142,16 @@ function update_news(url) {
       // console.log(data);
       $NewsBox.html(markdown.toHTML(data));
     },
-    error: function() {
+    error: function(data) {
+      console.log(data);
       console.log("News error");
       LoadingBox(false);
+
+      errorMessage = '# 錯誤 \n 遠程內容載入失敗\n\n'+
+      '# 目標內容：\n' + url +
+      ' \n\n ' + data.responseText
+
+      $NewsBox.html(markdown.toHTML(errorMessage));
     },
     complete: function(data) {
       LoadingBox(false);

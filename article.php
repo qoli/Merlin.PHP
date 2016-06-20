@@ -47,7 +47,7 @@
 				<div class="col-md-12" >
 					<div class="contentBox" >
 						<!-- ⬇️ 正文 -->
-						<div id="NewsBox" data-url="article/help.md" ></div>
+						<div id="NewsBox" data-url="article/error.md" ></div>
 						<!-- ⬆️ 正文 END -->
 						<div id="loadingDIV" class="animated animated2 infinite fadeIn" data-isOPEN="true">
 							<h5 id="loading-Name">載入中</h5>
