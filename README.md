@@ -2,7 +2,7 @@
 
 面向 ASUS﹣MERLIN 的 SS Web 管理面板。
 
-只支持「http://koolshare.io」下的固件版本。
+只支持 http://koolshare.io 下的固件版本。
 
 
 
