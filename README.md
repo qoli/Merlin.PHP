@@ -104,14 +104,25 @@ cp * /opt/share/www/ -R
 
 ## STEP
 
-1. 在 admin 後臺面板，安裝「Download Master」；
-   1. open 'http://192.168.1.1',
-   2. select 'USB 相關應用',
-   3. Download Master and click 'install' link.
-2. 運行上方「**INSTALL CODE**」，以安裝 PHP、Web 服務器相關組件；
-3. 打開 http://192.168.1.1:81 ，檢查是否已經成功安裝 Web；
-4. 釋放源碼到「/opt/share/www/」，記得先清空原來目錄；
-5. 刷新 http://192.168.1.1:81 ，看到界面即可成功運行。
+##### 在 admin 後臺面板，激活 SSH 功能；
+
+![step1](images/step1.png)
+
+##### 在 admin 後臺面板，安裝「Download Master」；
+
+1. 打開  'http://192.168.1.1',
+2. select 'USB 相關應用',
+3. Download Master and click 'install' link.
+
+![step2](images/step2.png)
+
+##### 運行上方「**INSTALL CODE**」，以安裝 PHP、Web 服務器相關組件；
+
+##### 打開 http://192.168.1.1:81 ，檢查是否已經成功安裝 Web；
+
+##### 釋放源碼到「/opt/share/www/」，記得先清空原來目錄；
+
+##### 刷新 http://192.168.1.1:81 ，看到界面即可成功運行。
 
 
 

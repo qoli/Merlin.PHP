@@ -43,13 +43,16 @@ jQuery(document).ready(function($) {
 
   $delay_time = $('#delay_time');
   $delay_icon = $('#delay_icon');
+
   update_delay();
   setInterval(update_delay, 2000);
+  // setTimeout(update_delay, 2000);
 
   $('.btn').click(function(event) {
     e = $(this).text();
-    console.log('Click: ' + e.trim());
-    switch (e.trim()) {
+    e = e.trim();
+    console.log('Click: "' + e + '"');
+    switch (e) {
       case 'Network':
       RunApp('RunNET');
       break;

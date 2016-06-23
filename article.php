@@ -59,14 +59,7 @@
 				</div>
 			</div>
 		</div>
-		<footer class="footer">
-			<div class="footer-container">
-				<!-- <hr/> -->
-				<p class="text-muted">
-					<i id="delay_icon" class="fa fa-circle red" aria-hidden="true"></i> Google：<span id="delay_time">testing</span>
-				</p>
-			</div>
-		</footer>
+		<?php require 'pages/Footer.php'; ?>
 	</body>
 	<script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
 	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
