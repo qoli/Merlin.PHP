@@ -62,6 +62,51 @@ Thx ❤️
 
 
 
+## 安裝步驟
+
+##### 在 admin 後臺面板，激活 SSH 功能；
+
+![step1](images/step1.png)
+
+##### 在 admin 後臺面板，安裝「Download Master」；
+
+1. 打開  'http://192.168.1.1',
+2. select 'USB 相關應用',
+3. Download Master and click 'install' link.
+
+![step2](images/step2.png)
+
+
+
+##### 運行安裝腳本
+
+```shell
+wget --no-check-certificate https://github.com/qoli/Merlin.PHP/raw/master/bin/install/install.sh
+chmox +x install.sh
+./install.sh
+```
+
+##### 
+
+
+
+
+# THANK
+
+- https://www.hqt.ro/lighttpd-web-server-with-php-support-through-optware/
+- https://github.com/evilstreak/markdown-js
+- Bootstrap
+- http://www.bootcdn.cn
+- animate.css https://daneden.github.io/animate.css/ 快捷，優秀 CSS3 動畫
+- http://www.w3cplus.com/css3/advanced-css-filters.html
+
+
+
+
+# 過期內容
+
+
+
 ## INSTALL CODE
 
 ##### IPKG 更新
@@ -78,7 +123,7 @@ Thx ❤️
 
 打開「/opt/etc/lighttpd/lighttpd.conf」把 server.port 修改為 81，或運行下方代碼也可以。
 
-```
+```shell
 sed -i 's/server.port                = 8081/server.port                = 81/g' "/opt/etc/lighttpd/lighttpd.conf"
 ```
 
@@ -92,7 +137,7 @@ sed -i 's/server.port                = 8081/server.port                = 81/g' "
 
 **推薦安裝目錄：** /opt/share/www/
 
-```
+```shell
 cd ~
 wget https://github.com/qoli/Merlin.PHP/archive/master.zip --no-check-certificate
 unzip master.zip
@@ -104,18 +149,6 @@ cp * /opt/share/www/ -R
 
 ## STEP
 
-##### 在 admin 後臺面板，激活 SSH 功能；
-
-![step1](images/step1.png)
-
-##### 在 admin 後臺面板，安裝「Download Master」；
-
-1. 打開  'http://192.168.1.1',
-2. select 'USB 相關應用',
-3. Download Master and click 'install' link.
-
-![step2](images/step2.png)
-
 ##### 運行上方「**INSTALL CODE**」，以安裝 PHP、Web 服務器相關組件；
 
 ##### 打開 http://192.168.1.1:81 ，檢查是否已經成功安裝 Web；
@@ -123,16 +156,3 @@ cp * /opt/share/www/ -R
 ##### 釋放源碼到「/opt/share/www/」，記得先清空原來目錄；
 
 ##### 刷新 http://192.168.1.1:81 ，看到界面即可成功運行。
-
-
-
-
-# THANK
-
-- https://www.hqt.ro/lighttpd-web-server-with-php-support-through-optware/
-- https://github.com/evilstreak/markdown-js
-- Bootstrap
-- http://www.bootcdn.cn
-- animate.css https://daneden.github.io/animate.css/ 快捷，優秀 CSS3 動畫
-- http://www.w3cplus.com/css3/advanced-css-filters.html
-
