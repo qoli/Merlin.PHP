@@ -97,6 +97,7 @@ a {
   box-shadow: 0 0px 12px 4px rgba(0,0,0,.04);
 }
 
+
 .leftMenu .title {
   margin-left: 6px;
   font-size: 0.8em;
@@ -136,6 +137,23 @@ a {
   background-color: #111;
   color: #FFF;
   text-decoration: none;
+}
+
+.leftMenu .fa {
+  width: 14px;
+  text-align: center;
+}
+
+#CloseMenu a{
+  margin-left: 0px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+#CloseMenu a .fa {
+  // padding: 0 2px;
+  width: 8px;
+  text-align: center;
 }
 
 .animated {

@@ -1,13 +1,11 @@
-<div id="leftMenu" class="leftMenu hide animated" >
+<div id="leftMenu" class="leftMenu animated hide" >
 	<ul>
 
+		<li id="CloseMenu"> <a href="javascript: void(0)"><i class="fa fa-caret-left" aria-hidden="true"></i></span> 關閉菜單</a> </li>
 		<li class="title"> <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span> MENU</li>
-		<li id="CloseMenu"> <a href="javascript: void(0)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> 返回</a> </li>
-		<li> <a href="http://192.168.1.1/"><i class="fa fa-link" aria-hidden="true"></i> 路由器管理頁面</a> </li>
-
-		<li class="title"> <i class="fa fa-circle-o" aria-hidden="true"></i> 其他 </li>
-		<li> <a class="Menu" target="_self" href="index.php"><i class="fa fa-arrow-right" aria-hidden="true"></i> 主頁</a> </li>
-		<li> <a class="Menu" target="_self" href="index.php/remote"><i class="fa fa-arrow-right" aria-hidden="true"></i> 遠程工具</a> </li>
+		<li> <a class="Menu" target="_self" href="index.php"><i class="fa fa-home" aria-hidden="true"></i> 主頁</a> </li>
+		<li> <a class="Menu" target="_self" href="index.php/remote"><i class="fa fa-server" aria-hidden="true"></i> 遠程工具</a> </li>
+		<li> <a href="http://192.168.1.1/"><i class="fa fa-link" aria-hidden="true"></i> 管理頁面</a> </li>
 
 		<li class="title"> <i class="fa fa-circle-o" aria-hidden="true"></i> ShadowSocks </li>
 		<li> <a class="btn" href="javascript: void(0)"><i class="fa fa-arrow-right" aria-hidden="true"></i> Game-Mode</a> </li>
@@ -26,6 +24,6 @@
 		<li> <a class="Menu" target="_self" href="update.php"><i class="fa fa-arrow-circle-up" aria-hidden="true"></i> 在線更新</a> </li>
 		<li> <a class="Menu" target="_self" href="article.php?a=update"><i class="fa fa-plus" aria-hidden="true"></i> 更新記錄</a> </li>
 		<li> <a class="Menu" target="_self" href="article.php?a=help"><i class="fa fa-question-circle" aria-hidden="true"></i> 幫助</a> </li>
-		<li> <a href="/"><i class="fa fa-refresh" aria-hidden="true"></i> 重新載入</a> </li>
+		<!-- <li> <a href="/"><i class="fa fa-refresh" aria-hidden="true"></i> 重新載入</a> </li> -->
 	</ul>
 </div>
