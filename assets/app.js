@@ -3,31 +3,37 @@ dev = false
 
 jQuery(document).ready(function($) {
 
-  l = $('#loadingDIV');
-  lname = $('#loading-Name');
-  m = $('#MessageDIV');
+  // loading
+  if ($("#loadingDIV").length > 0){
+    l = $('#loadingDIV');
+    lname = $('#loading-Name');
+    m = $('#MessageDIV');
+  }
 
+  // 主頁
   if ($("#index").length > 0){
     getApp('TEST', 'Clean', 'Google','google');
     RunApp('GetExec','cat ss-mode',true,'SS 模式','模式');
   }
 
+  // 遠程工具
+  if ($("#remote").length > 0){
+    m.append('<h5>HI</h5>')
+    m.append("<span><b>狀態: </b> 開發中</span><br/>");
+    LoadingBox(false);
+  }
+
+  // 更新
   if ($("#update").length > 0){
     iframeBox('/exec.php?command=./bin/autoupdate/check.sh');
     LoadingBox(false);
   }
 
+  // 新聞
   if ($("#NewsBox").length > 0){
-    // article/help.md
 
     $NewsBox = $('#NewsBox');
     $articletitle = $('.article-title');
-
-    // if (!dev) {
-    //   update_news('https://raw.githubusercontent.com/qoli/Merlin.PHP/master/'+url);
-    // } else {
-    //   update_news(url);
-    // }
 
     article = getUrlParameter('a');
 
@@ -40,13 +46,14 @@ jQuery(document).ready(function($) {
 
   }
 
+  // Footer 信息
+  if ($("#delay_icon").length > 0){
+    $delay_time = $('#delay_time');
+    $delay_icon = $('#delay_icon');
+    update_delay();
+    setInterval(update_delay, 2000);
+  }
 
-  $delay_time = $('#delay_time');
-  $delay_icon = $('#delay_icon');
-
-  update_delay();
-  setInterval(update_delay, 2000);
-  // setTimeout(update_delay, 2000);
 
   $('.btn').click(function(event) {
     e = $(this).text();
