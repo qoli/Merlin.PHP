@@ -12,8 +12,7 @@ jQuery(document).ready(function($) {
 
   // 主頁
   if ($("#index").length > 0){
-    getApp('TEST', 'Clean', 'Google','google');
-    RunApp('GetExec','cat ss-mode',true,'SS 模式','模式');
+    onBoot('index');
   }
 
   // 遠程工具
@@ -86,17 +85,12 @@ jQuery(document).ready(function($) {
       getApp('FastReboot', 'Clean','ShadowSocks 快速重啟');
       break;
       case '網路測試':
-      getApp('TEST', 'Clean', 'Baidu','baidu');
-      getApp('TEST', false, 'Google','google');
-      getApp('TEST', false, 'Playstation.com','ps');
+        onBoot('index');
+      // getApp('TEST', false, 'Playstation.com','ps');
       // getApp('TEST', false, 'Baidu via Proxy','baidup');
       break;
       case 'IP':
       getApp('IP','Clean');
-      break;
-      case 'SS 信息':
-      getApp('SSConfig','Clean','SS 配置');
-      RunApp('GetExec','cat ss-mode',true,'SS 模式','模式');
       break;
       case 'A':
       RunApp('RunExec','ls -l');
@@ -121,6 +115,21 @@ jQuery(document).ready(function($) {
 
 
 });
+
+function onBoot(mode) {
+  switch (mode) {
+      case 'index':
+        RunApp('GetExec','cat ss-mode',true,'SS 模式','模式');
+        getApp('SSConfig','Clean','SS 配置');
+        getApp('TEST', false, 'Baidu','baidu');
+        getApp('TEST', false, 'Google','google');
+      break;
+
+      default:
+      console.log("nothing");
+      break;
+  }
+}
 
 var getUrlParameter = function getUrlParameter(sParam) {
   var sPageURL = decodeURIComponent(window.location.search.substring(1)),
@@ -231,8 +240,10 @@ function RunApp(f,q,isAdd,isTitle,isDesc) {
     } else {
       m.html(success);
     }
+    m.append('<br/>');
     LoadingBox(false);
   })
+
 }
 
 function getApp(f,isClear,isTitle,q) {

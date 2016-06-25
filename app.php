@@ -1,10 +1,13 @@
 <?php
+set_include_path(get_include_path() . PATH_SEPARATOR . 'library/phpseclib');
 require 'library/MainFunction.php';
+require 'Net/SSH2.php';
 require_once 'library/Requests.php';
 Requests::register_autoloader();
 
-// FastReboot();
-// exit;
+
+remote();
+exit;
 
 $o = _GET("fun",'unknow');
 $q = _GET('q','unknow');
@@ -21,9 +24,16 @@ if ($o == 'unknow') {
 
 FristCheck();
 
+
+
 function FristCheck() {
 	shell_exec("chmod +x /opt/share/www/bin/autoupdate/update.sh");
 	shell_exec("chmod +x /opt/share/www/bin/autoupdate/check.sh");
+}
+
+function remote() {
+	$a = array('server' => '119.28.53.62','name' => 'root','pass' => 'gundam12');
+	echo json_encode($o);
 }
 
 function TEST($way){
