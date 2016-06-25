@@ -32,8 +32,9 @@ function FristCheck() {
 }
 
 function remote() {
-	$a = array('server' => '119.28.53.62','name' => 'root','pass' => 'gundam12');
+	$a = file_get_contents('config/config.json');
 	echo json_encode($a);
+	dump($a);
 }
 
 function TEST($way){
