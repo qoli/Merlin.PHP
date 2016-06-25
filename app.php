@@ -33,7 +33,7 @@ function FristCheck() {
 
 function remote() {
 	$a = array('server' => '119.28.53.62','name' => 'root','pass' => 'gundam12');
-	echo json_encode($o);
+	echo json_encode($a);
 }
 
 function TEST($way){
