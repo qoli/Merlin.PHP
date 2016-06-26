@@ -5,37 +5,33 @@ require 'Net/SSH2.php';
 require_once 'library/Requests.php';
 Requests::register_autoloader();
 
-
-remote();
-exit;
+$merlin_php = new merlin_php();
+// remote();
+// exit;
 
 $o = _GET("fun",'unknow');
 $q = _GET('q','unknow');
 
+
 if ($o == 'unknow') {
-	echo "no input";
+	// 無輸入，退出
+	$merlin_php -> _review("no input");
+	exit;
+}
+
+if ($q == 'unknow') {
+	$o();
 } else {
-	if ($q == 'unknow') {
-		$o();
-	} else {
-		$o($q);
-	}
+	$o($q);
 }
 
 FristCheck();
-
-
 
 function FristCheck() {
 	shell_exec("chmod +x /opt/share/www/bin/autoupdate/update.sh");
 	shell_exec("chmod +x /opt/share/www/bin/autoupdate/check.sh");
 }
 
-function remote() {
-	$a = file_get_contents('config/config.json');
-	echo json_encode($a);
-	dump($a);
-}
 
 function TEST($way){
 	$o = array();
@@ -185,3 +181,110 @@ function ob_callback($buffer)
 {
     return $buffer . str_repeat(' ', max(0, 4097 - strlen($buffer)));
 }
+
+/**
+* merlin PHP 信息交互類
+*/
+class merlin_php
+{
+
+	function __construct() {
+		# code...
+	}
+
+	function _review($data,$title = '錯誤') {
+		dump($data,$title);
+		exit;
+	}
+}
+
+/**
+* 遠程工具
+*/
+class remote extends merlin_php
+{
+	public $config;
+	public $config_total;
+	public $config_now;
+	public $ssh;
+	private $config_files = 'config/config.json';
+	private $config_template = 'config/config.template.json';
+	private $dev = true;
+	function __construct() {
+
+		if (!file_exists($this->config_files)) {
+			// 初始化配置模板
+			echo '初始化配置模板';
+			$d = file_get_contents($this->config_template);
+			file_put_contents($this->config_files, $d);
+			$this->_review($d, 'Config build form template');
+			// exit;
+		}
+
+		// 讀取配置文件
+		$this->config = json_decode(file_get_contents($this->config_files));
+		$this->config_total = count((array)$this->config);
+
+	}
+	function config($id) {
+		if ($id > $this->config_total) {
+			$id = $this->config_total;
+		}
+		$this->config_now = $this->config->$id;
+
+		$this->ssh = new Net_SSH2($this->config_now->server);
+		if (!$this->ssh->login($this->config_now->name, $this->config_now->pass)) {
+		    $this->_review($this->config_now, 'Login Failed');
+		}
+
+		return $this;
+	}
+	function command($command = 'whoami') {
+		return $this->ssh->exec($command);
+	}
+	function clist() {
+		foreach ($this->config as $k => $c) {
+			$arr[$k] = $c->server;
+		}
+
+		return $arr;
+	}
+	function setActive($id) {
+
+		foreach ($this->config as $key => $value) {
+			$this->config->$key->active = false;
+		}
+
+		$this->config->$id->active = true;
+		// dump(json_encode($this->config));
+		return file_put_contents($this->config_files,json_encode($this->config));
+	}
+
+}
+
+function remote() {
+	$remote = new remote();
+	$o = $remote->config(1)->command('ls -a');
+	dump($o,'By SSH');
+}
+
+function remote_clist() {
+	$remote = new remote();
+	echo json_encode($remote->clist());
+}
+
+function setActive($id) {
+	$remote = new remote();
+	echo json_encode($remote->setActive($id));
+}
+
+
+
+
+
+
+
+
+
+
+

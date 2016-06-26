@@ -17,6 +17,50 @@ jQuery(document).ready(function($) {
 
   // 遠程工具
   if ($("#remote").length > 0){
+
+    sl = $('#server-list');
+
+    setTimeout(function(){
+
+    $.ajax({
+      url: '/app.php?fun=remote_clist',
+      dataType: "json",
+      success: function(data) {
+        // console.log(data);
+        for (var key in data) {
+          sl.append('<li><a class="server-id server-'+key+'" data-server="'+key+'" onclick="event.stopPropagation();" href="javascript: void(0)"><i class="animated need-transition fa fa-toggle-off gray" aria-hidden="true"></i> '+data[key]+'</a></li>');
+        };
+
+        $('.server-id').click(function(event) {
+          $sid = $(this).attr('data-server');
+
+        // 設定激活服務器
+        $.ajax({
+          url: '/app.php?fun=setActive&q='+$sid,
+          dataType: "json",
+          beforeSend: function(){
+            $('#server-config i').addClass('fa-spin')
+            $('.fa-toggle-on').addClass('fa-toggle-off gray').removeClass('fa-toggle-on green');
+          },
+          success: function(data) {
+            // console.log($('.server-'+$sid));
+            $('.server-'+$sid+' i').addClass('fa-toggle-on green').removeClass('fa-toggle-off gray');
+          },
+          complete: function(data) {
+            $('#server-config i').removeClass('fa-spin')
+          }
+        });
+
+        });
+
+      },
+      complete: function(data) {
+        $('#server-config i').removeClass('fa-spin')
+      }
+    });
+
+    }, 1000);
+
     m.append('<h5>HI</h5>')
     m.append("<span><b>狀態: </b> 開發中</span><br/>");
     LoadingBox(false);
@@ -29,7 +73,7 @@ jQuery(document).ready(function($) {
   }
 
   // 新聞
-  if ($("#NewsBox").length > 0){
+  if ($("#article").length > 0){
 
     $NewsBox = $('#NewsBox');
     $articletitle = $('.article-title');
@@ -275,63 +319,6 @@ function getApp(f,isClear,isTitle,q) {
   });
 }
 
-function getURLs(url,isNol) {
-
-  loading.show();
-
-  d_model = 'direct';
-
-  if (url.indexOf("baidu.com") !== -1) {
-    d_model = 'baidu_yun';
-  } else {
-    d_model = 'direct'
-  }
-
-  if (isNol == 'nol') {
-    d_model = 'direct'
-  }
-
-  if (d_model == 'baidu_yun') {
-    console.log("Run Baidyun");
-    loading.hide();
-    // message.html('<a href="'+ host + "_baiduyun.php?url=" + url +'">百度云直連</a>')
-    message.text('暫時不支持')
-    model.text('百度云')
-  } else {
-    console.log("Run Direct");
-    $.get(host + "app.php?url=" + url, function(data) {
-      loading.hide();
-      model.text('鏈接解釋')
-      $('#result').removeClass('hide')
-      $("#urls-filtering").html(data);
-      show();
-
-      var options = {
-        valueNames: ['urls']
-      };
-
-      var searchList = new List('search', options);
-
-      var templater = searchList.templater;
-      templater.clear = jQuery.noop; // relying on `show`/`hide` instead
-      templater.show = function(item) {
-        $(item.elm)
-          .removeClass('animated fadeIn fadeOut')
-          .addClass('animated fadeIn')
-          .slideDown(800);
-      };
-      templater.hide = function(item) {
-        $(item.elm)
-          .removeClass('animated fadeIn fadeOut')
-          .addClass('animated fadeOut')
-          .slideUp(800);
-      };
-
-    });
-  }
-
-
-}
 
 function getUrlParameter(sParam) {
   var sPageURL = window.location.search.substring(1);
@@ -371,6 +358,3 @@ function show() {
 
 }
 
-function openDownloadWindow(url, name) {
-  window.open("https://d.miwifi.com/d2r/?url=" + Base64.encodeURI(url) + "&src=demo" + "&name=" + encodeURIComponent(name), "", "", true);
-}

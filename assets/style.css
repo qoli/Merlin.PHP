@@ -26,6 +26,12 @@ a {
 
 }
 
+u {
+  padding-bottom: .05em;
+  border-bottom: 1px solid;
+  text-decoration: none;
+}
+
 #NewsBox {
   color: #555;
 }
@@ -189,8 +195,37 @@ a {
 }
 
 .urls.mn-removing,.urls.mn-hiding {
-    animation-name: fadeOutDown, mn-removing;
-    animation-duration: 1s;
+  animation-name: fadeOutDown, mn-removing;
+  animation-duration: 1s;
+}
+
+.green {
+  color: #25db31;
+}
+
+.red {
+  color: #ff302b !important;
+}
+
+.gray {
+  color: #ddd;
+}
+
+.need-transition {
+  transition: all .4s ease-in-out;
+}
+
+.dropdown-menu li {
+  // padding: 2px 0;
+}
+
+.dropdown-menu li a {
+  font-size: 1em;
+  // font-weight: 200;
+}
+.dropdown-menu .fa {
+  width: 16px;
+  text-align: center;
 }
 
 .footer {

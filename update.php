@@ -46,7 +46,18 @@
 		<div class="clearfix" ></div>
 		<hr/>
 
-		<?php require 'pages/ControlPanel_update.php'; ?>
+		<div id="ControlPanel" class="animated fadeInLeft command">
+			<div class="row">
+				<div class="col-md-4" >
+					<span class="mini-title">更新</span>
+					<br/>
+					<button class="btn btn-default" >檢查</button>
+					<button class="btn btn-default" >實行更新</button>
+				</div>
+			</div>
+			<div class="clearfix" ></div>
+		</div>
+
 
 		<hr/>
 		<div class="animated fadeInLeft">

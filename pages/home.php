@@ -16,7 +16,7 @@
 
 		<div id="ControlPanel" class="animated fadeInLeft command">
 			<div class="row">
-				<div class="col-md-2" >
+				<div class="col-md-3" >
 					<span class="mini-title">重啟服務</span>
 					<br/>
 					<button class="btn btn-default" >Network</button>
