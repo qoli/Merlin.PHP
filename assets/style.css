@@ -157,7 +157,6 @@ u {
 }
 
 #CloseMenu a .fa {
-  // padding: 0 2px;
   width: 8px;
   text-align: center;
 }
@@ -216,12 +215,11 @@ u {
 }
 
 .dropdown-menu li {
-  // padding: 2px 0;
+
 }
 
 .dropdown-menu li a {
   font-size: 1em;
-  // font-weight: 200;
 }
 .dropdown-menu .fa {
   width: 16px;
@@ -259,7 +257,6 @@ u {
 .footer > .footer-container {
   margin-left: 5%;
   margin-right: 5%;
-  // padding-top: 10px;
 }
 
 .over-hidden {
@@ -275,7 +272,6 @@ u {
 }
 
 .contentBox {
-  // margin-left: 1em;
   font-size: 0.8em;
 }
 
@@ -373,3 +369,4 @@ td {
   -o-animation: rotating 2s linear infinite;
   animation: rotating 2s linear infinite;
 }
+

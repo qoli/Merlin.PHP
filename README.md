@@ -86,11 +86,11 @@ Thx ❤️
 
 ```shell
 wget --no-check-certificate https://github.com/qoli/Merlin.PHP/raw/master/bin/install/install.sh
-chmox +x install.sh
+chmod +x install.sh
 ./install.sh
 ```
 
-##### 
+#####
 
 
 

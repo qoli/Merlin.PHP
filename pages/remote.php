@@ -13,10 +13,10 @@
 	<div id="ControlPanel" class="animated fadeInLeft command">
 		<div class="row">
 			<div class="col-md-3" >
-				<span class="mini-title">操作</span>
+				<span class="mini-title">VPS 操作</span>
 				<br/>
-				<button class="btn btn-default" >重開遠程服務器</button>
-				<button class="btn btn-default" >查詢服務器狀態</button>
+				<button class="btn btn-default" >重開 VPS</button>
+				<button class="btn btn-default" >查詢伺服器狀態</button>
 				<!-- <button class="btn btn-default" ><i class="fa fa-cog" aria-hidden="true"></i> 遠程設定</button> -->
 			</div>
 			<div class="col-md-3" >
@@ -24,11 +24,11 @@
 				<br/>
 				<div class="dropdown">
 					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-					<i class="fa fa-server" aria-hidden="true"></i> 服務器
+					<i class="fa fa-server" aria-hidden="true"></i> 伺服器
 					<span class="caret"></span>
 					</button>
 					<ul id="server-list" class="dropdown-menu" aria-labelledby="dropdownMenu1">
-						<li><a id="server-config" class="server-config" href="javascript: void(0)"><i class="fa fa-cog fa-spin" aria-hidden="true"></i> 編輯服務器列表</a></li>
+						<li><a id="server-config" class="server-config" href="javascript: void(0)"><i class="fa fa-cog fa-spin" aria-hidden="true"></i> 編輯伺服器列表</a></li>
 						<li role="separator" class="divider"></li>
 					</ul>
 				</div>
