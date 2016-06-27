@@ -21,12 +21,12 @@ cd /tmp/m_update
 wget https://github.com/qoli/Merlin.PHP/raw/master/bin/zip/merlin-php.tar.gz --no-cache --no-check-certificate --no-dns-cache
 echo 'extract...'
 echo
-tar ﹣xvzf merlin-php.tar.gz
+tar -xvzf merlin-php.tar.gz
 echo 'copying...'
 echo
-mkdir /opt/share/tmp/ -p
+mkdir /opt/share/www/ -p
 cd /tmp/m_update/Merlin.PHP/
-cp * /opt/share/tmp/ -R
+cp * /opt/share/www/ -R
 echo 'install done'
 echo
 echo 'open http://192.168.1.1:81 and enjoy.'
