@@ -1,79 +1,81 @@
-host = 'http://192.168.1.1:81/';
 dev = false
 
 jQuery(document).ready(function($) {
 
   // loading
-  if ($("#loadingDIV").length > 0){
+  if ($("#loadingDIV").length > 0) {
     l = $('#loadingDIV');
     lname = $('#loading-Name');
     m = $('#MessageDIV');
   }
 
   // 主頁
-  if ($("#index").length > 0){
+  if ($("#index").length > 0) {
     onBoot('index');
   }
 
   // 遠程工具
-  if ($("#remote").length > 0){
+  if ($("#remote").length > 0) {
 
     sl = $('#server-list');
 
-    setTimeout(function(){
+    // 獲取可用服務器
+    setTimeout(function() {
+      $.ajax({
+        url: '/app.php?fun=remote_clist',
+        dataType: "json",
+        success: function(data) {
+          // console.log(data);
+          for (var key in data) {
+            sl.append('<li><a class="server-id server-' + key + '" data-server="' + key + '" onclick="event.stopPropagation();" href="javascript: void(0)"><i class="animated need-transition fa fa-toggle-off gray" aria-hidden="true"></i> ' + data[key] + '</a></li>');
+          };
 
-    $.ajax({
-      url: '/app.php?fun=remote_clist',
-      dataType: "json",
-      success: function(data) {
-        // console.log(data);
-        for (var key in data) {
-          sl.append('<li><a class="server-id server-'+key+'" data-server="'+key+'" onclick="event.stopPropagation();" href="javascript: void(0)"><i class="animated need-transition fa fa-toggle-off gray" aria-hidden="true"></i> '+data[key]+'</a></li>');
-        };
+          $('.server-id').click(function(event) {
+            $sid = $(this).attr('data-server');
 
-        $('.server-id').click(function(event) {
-          $sid = $(this).attr('data-server');
+            // 設定激活服務器
+            $.ajax({
+              url: '/app.php?fun=setActive&q=' + $sid,
+              dataType: "json",
+              beforeSend: function() {
+                $('#server-config i').addClass('fa-spin')
+                $('.fa-toggle-on').addClass('fa-toggle-off gray').removeClass('fa-toggle-on green');
+              },
+              success: function(data) {
+                // console.log($('.server-'+$sid));
+                $('.server-' + $sid + ' i').addClass('fa-toggle-on green').removeClass('fa-toggle-off gray');
+              },
+              complete: function(data) {
+                $('#server-config i').removeClass('fa-spin')
+              }
+            });
 
-        // 設定激活服務器
-        $.ajax({
-          url: '/app.php?fun=setActive&q='+$sid,
-          dataType: "json",
-          beforeSend: function(){
-            $('#server-config i').addClass('fa-spin')
-            $('.fa-toggle-on').addClass('fa-toggle-off gray').removeClass('fa-toggle-on green');
-          },
-          success: function(data) {
-            // console.log($('.server-'+$sid));
-            $('.server-'+$sid+' i').addClass('fa-toggle-on green').removeClass('fa-toggle-off gray');
-          },
-          complete: function(data) {
-            $('#server-config i').removeClass('fa-spin')
-          }
-        });
+          });
 
-        });
-
-      },
-      complete: function(data) {
-        $('#server-config i').removeClass('fa-spin')
-      }
-    });
+        },
+        complete: function(data) {
+          $('#server-config i').removeClass('fa-spin')
+        }
+      });
 
     }, 1000);
 
-    m.append('<h5>HI</h5>')
-    m.append("<span><b>狀態: </b> 開發中</span><br/>");
+    // m.append('<h5>HI</h5>')
+    // m.append("<span><b>狀態: </b> 開發中</span><br/>");
+
+    getApp('remoteConfig');
+
     LoadingBox(false);
   }
 
   // 更新
-  if ($("#update").length > 0){
+  if ($("#update").length > 0) {
     iframeBox('/exec.php?command=./bin/autoupdate/check.sh');
     LoadingBox(false);
   }
 
   // 新聞
-  if ($("#article").length > 0){
+  if ($("#article").length > 0) {
 
     $NewsBox = $('#NewsBox');
     $articletitle = $('.article-title');
@@ -81,7 +83,7 @@ jQuery(document).ready(function($) {
     article = getUrlParameter('a');
 
     if (article) {
-      update_news('https://raw.githubusercontent.com/qoli/Merlin.PHP/master/article/'+article+'.md');
+      update_news('https://raw.githubusercontent.com/qoli/Merlin.PHP/master/article/' + article + '.md');
     } else {
       url = $NewsBox.attr('data-url');
       update_news(url);
@@ -90,7 +92,7 @@ jQuery(document).ready(function($) {
   }
 
   // Footer 信息
-  if ($("#delay_icon").length > 0){
+  if ($("#delay_icon").length > 0) {
     $delay_time = $('#delay_time');
     $delay_icon = $('#delay_icon');
     update_delay();
@@ -98,61 +100,62 @@ jQuery(document).ready(function($) {
   }
 
 
-  $('.btn').click(function(event) {
+  $('.btn,.control').click(function(event) {
     e = $(this).text();
     e = e.trim();
     console.log('Click: "' + e + '"');
     switch (e) {
       case 'Network':
-      RunApp('RunNET');
-      break;
+        RunApp('SystemNetwork');
+        break;
       case 'Web 界面':
-      RunApp('RunExec','/opt/etc/init.d/S80lighttpd restart');
-      break;
+        RunApp('SystemCommand', '/opt/etc/init.d/S80lighttpd restart');
+        break;
       case 'DNSMASQ':
-      RunApp('RunExec','service restart_dnsmasq');
-      break;
+        RunApp('SystemCommand', 'service restart_dnsmasq');
+        break;
       case 'Game-Mode':
-      ui_closemenu();
-      RunApp('RunSS','game');
-      break;
+        RunApp('SwitchMode', 'game');
+        break;
       case 'Game-V2':
-      ui_closemenu();
-      RunApp('RunSS','v2');
-      break;
+        RunApp('SwitchMode', 'v2');
+        break;
       case 'STOP':
-      ui_closemenu();
-      RunApp('RunExec','/koolshare/ss/stop.sh');
-      // iframeBox('/exec.php?command=/koolshare/ss/stop.sh');
-      break;
+        RunApp('SystemCommand', '/koolshare/ss/stop.sh');
+        // iframeBox('/exec.php?command=/koolshare/ss/stop.sh');
+        break;
       case 'ShadowSocks':
-      getApp('FastReboot', 'Clean','ShadowSocks 快速重啟');
-      break;
+        getApp('FastReboot', 'Clean', 'ShadowSocks 快速重啟');
+        break;
       case '網路測試':
         onBoot('index');
-      // getApp('TEST', false, 'Playstation.com','ps');
-      // getApp('TEST', false, 'Baidu via Proxy','baidup');
-      break;
+        // getApp('TEST', false, 'Playstation.com','ps');
+        // getApp('TEST', false, 'Baidu via Proxy','baidup');
+        break;
       case 'IP':
-      getApp('IP','Clean');
-      break;
-      case 'A':
-      RunApp('RunExec','ls -l');
-      break;
+        getApp('IP', 'Clean');
+        break;
 
       case '檢查':
-      iframeBox('/exec.php?command=./bin/autoupdate/check.sh');
-      LoadingBox(false);
-      break;
+        iframeBox('/exec.php?command=./bin/autoupdate/check.sh');
+        LoadingBox(false);
+        break;
 
       case '實行更新':
-      iframeBox('/exec.php?command=./bin/autoupdate/update.sh');
-      LoadingBox(false);
-      break;
+        iframeBox('/exec.php?command=./bin/autoupdate/update.sh');
+        LoadingBox(false);
+        break;
+
+      case '重啟 VPS':
+
+        break;
+      case '查詢伺服器狀態':
+        RunApp('remote','/etc/init.d/game-server status',true,'遠程反饋');
+        break;
 
       default:
-      console.log("nothing");
-      break;
+        console.log("nothing");
+        break;
     }
 
   });
@@ -162,14 +165,14 @@ jQuery(document).ready(function($) {
 
 function onBoot(mode) {
   switch (mode) {
-      case 'index':
-        RunApp('GetExec','cat ss-mode',true,'SS 模式','模式');
-        getApp('SSConfig','Clean','SS 配置');
-        getApp('TEST', false, 'Baidu','baidu');
-        getApp('TEST', false, 'Google','google');
+    case 'index':
+      RunApp('GetExec', 'cat ss-mode', true, 'SS 模式', '模式');
+      getApp('SSConfig', 'Clean', 'SS 配置');
+      getApp('ConnectTest', false, 'Baidu', 'baidu');
+      getApp('ConnectTest', false, 'Google', 'google');
       break;
 
-      default:
+    default:
       console.log("nothing");
       break;
   }
@@ -191,15 +194,14 @@ var getUrlParameter = function getUrlParameter(sParam) {
 };
 
 function update_news(url) {
-
-  uArray = url.split( '/' );
-  $articletitle.text(uArray[uArray.length -1]);
+  uArray = url.split('/');
+  $articletitle.text(uArray[uArray.length - 1]);
   // console.log("run");
   $.ajax({
     url: url,
     dataType: "text",
-    beforeSend: function(){
-      LoadingBox(true,'加載內容……');
+    beforeSend: function() {
+      LoadingBox(true, '加載內容……');
     },
     success: function(data) {
       // console.log(data);
@@ -210,9 +212,9 @@ function update_news(url) {
       console.log("News error");
       LoadingBox(false);
 
-      errorMessage = '# 錯誤 \n 遠程內容載入失敗\n\n'+
-      '# 目標內容：\n' + url +
-      '\n\n# 回報文字：\n' + data.responseText
+      errorMessage = '# 錯誤 \n 遠程內容載入失敗\n\n' +
+        '# 目標內容：\n' + url +
+        '\n\n# 回報文字：\n' + data.responseText
 
       $NewsBox.html(markdown.toHTML(errorMessage));
     },
@@ -223,12 +225,12 @@ function update_news(url) {
 }
 
 function heredoc(fn) {
-    return fn.toString().split('\n').slice(1,-1).join('\n') + '\n'
+  return fn.toString().split('\n').slice(1, -1).join('\n') + '\n'
 }
 
 function update_delay() {
   $.ajax({
-    url: '/app.php?fun=TEST&q=google',
+    url: '/app.php?fun=ConnectTest&q=google',
     dataType: "json",
     success: function(data) {
       // console.log("延遲："+data.延遲);
@@ -236,7 +238,7 @@ function update_delay() {
         $delay_time.text('timeout');
         $delay_icon.addClass('red');
       } else {
-        $delay_time.text(data.延遲+'s');
+        $delay_time.text(data.延遲 + 's');
         $delay_icon.removeClass('red');
       }
     },
@@ -255,11 +257,11 @@ function iframeBox(url) {
   } else {
     i.show();
     i.removeClass('hide');
-    i.attr('src',url);
+    i.attr('src', url);
   }
 }
 
-function LoadingBox(isShow,name) {
+function LoadingBox(isShow, name) {
   isShow = isShow || false;
   name = name || '載入中';
   lname.text(name);
@@ -271,16 +273,19 @@ function LoadingBox(isShow,name) {
   }
 }
 
-function RunApp(f,q,isAdd,isTitle,isDesc) {
-  LoadingBox(true,'處理中：'+f);
+function RunApp(f, q, isAdd, isTitle, isDesc) {
   isAdd = isAdd || false;
   isTitle = isTitle || f;
   isDesc = isDesc || q;
+  LoadingBox(true, '處理中：' + isTitle);
   m.html('');
-  $.get('/app.php', {'fun': f, 'q': q}, function(success){
+  $.get('/app.php', {
+    'fun': f,
+    'q': q
+  }, function(success) {
     if (isAdd) {
-      m.append('<h5>'+isTitle+'</h5>')
-      m.append("<span><b>"+isDesc+": </b> "+success+"</span><br/>");
+      m.append('<h5>' + isTitle + '</h5>')
+      m.append("<span><b>" + isDesc + ": </b> " + success + "</span><br/>");
     } else {
       m.html(success);
     }
@@ -290,26 +295,33 @@ function RunApp(f,q,isAdd,isTitle,isDesc) {
 
 }
 
-function getApp(f,isClear,isTitle,q) {
+function getApp(f, isClear, isTitle, q) {
   isClear = isClear || false;
   isTitle = isTitle || f;
-  // LoadingBox(true,'處理中：'+f);
+  q = q || "";
   if (isClear) {
     m.html('');
   };
 
   $.ajax({
-    url: '/app.php?fun='+f+'&q='+q,
+    url: '/app.php?fun=' + f + '&q=' + q,
     dataType: "json",
-    beforeSend: function(){
-      LoadingBox(true,'處理中：'+f);
+    beforeSend: function() {
+      LoadingBox(true, '處理中：' + f);
     },
     success: function(data) {
       if (isTitle != 'no') {
-        m.append('<h5>'+isTitle+'</h5>');
+        m.append('<h5>' + isTitle + '</h5>');
       };
-      for(var k in data) {
-       m.append("<span><b>"+k+":</b> "+data[k]+"</span><br/>");
+      for (var k in data) {
+        if (!_.isObject(data[k])) {
+          m.append("<span><b>" + k + ":</b> " + data[k] + "</span><br/>");
+        } else {
+          m.append("<span><b>" + k + ":</b></span><br/>");
+          for (var i in data[k]) {
+            m.append("<span>　<b>" + i + ":</b> " + data[k][i] + "</span><br/>");
+          };
+        }
       }
       m.append('<br/>');
     },
@@ -357,4 +369,3 @@ function show() {
   }
 
 }
-

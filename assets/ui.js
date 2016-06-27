@@ -4,6 +4,10 @@ jQuery(document).ready(function($) {
 	OM = $('#OpenMenu');
 	LM = $('#leftMenu');
 	$window = $(window);
+	body = $('body');
+
+	lmn = 1;
+	bodyn = 0;
 
 	//Close Menu
 	CM.click(function(){
@@ -15,9 +19,12 @@ jQuery(document).ready(function($) {
 		ui_openmenu();
 	})
 
+	$('body').click(function(e) {
+		console.log(e.target.id);
+	})
+
 	$('#OpenMenu').animateCss('fadeInLeft');
 	$window.on('scroll', check_if_in_view);
-
 
 });
 
@@ -26,6 +33,7 @@ function ui_openmenu() {
 	LM.addClass('fadeInLeftBig');
 	OM.animateCss('bounceOutRight');
 	OM.addClass('leftMenu_Left');
+	body.addClass('openmenu').removeClass('closemenu');
 }
 
 function ui_closemenu() {
@@ -33,6 +41,8 @@ function ui_closemenu() {
 		LM.addClass('fadeOutLeft');
 		OM.removeClass('leftMenu_Left');
 		OM.animateCss('fadeInLeft');
+		body.addClass('closemenu').removeClass('openmenu');
+		ifClose = 1;
 }
 
 function check_if_in_view() {

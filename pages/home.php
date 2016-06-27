@@ -26,6 +26,16 @@
 					<span class="mini-title">操作</span>
 					<br/>
 					<button class="btn btn-default" >網路測試</button>
+					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> 模式 <span class="caret"></span> </button>
+					<ul id="server-list" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+					  <li role="presentation" class="dropdown-header">SS 模式</li>
+						<li> <a class="control" href="javascript: void(0)"><i class="fa fa-arrow-right" aria-hidden="true"></i> Game-Mode</a> </li>
+						<li> <a class="control" href="javascript: void(0)"><i class="fa fa-arrow-right" aria-hidden="true"></i> Game-V2</a> </li>
+						<li role="separator" class="divider"></li>
+						<li role="presentation" class="dropdown-header">停止運作</li>
+						<li> <a class="control" href="javascript: void(0)"><i class="fa fa-stop" aria-hidden="true"></i> STOP</a> </li>
+					</ul>
+
 				</div>
 			</div>
 			<div class="clearfix" ></div>

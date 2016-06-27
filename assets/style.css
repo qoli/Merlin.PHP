@@ -22,10 +22,6 @@ iframe {
   margin-top: 1em;
 }
 
-a {
-
-}
-
 u {
   padding-bottom: .05em;
   border-bottom: 1px solid;
@@ -101,12 +97,6 @@ u {
   max-width: 550px;
   border-right: 1px solid rgba(0,0,0,.04);
   box-shadow: 0 0px 12px 4px rgba(0,0,0,.04);
-}
-
-
-.leftMenu .title {
-  margin-left: 6px;
-  font-size: 0.8em;
 }
 
 .leftMenu ul {
