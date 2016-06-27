@@ -21,7 +21,7 @@ cd /tmp/m_update
 wget https://github.com/qoli/Merlin.PHP/raw/master/bin/zip/merlin-php.tar.gz --no-cache --no-check-certificate --no-dns-cache
 echo 'extract...'
 echo
-tar xvf merlin-php.tar.gz
+tar ﹣xvzf merlin-php.tar.gz
 echo 'copying...'
 echo
 mkdir /opt/share/tmp/ -p

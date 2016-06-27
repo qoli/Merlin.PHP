@@ -85,7 +85,7 @@ Thx ❤️
 ##### 運行安裝腳本
 
 ```shell
-wget --no-check-certificate https://github.com/qoli/Merlin.PHP/raw/master/bin/install/install.sh
+wget --no-check-certificate https://github.com/qoli/Merlin.PHP/raw/master/bin/install/install.sh -O install.sh
 chmod +x install.sh
 ./install.sh
 ```
