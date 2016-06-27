@@ -33,7 +33,7 @@ function FristCheck() {
 }
 
 
-function TEST($way){
+function ConnectTest($way){
 	$o = array();
 	switch ($way) {
 		case 'baidu':
@@ -99,7 +99,7 @@ function SSPID () {
 	echo json_encode($PID);
 }
 
-function RunSS($mode) {
+function SwitchMode($mode) {
 	// echo $mode;
 	echo '<pre>';
 	system("/koolshare/ss/stop.sh");
@@ -154,7 +154,7 @@ function GetExec($command) {
 	system($command);
 }
 
-function RunNET() {
+function SystemNetwork() {
 	echo "<pre>";
 	echo "service restart_dnsmasq: ";
 	system('service restart_dnsmasq');
@@ -163,7 +163,7 @@ function RunNET() {
 	echo "</pre>";
 }
 
-function RunExec($command) {
+function SystemCommand($command) {
 	echo '<pre>';
 	system($command);
 	echo '</pre>';
@@ -226,6 +226,9 @@ class remote extends merlin_php
 		$this->config_total = count((array)$this->config);
 
 	}
+	function getAllConfig() {
+		return $this->config;
+	}
 	function config($id) {
 		if ($id > $this->config_total) {
 			$id = $this->config_total;
@@ -262,15 +265,20 @@ class remote extends merlin_php
 
 }
 
-function remote() {
+function remote($command = 'ls -a') {
 	$remote = new remote();
-	$o = $remote->config(1)->command('ls -a');
-	dump($o,'By SSH');
+	$o = $remote->config(1)->command($command);
+	echo $o;
 }
 
 function remote_clist() {
 	$remote = new remote();
 	echo json_encode($remote->clist());
+}
+
+function remoteConfig() {
+	$remote = new remote();
+	echo json_encode($remote->getAllConfig());
 }
 
 function setActive($id) {
