@@ -1,10 +1,10 @@
 
 sftp-config.json
 
-.DS_Store
-
 .phpintel
 
 .idea
 
 config/config.json
+
+.DS_Store

@@ -17,6 +17,8 @@ jQuery(document).ready(function($) {
   // 遠程工具
   if ($("#remote").length > 0) {
 
+    tipBox('此功能正在開發中');
+
     sl = $('#server-list');
 
     // 獲取可用服務器
@@ -91,6 +93,36 @@ jQuery(document).ready(function($) {
 
   }
 
+  // 設定
+  if ($("#setting").length > 0) {
+
+$('.btn,.control').click(function(event) {
+    e = $(this).text();
+    e = e.trim();
+    console.log('Click: "' + e + '"');
+    switch (e) {
+      case '標準字體':
+        getApp('json_update', 'Clean','font','general');
+        break;
+      case '標準按鈕':
+        getApp('json_update', 'Clean','button','general');
+        break;
+      case '大字體':
+        getApp('json_update', 'Clean','font','bigger');
+        break;
+      case '大按鈕':
+        getApp('json_update', 'Clean','button','bigger');
+        break;
+
+      default:
+        console.log("nothing");
+        break;
+    }
+
+  });
+
+  }
+
   // Footer 信息
   if ($("#delay_icon").length > 0) {
     $delay_time = $('#delay_time');
@@ -129,8 +161,6 @@ jQuery(document).ready(function($) {
         break;
       case '網路測試':
         onBoot('index');
-        // getApp('TEST', false, 'Playstation.com','ps');
-        // getApp('TEST', false, 'Baidu via Proxy','baidup');
         break;
       case 'IP':
         getApp('IP', 'Clean');
@@ -170,6 +200,8 @@ function onBoot(mode) {
       getApp('SSConfig', 'Clean', 'SS 配置');
       getApp('ConnectTest', false, 'Baidu', 'baidu');
       getApp('ConnectTest', false, 'Google', 'google');
+      RunApp('SystemCommand','nvram get wan0_dns',true,'DNS 設定','撥號所用 DNS');
+      // RunApp('SystemCommand','nvram get wan0_xdns',true);
       break;
 
     default:
@@ -261,6 +293,16 @@ function iframeBox(url) {
   }
 }
 
+function tipBox(name, delay) {
+  name = name || '載入中';
+  delay = delay || 2400;
+  $('#tips').text(name);
+  $('#tips').removeClass('hide').animateCss('slideInUp');
+  setTimeout(function(){
+    $('#tips').fadeOut();
+  },delay)
+}
+
 function LoadingBox(isShow, name) {
   isShow = isShow || false;
   name = name || '載入中';
@@ -289,7 +331,6 @@ function RunApp(f, q, isAdd, isTitle, isDesc) {
     } else {
       m.html(success);
     }
-    m.append('<br/>');
     LoadingBox(false);
   })
 

@@ -1,8 +1,41 @@
+@include-when-export url(http://fonts.useso.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Open Sans Regular'),url('/fonts/400.woff') format('woff')
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: italic;
+    font-weight: normal;
+    src: local('Open Sans Italic'),url('/fonts/400i.woff') format('woff')
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: bold;
+    src: local('Open Sans Bold'),url('/fonts/700.woff') format('woff')
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: italic;
+    font-weight: bold;
+    src: local('Open Sans Bold Italic'),url('/fonts/700i.woff') format('woff')
+}
+
 body {
+  font-family: "Open Sans","Clear Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
   padding-bottom: 80px;
+  color: rgb(51, 51, 51);
 }
 h1,h2,h3,h4,h5 {
-  font-weight: 800;
+  font-weight: 700;
+  color: #444;
 }
 
 pre {
@@ -28,13 +61,44 @@ u {
   text-decoration: none;
 }
 
+#setting .active {
+  box-shadow: inset 0 0px 0px rgba(0, 0, 0, .125);
+  background-color: #3ac637;
+  color: #fff;
+  border-color: #88dd86;
+  box-shadow: 0 2px 1px 0px rgba(0,0,0,.09);
+}
+
+#setting .active:hover {
+  background-color: #339931;
+}
+
+.tips {
+  position: fixed;
+  bottom: 12vh;
+  width: 260px;
+  left: 50%;
+  margin-left: -130px;
+  background-color: rgba(0,0,0,0.7);
+  text-align: center;
+  padding: 1em 0em;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 4px;
+  -webkit-backdrop-filter: brightness(1.5) blur(1px);
+  box-shadow: 0 1px 4px 0px rgba(0,0,0,.4);
+}
+.tips .text {
+
+}
+
 #NewsBox {
   color: #555;
 }
 
 #NewsBox strong,#NewsBox b {
-  font-weight: 800;
-  color: #000;
+  font-weight: 700;
+  color: #333;
 }
 
 #NewsBox em {
@@ -49,21 +113,28 @@ u {
 #NewsBox h5{
   color: #333;
   padding-top: 0.8em;
+  font-size: 1em;
 }
 
 .command .btn {
   transition: all .2s ease-in-out;
 }
 
-.btn {
-  font-size: 0.8em;
-  font-weight: 800;
-  color: #444;
-  box-shadow: 0 2px 1px 0px rgba(0,0,0,.04);
-
+#OpenMenu {
+  padding-bottom: 6px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 6px;
 }
 
-.btn:hover {
+.btn {
+  font-size: 0.8em;
+  font-weight: 700;
+  color: #444;
+  box-shadow: 0 2px 1px 0px rgba(0,0,0,.04);
+}
+
+.btn:hover,#setting .active:hover {
   box-shadow: none;
 }
 
@@ -108,7 +179,7 @@ u {
 
 .leftMenu li {
   color: #111;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .leftMenu li .mini-text {
@@ -117,7 +188,7 @@ u {
 
 .leftMenu li a{
   color: #111;
-  font-weight: 800;
+  font-weight: 700;
   padding: 12px;
   margin-left: 24px;
   font-size: 0.8em;
@@ -169,6 +240,10 @@ u {
   margin-bottom: 0;
 }
 
+.desc {
+
+}
+
 .desc,.mini-title,#message {
   font-size: 0.8em;
   color: #ccc;
@@ -180,7 +255,7 @@ u {
 
 .mini-title {
   color: #888;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .urls.mn-removing,.urls.mn-hiding {
@@ -227,6 +302,19 @@ u {
   left: 0;
 }
 
+.footer a {
+  color: #666;
+  border-bottom: 1px solid #ddd;
+  letter-spacing: 0.1em;
+  padding: 0 0.1em 0.1em 0.1em;
+}
+
+.footer a:hover {
+  color: #ff302b;
+  border-bottom: 1px solid #ff302b;
+  text-decoration: none;
+}
+
 .footer span {
   transition: all .2s ease-in-out;
 }
@@ -268,7 +356,7 @@ u {
 
 #message {
   text-decoration: underline;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 #loading {
@@ -288,7 +376,7 @@ table {
 
 h1,th {
   font-size: 1em;
-  font-weight: 800;
+  font-weight: 700;
   margin-bottom: 0;
 }
 

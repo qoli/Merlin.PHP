@@ -9,7 +9,7 @@
 		</div>
 		<div class="pull-left">
 			<h1>梅林路由器拓展實用工具</h1>
-			<span class="model desc"><i class="fa fa-terminal"></i>  / merlin.php /  <b class="animated animated2 infinite fadeIn">I</b></span>
+			<span class="desc"><i class="fa fa-terminal"></i>  / merlin.php /  <b class="animated animated2 infinite fadeIn">I</b></span>
 		</div>
 		<div class="clearfix" ></div>
 		<hr/>

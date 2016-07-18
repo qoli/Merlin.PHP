@@ -286,8 +286,13 @@ function setActive($id) {
 	echo json_encode($remote->setActive($id));
 }
 
-
-
+function json_update($json_file,$name,$var) {
+	//todo: 未處理傳遞多個參數
+	$j = json_decode(file_get_contents($json_file));
+	$j->$name = $var;
+	file_put_contents($json_file,json_encode($j));
+	echo json_encode($j);
+}
 
 
 

@@ -18,8 +18,9 @@ if (file_exists('pages/'.$Param[1].'.php')) {
 	require 'pages/'.$Param[1].'.php';
 	require 'pages/_end.php';
 }	else {
+	require 'pages/_head.php';
 	dump('請求目標不存在', '錯誤');
 	dump($Param,'提交的參數');
-	dump(getRandOnlyId());
+	// dump(getRandOnlyId());
 	echo '返回 <a href="/">首頁</a>';
 }
