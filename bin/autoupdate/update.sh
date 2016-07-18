@@ -30,13 +30,13 @@ case $way in
 		wget https://github.com/qoli/Merlin.PHP/raw/master/bin/zip/merlin-php.tar.gz --no-cache --no-check-certificate --no-dns-cache
 		echo 'extract...'
   	echo
-		tar xvf merlin-php.tar.gz
+		tar zxvf merlin-php.tar.gz
 		echo 'copying...'
   	echo
 		mkdir /opt/share/www/ -p
 		cd /tmp/m_update/Merlin.PHP/
 		cp * /opt/share/www/ -R
-		echo 'upda1e done'
+		echo 'update done'
 
     ;;
 esac
