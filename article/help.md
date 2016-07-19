@@ -46,6 +46,20 @@
 
 
 
+##### 自動更新
+
+在自動更新中，如果失敗的話。請手動運行如下命令：
+
+```shell
+wget --no-check-certificate https://github.com/qoli/Merlin.PHP/raw/master/bin/install/install.sh -O install.sh
+chmod +x install.sh
+./install.sh
+```
+
+導致這個問題是由於 0.1 版本中有錯誤的 tar 參數。
+
+
+
 
 ##### 了解更多
 
