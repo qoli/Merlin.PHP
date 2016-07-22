@@ -1,0 +1,23 @@
+{
+  "name": "Merlin.PHP",
+  "version": "0.2.0",
+  "description": "面向 ASUS﹣MERLIN 的 SS Web 管理面板",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qoli/Merlin.PHP.git"
+  },
+  "keywords": ["Merlin"],
+  "author": "Qoli",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/qoli/Merlin.PHP/issues"
+  },
+  "homepage": "https://github.com/qoli/Merlin.PHP/blob/master/README.md",
+  "devDependencies": {
+    "electron-prebuilt": "^1.2.8"
+  }
+}
