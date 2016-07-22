@@ -3,8 +3,7 @@
 way=0
 
 cd bin/autoupdate/
-echo 'update !!!'
-echo
+echo 'update.'
 remote_md5=$(curl -N --no-buffer https://raw.githubusercontent.com/qoli/Merlin.PHP/master/bin/autoupdate/md5)
 local_md5=$(cat md5)
 echo
@@ -21,7 +20,7 @@ case $way in
     echo 'The version is up-to-date.'
     ;;
   need)
-  	echo 'need update.'
+  	echo 'need update. Still working'
   	echo
 		rm -rf /tmp/m_update
 		# rm -rf /opt/share/www/
@@ -37,9 +36,9 @@ case $way in
 		cd /tmp/m_update/Merlin.PHP/
 		cp * /opt/share/www/ -R
 		echo 'update done'
-
     ;;
 esac
+
 echo
 cd bin/autoupdate/
 echo $local_md5 '->' $(cat md5)

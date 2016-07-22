@@ -3,7 +3,7 @@
 way=0
 
 cd bin/autoupdate/
-echo 'Check update.'
+echo 'Checking update.'
 remote_md5=$(curl -N --no-buffer https://raw.githubusercontent.com/qoli/Merlin.PHP/master/bin/autoupdate/md5)
 local_md5=$(cat md5)
 echo
