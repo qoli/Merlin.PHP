@@ -47,16 +47,6 @@ jQuery(document).ready(function($) {
           getApp('ss_config', 'Clean');
           break;
 
-        case '檢查':
-          iframeBox('/exec.php?command=./bin/autoupdate/check.sh');
-          LoadingBox(false);
-          break;
-
-        case '實行更新':
-          iframeBox('/exec.php?command=./bin/autoupdate/update.sh');
-          LoadingBox(false);
-          break;
-
         case '重啟 VPS':
 
           break;
@@ -190,6 +180,27 @@ jQuery(document).ready(function($) {
   if ($("#update").length > 0) {
     iframeBox('/exec.php?command=./bin/autoupdate/check.sh');
     LoadingBox(false);
+
+    $('.btn,.control').click(function(event) {
+      e = $(this).text();
+      e = e.trim();
+      console.log('Click: "' + e + '"');
+      switch (e) {
+        case '檢查':
+          iframeBox('/exec.php?command=./bin/autoupdate/check.sh');
+          LoadingBox(false);
+          break;
+
+        case '實行更新':
+          iframeBox('/exec.php?command=./bin/autoupdate/update.sh');
+          LoadingBox(false);
+          break;
+
+        default:
+          console.log("nothing");
+          break;
+      }
+    });
   }
 
   // 新聞
