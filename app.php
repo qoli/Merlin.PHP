@@ -25,11 +25,12 @@ if ($q == 'unknow') {
 	$o($q);
 }
 
-FristCheck();
+ChmodCheck();
 
-function FristCheck() {
+function ChmodCheck() {
 	shell_exec("chmod +x /opt/share/www/bin/autoupdate/update.sh");
 	shell_exec("chmod +x /opt/share/www/bin/autoupdate/check.sh");
+	shell_exec("chmod +x /opt/share/www/bin/autoupdate/reinstall.sh");
 	shell_exec("chmod +x /opt/share/www/bin/script/ssconfig.sh");
 }
 

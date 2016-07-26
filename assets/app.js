@@ -196,6 +196,11 @@ jQuery(document).ready(function($) {
           LoadingBox(false);
           break;
 
+        case '重新安裝':
+          iframeBox('/exec.php?command=./bin/autoupdate/reinstall.sh');
+          LoadingBox(false);
+          break;
+
         default:
           console.log("nothing");
           break;
