@@ -6,11 +6,11 @@ cd bin/autoupdate/
 echo 'Reinstall. Still working'
 echo
 rm -rf /tmp/m_update
-rm -rf /opt/share/www/*
 mkdir /tmp/m_update
 cd /tmp/m_update
 wget https://github.com/qoli/Merlin.PHP/raw/master/bin/zip/merlin-php.tar.gz --no-cache --no-check-certificate --no-dns-cache
 echo 'extract...'
+rm -rf /opt/share/www/*
 echo
 tar zxvf merlin-php.tar.gz
 echo 'copying...'
