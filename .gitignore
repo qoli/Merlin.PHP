@@ -8,3 +8,5 @@ sftp-config.json
 config/config.json
 
 .DS_Store
+
+electron/App/
