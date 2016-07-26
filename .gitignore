@@ -10,3 +10,5 @@ config/config.json
 .DS_Store
 
 electron/App/
+
+config/ss-configs.json
