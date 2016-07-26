@@ -21,3 +21,32 @@
 				</p>
 			</div>
 		</footer>
+
+
+
+	<div class="animated fadeInLeft">
+		<div class="row">
+			<div class="col-md-12" >
+				<span class="mini-title">字體</span>
+				<br/>
+				<button class="need-transition btn btn-default active" >標準字體</button>
+				<button class="need-transition btn btn-default" >大字體</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12" >
+				<span class="mini-title">按鈕</span>
+				<br/>
+				<button class="need-transition btn btn-default active" >標準按鈕</button>
+				<button class="need-transition btn btn-default" >大按鈕</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12" >
+				<span class="mini-title">開發中功能</span>
+				<br/>
+				<button class="need-transition btn btn-default" >隱藏</button>
+				<button class="need-transition need-transition btn btn-default active" >顯示</button>
+			</div>
+		</div>
+	</div>

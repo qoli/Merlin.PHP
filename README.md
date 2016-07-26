@@ -22,7 +22,21 @@ Thx ❤️
 
 ## User interface
 
+
+
 ![iPhone-Safari](images/PV.png)
+
+
+
+## 功能
+
+為了便捷查看網絡狀態的目的而開發，支持 SS 的重開、以及切換服務器等功能。
+
+* 網絡測試和監視。
+* 重新連接網絡（WLAN）。
+* 快速重新連接 SS。
+* Game-Mode 以及 Game-V2 支持。
+* 切換 SS 服務器。
 
 
 
@@ -89,8 +103,6 @@ wget --no-check-certificate https://github.com/qoli/Merlin.PHP/raw/master/bin/in
 chmod +x install.sh
 ./install.sh
 ```
-
-#####
 
 
 

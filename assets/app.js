@@ -12,6 +12,122 @@ jQuery(document).ready(function($) {
   // 主頁
   if ($("#index").length > 0) {
     onBoot('index');
+
+    $('.btn,.control').click(function(event) {
+      e = $(this).text();
+      e = e.trim();
+      console.log('Click: "' + e + '"');
+      switch (e) {
+        case 'Network':
+          RunApp('SystemNetwork');
+          break;
+        case 'Web 界面':
+          RunApp('SystemCommand', '/opt/etc/init.d/S80lighttpd restart');
+          break;
+        case 'DNSMASQ':
+          RunApp('SystemCommand', 'service restart_dnsmasq');
+          break;
+        case 'Game-Mode':
+          RunApp('SwitchMode', 'game');
+          break;
+        case 'Game-V2':
+          RunApp('SwitchMode', 'v2');
+          break;
+        case 'STOP':
+          RunApp('SystemCommand', '/koolshare/ss/stop.sh');
+          // iframeBox('/exec.php?command=/koolshare/ss/stop.sh');
+          break;
+        case 'ShadowSocks':
+          getApp('FastReboot', 'Clean', 'ShadowSocks 快速重啟');
+          break;
+        case '網路測試':
+          onBoot('index');
+          break;
+        case '線路列表':
+          getApp('ss_config', 'Clean');
+          break;
+
+        case '檢查':
+          iframeBox('/exec.php?command=./bin/autoupdate/check.sh');
+          LoadingBox(false);
+          break;
+
+        case '實行更新':
+          iframeBox('/exec.php?command=./bin/autoupdate/update.sh');
+          LoadingBox(false);
+          break;
+
+        case '重啟 VPS':
+
+          break;
+        case '查詢伺服器狀態':
+          RunApp('remote', '/etc/init.d/game-server status', true, '遠程反饋');
+          break;
+
+        default:
+          console.log("nothing");
+          break;
+      }
+
+    });
+
+    sl = $('#server-list');
+    // 獲取可用服務器
+    setTimeout(function() {
+      $.ajax({
+        url: '/app.php?fun=ss_config',
+        dataType: "json",
+        success: function(data) {
+          // console.log(data);
+          for (var key in data) {
+            // console.log(data[key].working);
+            if (data[key].server != undefined) {
+
+              if (data[key].working == 1) {
+                status = 'fa-toggle-on green'
+              } else {
+                status = 'fa-toggle-off gray'
+              }
+
+              sl.append('<li><a class="ss-config server-' + key + '" data-server="' + key + '" onclick="event.stopPropagation();" href="javascript: void(0)"><i class="animated need-transition fa ' + status + '" aria-hidden="true"></i> ' + data[key].name + ' <small>(' + data[key].server + ')</small></a></li>');
+            }
+          };
+
+          $('.ss-config').click(function(event) {
+            $sid = $(this).attr('data-server');
+
+            // 設定激活服務器
+            $.ajax({
+              url: '/app.php?fun=ss_config&q=' + $sid,
+              dataType: "json",
+              beforeSend: function() {
+                $('#server-config i').addClass('fa-spin')
+                $('.fa-toggle-on').addClass('fa-toggle-off gray').removeClass('fa-toggle-on green');
+              },
+              success: function(data) {
+                // console.log($('.server-' + $sid));
+                // console.log(data);
+                $('.server-' + $sid + ' i').addClass('fa-toggle-on green').removeClass('fa-toggle-off gray');
+                t = '已選擇「' + data.name + '」等待重開 SS 模式'
+                console.log(t);
+                tipBox(t, 2800);
+
+              },
+              complete: function(data) {
+                $('#server-config i').removeClass('fa-spin')
+              }
+            });
+
+          });
+
+        },
+        complete: function(data) {
+          $('#server-config i').removeClass('fa-spin')
+        }
+      });
+
+    }, 1000);
+
   }
 
   // 遠程工具
@@ -96,30 +212,45 @@ jQuery(document).ready(function($) {
   // 設定
   if ($("#setting").length > 0) {
 
-$('.btn,.control').click(function(event) {
-    e = $(this).text();
-    e = e.trim();
-    console.log('Click: "' + e + '"');
-    switch (e) {
-      case '標準字體':
-        getApp('json_update', 'Clean','font','general');
-        break;
-      case '標準按鈕':
-        getApp('json_update', 'Clean','button','general');
-        break;
-      case '大字體':
-        getApp('json_update', 'Clean','font','bigger');
-        break;
-      case '大按鈕':
-        getApp('json_update', 'Clean','button','bigger');
-        break;
+    LoadingBox(false);
 
-      default:
-        console.log("nothing");
-        break;
-    }
+    $('.btn,.control').click(function(event) {
+      e = $(this).text();
+      e = e.trim();
+      console.log('Click: "' + e + '"');
+      switch (e) {
 
-  });
+        case '重新載入 ShadowSocks 配置':
+          getApp('ss_rebuild', 'Clean');
+          break;
+
+        case 'ss_basic':
+          getApp('ss_basic', 'Clean');
+          break;
+
+        case 'ss_config':
+          getApp('ss_config', 'Clean');
+          break;
+
+          // case '標準字體':
+          //   getApp('json_update', 'Clean', 'font', 'general');
+          //   break;
+          // case '標準按鈕':
+          //   getApp('json_update', 'Clean', 'button', 'general');
+          //   break;
+          // case '大字體':
+          //   getApp('json_update', 'Clean', 'font', 'bigger');
+          //   break;
+          // case '大按鈕':
+          //   getApp('json_update', 'Clean', 'button', 'bigger');
+          //   break;
+
+        default:
+          console.log("nothing");
+          break;
+      }
+
+    });
 
   }
 
@@ -131,66 +262,6 @@ $('.btn,.control').click(function(event) {
     setInterval(update_delay, 2000);
   }
 
-
-  $('.btn,.control').click(function(event) {
-    e = $(this).text();
-    e = e.trim();
-    console.log('Click: "' + e + '"');
-    switch (e) {
-      case 'Network':
-        RunApp('SystemNetwork');
-        break;
-      case 'Web 界面':
-        RunApp('SystemCommand', '/opt/etc/init.d/S80lighttpd restart');
-        break;
-      case 'DNSMASQ':
-        RunApp('SystemCommand', 'service restart_dnsmasq');
-        break;
-      case 'Game-Mode':
-        RunApp('SwitchMode', 'game');
-        break;
-      case 'Game-V2':
-        RunApp('SwitchMode', 'v2');
-        break;
-      case 'STOP':
-        RunApp('SystemCommand', '/koolshare/ss/stop.sh');
-        // iframeBox('/exec.php?command=/koolshare/ss/stop.sh');
-        break;
-      case 'ShadowSocks':
-        getApp('FastReboot', 'Clean', 'ShadowSocks 快速重啟');
-        break;
-      case '網路測試':
-        onBoot('index');
-        break;
-      case 'IP':
-        getApp('IP', 'Clean');
-        break;
-
-      case '檢查':
-        iframeBox('/exec.php?command=./bin/autoupdate/check.sh');
-        LoadingBox(false);
-        break;
-
-      case '實行更新':
-        iframeBox('/exec.php?command=./bin/autoupdate/update.sh');
-        LoadingBox(false);
-        break;
-
-      case '重啟 VPS':
-
-        break;
-      case '查詢伺服器狀態':
-        RunApp('remote','/etc/init.d/game-server status',true,'遠程反饋');
-        break;
-
-      default:
-        console.log("nothing");
-        break;
-    }
-
-  });
-
-
 });
 
 function onBoot(mode) {
@@ -200,7 +271,7 @@ function onBoot(mode) {
       getApp('SSConfig', 'Clean', 'SS 配置');
       getApp('ConnectTest', false, 'Baidu', 'baidu');
       getApp('ConnectTest', false, 'Google', 'google');
-      RunApp('SystemCommand','nvram get wan0_dns',true,'DNS 設定','撥號所用 DNS');
+      RunApp('SystemCommand', 'nvram get wan0_dns', true, 'DNS 設定', '撥號所用 DNS');
       // RunApp('SystemCommand','nvram get wan0_xdns',true);
       break;
 
@@ -291,16 +362,6 @@ function iframeBox(url) {
     i.removeClass('hide');
     i.attr('src', url);
   }
-}
-
-function tipBox(name, delay) {
-  name = name || '載入中';
-  delay = delay || 2400;
-  $('#tips').text(name);
-  $('#tips').removeClass('hide').animateCss('slideInUp');
-  setTimeout(function(){
-    $('#tips').fadeOut();
-  },delay)
 }
 
 function LoadingBox(isShow, name) {

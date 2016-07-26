@@ -1,4 +1,4 @@
-# 幫助檔案 2016年06月20日
+# 幫助檔案 2016年07月27日
 
 ##### 使用之前
 
@@ -12,7 +12,7 @@
 
 ##### 第一次使用
 
-- 在後臺選擇一個支持「遊戲模式 V2」的 SS，并啟用一次。
+- 在後臺選擇一個支持「**遊戲模式 V2**」的 SS，并啟用一次。
 - 在本工具選擇「Game-Mode」或「Game-V2」進行初始化。
 
 
@@ -34,7 +34,7 @@
 
 **我要怎麼更改服務器呢？**
 
-目前，請從路由器後臺更改，未來將會提供「切換線路」功能。
+在 0.3 版本開始提供了「切換線路」功能了。
 
 **我要如何判斷網絡狀態呢？**
 
@@ -44,17 +44,25 @@
 
 從菜單，選擇 Game-V2 或者 Game-Mode 就是完全的 SS 重啟了。
 
+**Google Timeout？**
+
+當顯示 Google Timeout 的時候，說明了 SS 沒有正常工作。請先嘗試快速重啟 ShadowSocks 后，如果失敗，請切換伺服器或者 DNS 等手段嘗試恢復，並且確定服務器是否正常工作。
+
+**我為什麼選擇了 Game-V2 之後，顯示 Google Timeout？**
+
+請你確認你的伺服器（線路）是否支持 Game-V2 模式，具體請參考：http://koolshare.cn/thread-38263-1-1.html
+
 
 
 ##### 自動更新
 
 在自動更新中，如果失敗的話。請手動運行如下命令：
 
-```shell
-wget --no-check-certificate https://github.com/qoli/Merlin.PHP/raw/master/bin/install/install.sh -O install.sh
-chmod +x install.sh
-./install.sh
-```
+`wget --no-check-certificate https://github.com/qoli/Merlin.PHP/raw/master/bin/install/install.sh -O install.sh`
+
+`chmod +x install.sh`
+
+`./install.sh`
 
 導致這個問題是由於 0.1 版本中有錯誤的 tar 參數。
 
@@ -64,3 +72,9 @@ chmod +x install.sh
 ##### 了解更多
 
 http://github.com/qoli/Merlin.PHP
+
+
+
+##### 提交問題
+
+https://github.com/qoli/Merlin.PHP/issues

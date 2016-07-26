@@ -10,23 +10,39 @@ jQuery(document).ready(function($) {
 	bodyn = 0;
 
 	//Close Menu
-	CM.click(function(){
+	CM.click(function() {
 		ui_closemenu();
 	})
 
 	//open Menu
-	OM.click(function(){
+	OM.click(function() {
 		ui_openmenu();
 	})
 
 	$('body').click(function(e) {
-		console.log(e.target.id);
+		console.log('ui.js: ' + e.target.id);
 	})
 
 	$('#OpenMenu').animateCss('fadeInLeft');
 	$window.on('scroll', check_if_in_view);
 
 });
+
+function tipBox(name, delay) {
+  name = name || '載入中';
+  delay = delay || 2400;
+  tip = $('#tips');
+  tip.text(name);
+  tip.removeClass('hide')
+  // tip.show().animateCss('slideInUp')
+  $('#tips').fadeIn();
+  setTimeout(function() {
+  	// tip.removeClass('slideInUp');
+  	// tip.addClass('animated slideOutDown hide');
+  	// tip.addClass('hide');
+    $('#tips').fadeOut();
+  }, delay)
+}
 
 function ui_openmenu() {
 	LM.removeClass('fadeOutLeft hide');
@@ -37,32 +53,32 @@ function ui_openmenu() {
 }
 
 function ui_closemenu() {
-		LM.removeClass('fadeInLeftBig');
-		LM.addClass('fadeOutLeft');
-		OM.removeClass('leftMenu_Left');
-		OM.animateCss('fadeInLeft');
-		body.addClass('closemenu').removeClass('openmenu');
-		ifClose = 1;
+	LM.removeClass('fadeInLeftBig');
+	LM.addClass('fadeOutLeft');
+	OM.removeClass('leftMenu_Left');
+	OM.animateCss('fadeInLeft');
+	body.addClass('closemenu').removeClass('openmenu');
+	ifClose = 1;
 }
 
 function check_if_in_view() {
-  var window_top_position = $window.scrollTop();
+	var window_top_position = $window.scrollTop();
 
-  if (window_top_position > 20) {
-  	$('#scrolling').addClass('fadeInDown');
-  	$('#scrolling').removeClass('fadeOutUp hide');
-  } else{
-  	$('#scrolling').addClass('fadeOutUp');
-  	$('#scrolling').removeClass('fadeInDown');
-  }
+	if (window_top_position > 20) {
+		$('#scrolling').addClass('fadeInDown');
+		$('#scrolling').removeClass('fadeOutUp hide');
+	} else {
+		$('#scrolling').addClass('fadeOutUp');
+		$('#scrolling').removeClass('fadeInDown');
+	}
 
 }
 
 $.fn.extend({
-    animateCss: function (animationName) {
-        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-        $(this).addClass('animated ' + animationName).one(animationEnd, function() {
-            $(this).removeClass('animated ' + animationName);
-        });
-    }
+	animateCss: function(animationName) {
+		var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+		$(this).addClass('animated ' + animationName).one(animationEnd, function() {
+			$(this).removeClass('animated ' + animationName);
+		});
+	}
 });

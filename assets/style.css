@@ -76,6 +76,7 @@ u {
 .tips {
   position: fixed;
   bottom: 12vh;
+  // top: 3vh;
   width: 260px;
   left: 50%;
   margin-left: -130px;
@@ -87,6 +88,7 @@ u {
   border-radius: 4px;
   -webkit-backdrop-filter: brightness(1.5) blur(1px);
   box-shadow: 0 1px 4px 0px rgba(0,0,0,.4);
+  font-size: 0.8em;
 }
 .tips .text {
 

@@ -30,6 +30,7 @@ FristCheck();
 function FristCheck() {
 	shell_exec("chmod +x /opt/share/www/bin/autoupdate/update.sh");
 	shell_exec("chmod +x /opt/share/www/bin/autoupdate/check.sh");
+	shell_exec("chmod +x /opt/share/www/bin/script/ssconfig.sh");
 }
 
 
@@ -67,7 +68,14 @@ function IP ($isJSON = true) {
 }
 
 function SSConfig () {
-	$mode = trim(shell_exec('cat ss-mode'));
+	// $mode = trim(shell_exec('cat ss-mode'));
+	$number = trim(shell_exec('nvram get ss_mode'));
+	if ($number == 3) {
+		$mode = 'game';
+	}
+	if ($number == 4) {
+		$mode = 'v2';
+	}
 	switch ($mode) {
 		case 'v2':
 			$c=shell_exec("cat /koolshare/ss/koolgame/ss.json");
@@ -114,6 +122,7 @@ function SwitchMode($mode) {
 		default:
 			break;
 	}
+	shell_exec('/opt/share/www/bin/script/ssconfig.sh');
 	system('echo '.$mode.' > ss-mode');
 	echo '</pre>';
 }
@@ -196,6 +205,102 @@ class merlin_php
 		dump($data,$title);
 		exit;
 	}
+
+}
+
+
+/**
+* SS 配置
+*/
+class ssconfig extends merlin_php
+{
+	private $config;
+	public $config_total;
+	public $config_now;
+	private $config_files = 'config/ss-configs.json';
+	function __construct()
+	{
+
+		if (!file_exists($this->config_files)) {
+			// 初始化配置
+			shell_exec('/opt/share/www/bin/script/ssconfig.sh');
+		}
+
+		$this->config = json_decode(file_get_contents($this->config_files));
+		$this->config_total = $this->config->Max;
+	}
+
+	function getAllConfig() {
+		return $this->config;
+	}
+
+	function config($id) {
+		if ($id > $this->config_total) {
+			$id = $this->config_total;
+		}
+		$this->config_now = $this->config->$id;
+
+		foreach ($this->config as $key => $value) {
+			@$this->config->$key->working = 0;
+		}
+
+		$this->config->$id->working = 1;
+		shell_exec('dbus set ss_basic_server="'.$this->config->$id->server.'"');
+		shell_exec('dbus set ss_basic_port="'.$this->config->$id->server_port.'"');
+		shell_exec('dbus set ss_basic_password="'.$this->config->$id->password.'"');
+		shell_exec('dbus set ss_basic_method="'.$this->config->$id->method.'"');
+		shell_exec('dbus set ss_basic_rss_protocol="'.$this->config->$id->protocol.'"');
+		shell_exec('dbus set ss_basic_rss_obfs="'.$this->config->$id->obfs.'"');
+		shell_exec('dbus set ss_basic_use_rss="0"');
+		// shell_exec('dbus set shadowsocks_server_ip="'.$this->config->$id->server.'"');
+
+		return $this->config->$id;
+	}
+
+	function rebuild() {
+		shell_exec('/opt/share/www/bin/script/ssconfig.sh');
+	}
+
+	function get_ss_basic() {
+		$json = array(
+			'ss_basic_server' => shell_exec('dbus get ss_basic_server'),
+			'ss_basic_port' => shell_exec('dbus get ss_basic_port'),
+			// 'ss_basic_password' => shell_exec('dbus get ss_basic_password'),
+			'ss_basic_method' => shell_exec('dbus get ss_basic_method'),
+			'shadowsocks_server_ip' => shell_exec('dbus get shadowsocks_server_ip')
+
+		);
+		return $json;
+	}
+
+}
+
+function ss_all_config() {
+	$ssconfig = new ssconfig();
+	echo json_encode($ssconfig->getAllConfig());
+}
+
+function ss_config($id = 0) {
+	$ssconfig = new ssconfig();
+	if ($id == 0) {
+		echo json_encode($ssconfig->getAllConfig());
+	} else {
+		echo json_encode($ssconfig->config($id));
+	}
+}
+
+function ss_rebuild() {
+	$ssconfig = new ssconfig();
+	$ssconfig->rebuild();
+	$json = array(
+		'config' => 'done'
+		);
+	echo json_encode($json);
+}
+
+function ss_basic() {
+	$ssconfig = new ssconfig();
+	echo json_encode($ssconfig->get_ss_basic());
 }
 
 /**
@@ -210,6 +315,7 @@ class remote extends merlin_php
 	private $config_files = 'config/config.json';
 	private $config_template = 'config/config.template.json';
 	private $dev = true;
+
 	function __construct() {
 
 		if (!file_exists($this->config_files)) {
@@ -226,9 +332,11 @@ class remote extends merlin_php
 		$this->config_total = count((array)$this->config);
 
 	}
+
 	function getAllConfig() {
 		return $this->config;
 	}
+
 	function config($id) {
 		if ($id > $this->config_total) {
 			$id = $this->config_total;
@@ -242,9 +350,11 @@ class remote extends merlin_php
 
 		return $this;
 	}
+
 	function command($command = 'whoami') {
 		return $this->ssh->exec($command);
 	}
+
 	function clist() {
 		foreach ($this->config as $k => $c) {
 			$arr[$k] = $c->server;
@@ -252,6 +362,7 @@ class remote extends merlin_php
 
 		return $arr;
 	}
+
 	function setActive($id) {
 
 		foreach ($this->config as $key => $value) {

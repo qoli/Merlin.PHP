@@ -6,4 +6,4 @@
 		</p>
 	</div>
 </footer>
-<div id="tips" class="tips hide">提示文字</div>
+<div id="tips" class="tips animated hide">提示文字</div>

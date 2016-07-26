@@ -34,6 +34,9 @@
 						<li role="separator" class="divider"></li>
 						<li role="presentation" class="dropdown-header">停止運作</li>
 						<li> <a class="control" href="javascript: void(0)"><i class="fa fa-stop" aria-hidden="true"></i> STOP</a> </li>
+						<li role="separator" class="divider"></li>
+						<li role="presentation" class="dropdown-header">切換線路</li>
+						<li><a id="server-config" class="control server-config" href="javascript: void(0)"><i class="fa fa-cog fa-spin" aria-hidden="true"></i> 線路列表</a></li>
 					</ul>
 
 				</div>
