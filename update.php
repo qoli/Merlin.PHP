@@ -3,10 +3,9 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="white">
 		<meta name="apple-mobile-web-app-title" content="Merlin.PHP">
-
 		<link rel="apple-touch-icon" sizes="57x57" href="images/apple-touch-icon-57x57.png">
 		<link rel="apple-touch-icon" sizes="60x60" href="images/apple-touch-icon-60x60.png">
 		<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
@@ -25,7 +24,6 @@
 		<meta name="msapplication-TileColor" content="#da532c">
 		<meta name="msapplication-TileImage" content="images/mstile-144x144.png">
 		<meta name="theme-color" content="#ffffff">
-
 		<title>Merlin Tools</title>
 		<link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 		<link href="//cdn.bootcss.com/animate.css/3.3.0/animate.min.css" rel="stylesheet">
@@ -35,7 +33,6 @@
 	</head>
 	<body class="body-center" id="update" >
 		<div id="scrolling" class="animated hide" ></div>
-
 		<div class="pull-left">
 			<a id="OpenMenu" type="button" class="animated btn btn-default menu" href="/" ><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
 		</div>
@@ -45,7 +42,6 @@
 		</div>
 		<div class="clearfix" ></div>
 		<hr/>
-
 		<div id="ControlPanel" class="animated fadeInLeft command">
 			<div class="row">
 				<div class="col-md-2" >
@@ -62,10 +58,8 @@
 			</div>
 			<div class="clearfix" ></div>
 		</div>
-
-
 		<hr/>
-		<div class="animated fadeInLeft">
+		<div>
 			<div class="row">
 				<div class="col-md-12" >
 					<span class="mini-title"><i class="fa fa-terminal"></i> / merlin.php / </span>

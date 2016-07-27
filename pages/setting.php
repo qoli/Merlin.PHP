@@ -19,7 +19,15 @@
 				<button class="need-transition btn btn-default" >重新載入 ShadowSocks 配置</button>
 			</div>
 		</div>
-		<div class="row debug">
+
+		<?php
+			$g = _GET('d',0);
+			if ($g == 0) {
+				$hideDebug = 'hide';
+			}
+		?>
+
+		<div class="row debug <?=$hideDebug;?>">
 			<div class="col-md-12" >
 				<span class="mini-title">Debug</span>
 				<br/>
@@ -29,9 +37,8 @@
 			</div>
 		</div>
 	</div>
-
 	<hr/>
-	<div class="animated fadeInLeft">
+	<div>
 		<div class="row">
 			<div class="col-md-12" >
 				<div class="contentBox" >
