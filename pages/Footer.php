@@ -2,7 +2,7 @@
 	<div class="footer-container">
 		<!-- <hr/> -->
 		<p class="text-muted">
-			<i id="delay_icon" class="fa fa-circle red animated" aria-hidden="true"></i> Google：<span id="delay_time">testing</span> ． <a target="_self" href="/index.php/article?a=help">帮助</a>
+			<i id="delay_icon" class="fa fa-circle red animated" aria-hidden="true"></i> Google：<span id="delay_time">testing</span> ． <span id="netspeed">netspeed</span> ． <a target="_self" href="/index.php/article?a=help">帮助</a>
 		</p>
 	</div>
 </footer>

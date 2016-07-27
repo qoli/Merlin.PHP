@@ -274,8 +274,11 @@ jQuery(document).ready(function($) {
   if ($("#delay_icon").length > 0) {
     $delay_time = $('#delay_time');
     $delay_icon = $('#delay_icon');
+    $netspeed = $('#netspeed');
     update_delay();
     setInterval(update_delay, 2000);
+    netspeed();
+    setInterval(netspeed, 2000);
   }
 
 });
@@ -345,6 +348,19 @@ function update_news(url) {
 
 function heredoc(fn) {
   return fn.toString().split('\n').slice(1, -1).join('\n') + '\n'
+}
+
+function netspeed() {
+  $.ajax({
+    url: '/app.php?fun=GetExec&q=/opt/share/www/bin/script/netspeed.sh%20eth0',
+    dataType: "text",
+    success: function(data) {
+      $netspeed.text(data)
+    },
+    error: function() {
+      $netspeed.text('error');
+    }
+  });
 }
 
 function update_delay() {

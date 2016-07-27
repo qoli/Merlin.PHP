@@ -32,6 +32,7 @@ function ChmodCheck() {
 	shell_exec("chmod +x /opt/share/www/bin/autoupdate/check.sh");
 	shell_exec("chmod +x /opt/share/www/bin/autoupdate/reinstall.sh");
 	shell_exec("chmod +x /opt/share/www/bin/script/ssconfig.sh");
+	shell_exec("chmod +x /opt/share/www/bin/script/netspeed.sh");
 }
 
 
