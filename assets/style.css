@@ -163,7 +163,7 @@ u {
   width: 75%;
   top: 0;
   left: 0;
-  background: rgba(255,255,255,.9);
+  background: rgba(255,255,255,.93);
   -webkit-backdrop-filter: brightness(1.5) blur(4px);
   z-index: 9999;
   padding: 18px 22px;
