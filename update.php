@@ -79,8 +79,7 @@
 				<div class="col-md-12 text-center over-hidden md-lg visible-lg-block" >
 				</div>
 				<!-- ⬇️ 大屏幕不可見 -->
-				<div class="col-sm-12 text-center over-hidden sm-xs hidden-lg" >
-				</div>
+				<div class="col-sm-12 text-center over-hidden sm-xs hidden-lg" ></div>
 			</div>
 		</div>
 		<footer class="footer">

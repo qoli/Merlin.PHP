@@ -18,7 +18,7 @@
 				<button class="btn btn-default" >Network</button>
 				<button class="btn btn-default" >ShadowSocks</button>
 			</div>
-			<div class="col-md-2" >
+			<div class="col-md-9" >
 				<span class="mini-title">操作</span>
 				<br/>
 				<button class="btn btn-default" >網路測試</button>
