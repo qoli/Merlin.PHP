@@ -25,6 +25,8 @@
 				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> 模式 <span class="caret"></span> </button>
 				<ul id="server-list" class="dropdown-menu" aria-labelledby="dropdownMenu1">
 					<li role="presentation" class="dropdown-header">SS 模式</li>
+					<li> <a class="control" href="javascript: void(0)"><i class="fa fa-arrow-right" aria-hidden="true"></i> GFW-List</a> </li>
+					<li> <a class="control" href="javascript: void(0)"><i class="fa fa-arrow-right" aria-hidden="true"></i> 大陸白名單</a> </li>
 					<li> <a class="control" href="javascript: void(0)"><i class="fa fa-arrow-right" aria-hidden="true"></i> Game-Mode</a> </li>
 					<li> <a class="control" href="javascript: void(0)"><i class="fa fa-arrow-right" aria-hidden="true"></i> Game-V2</a> </li>
 					<li role="separator" class="divider"></li>

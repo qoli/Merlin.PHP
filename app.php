@@ -65,19 +65,30 @@ function IP ($isJSON = true) {
 function SSConfig () {
 	// $mode = trim(shell_exec('cat ss-mode'));
 	$number = trim(shell_exec('nvram get ss_mode'));
-	if ($number == 3) {
-		$mode = 'game';
+
+	switch ($number) {
+		case 1:
+			$mode = 'gfw';
+			break;
+		case 2:
+			$mode = 'mainland';
+			break;
+		case 3:
+			$mode = 'game';
+			break;
+		case 4:
+			$mode = 'v2';
+			break;
 	}
-	if ($number == 4) {
-		$mode = 'v2';
-	}
+
 	switch ($mode) {
 		case 'v2':
 			$c=shell_exec("cat /koolshare/ss/koolgame/ss.json");
 			$Config = json_decode($c);
 			$Config_Output = array(
+				'模式' => $mode,
 				'server' => $Config->server,
-				'server_port' => $Config->server_port,
+				'server port' => $Config->server_port
 				);
 			echo json_encode($Config_Output);
 			break;
@@ -85,9 +96,21 @@ function SSConfig () {
 			$c=shell_exec("cat /koolshare/ss/game/ss.json");
 			$Config = json_decode($c);
 			$Config_Output = array(
+				'模式' => $mode,
 				'server' => $Config->server,
-				'server_port' => $Config->server_port,
+				'server port' => $Config->server_port,
+				'PID' => shell_exec("cat /var/run/shadowsocks.pid")
+				);
+			echo json_encode($Config_Output);
+			break;
+		default:
+			$Config_Output = array(
+				'模式' => trim(shell_exec('cat ss-mode')),
+				'server' => shell_exec('dbus get ss_basic_server'),
+				'server_port' => shell_exec('dbus get ss_basic_port'),
+				'mode number' => shell_exec('nvram get ss_mode'),
 				'PID' => shell_exec("cat /var/run/shadowsocks.pid"),
+				'DNS2SOCKS PID' => shell_exec("cat /var/run/sslocal1.pid")
 				);
 			echo json_encode($Config_Output);
 			break;
@@ -108,10 +131,20 @@ function SwitchMode($mode) {
 	system("/koolshare/ss/stop.sh");
 	sleep(1);
 	switch ($mode) {
+		case 'gfw':
+			shell_exec('dbus set ss_basic_mode=1');
+			system('/koolshare/ss/ipset/start.sh');
+			break;
+		case 'mainland':
+			shell_exec('dbus set ss_basic_mode=2');
+			system('/koolshare/ss/redchn/start.sh');
+			break;
 		case 'game':
+			shell_exec('dbus set ss_basic_mode=3');
 			system('/koolshare/ss/game/start.sh');
 			break;
 		case 'v2':
+			shell_exec('dbus set ss_basic_mode=4');
 			system('/koolshare/ss/koolgame/start.sh');
 			break;
 		default:
@@ -125,6 +158,29 @@ function SwitchMode($mode) {
 function FastReboot() {
 	$mode = trim(shell_exec('cat ss-mode'));
 	switch ($mode) {
+		case 'gfw':
+			$PID_R_O=shell_exec('cat /var/run/shadowsocks.pid');
+			shell_exec('kill -9 '.$PID_R_O);
+			shell_exec('ss-redir -b 0.0.0.0 -c /koolshare/ss/ipset/ss.json -f /var/run/shadowsocks.pid');
+			$PID_R=shell_exec('cat /var/run/shadowsocks.pid');
+			$PID_L_O = shell_exec('cat /var/run/sslocal1.pid');
+			shell_exec('kill -9 '.$PID_L_O);
+			shell_exec('ss-local -b 0.0.0.0 -l 23456 -c /koolshare/ss/ipset/ss.json -u -f /var/run/sslocal1.pid');
+			$PID_L = shell_exec('cat /var/run/sslocal1.pid');
+			$json = array('Mode' => $mode,'ss-redir PID' => trim($PID_R_O).' -> '.$PID_R, 'DNS2SOCKS PID' => trim($PID_R_O).' -> '.$PID_L);
+			break;
+		case 'mainland':
+			$PID_R_O=shell_exec('cat /var/run/sslocal1.pid');
+			shell_exec('kill -9 '.$PID_R_O);
+			shell_exec('ss-local -b 0.0.0.0 -l 23456 -c /koolshare/ss/redchn/ss.json -u -f /var/run/sslocal1.pid');
+			$PID_R=shell_exec('cat /var/run/sslocal1.pid');
+			$PID_L_O = shell_exec('cat /var/run/redsocks2.pid');
+			shell_exec('kill -9 '.$PID_L_O);
+			shell_exec('redsocks2 -c /koolshare/ss/redchn/redsocks2.conf -p /var/run/redsocks2.pid');
+			$PID_L = shell_exec('cat /var/run/redsocks2.pid');
+			$json = array('Mode' => $mode,'ss-local PID' => trim($PID_R_O).' -> '.$PID_R, 'Red Socks PID' => trim($PID_R_O).' -> '.$PID_L);
+			break;
+			break;
 		case 'v2':
 			$PID_P_O = shell_exec('cat /tmp/var/pdu.pid');
 			$PID_G_O = shell_exec("cat /tmp/var/koolgame.pid");
@@ -144,8 +200,10 @@ function FastReboot() {
 			shell_exec('kill -9 '.$PID_L_O);
 			shell_exec('ss-local -b 0.0.0.0 -l 23456 -c /koolshare/ss/game/ss.json -u -f /var/run/sslocal1.pid');
 			$PID_L = shell_exec('cat /var/run/sslocal1.pid');
+			$json = array('Mode' => $mode,'ss-redir PID' => trim($PID_R_O).' -> '.$PID_R, 'DNS2SOCKS PID' => trim($PID_R_O).' -> '.$PID_L);
+			break;
+		default:
 
-			$json = array('Mode' => $mode,'ss-redir PID' => trim($PID_R_O).' -> '.$PID_R, 'ss-local PID' => trim($PID_R_O).' -> '.$PID_L);
 			break;
 	}
 	shell_exec('service restart_dnsmasq');
@@ -262,6 +320,8 @@ class ssconfig extends merlin_php
 			'ss_basic_port' => shell_exec('dbus get ss_basic_port'),
 			// 'ss_basic_password' => shell_exec('dbus get ss_basic_password'),
 			'ss_basic_method' => shell_exec('dbus get ss_basic_method'),
+			'ss_basic_mode' => shell_exec('dbus get ss_basic_mode'),
+			'nvram ss_mode' => shell_exec('nvram get ss_mode'),
 			'shadowsocks_server_ip' => shell_exec('dbus get shadowsocks_server_ip')
 
 		);

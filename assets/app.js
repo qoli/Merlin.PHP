@@ -27,6 +27,12 @@ jQuery(document).ready(function($) {
         case 'DNSMASQ':
           RunApp('SystemCommand', 'service restart_dnsmasq');
           break;
+        case 'GFW-List':
+          RunApp('SwitchMode', 'gfw');
+          break;
+        case '大陸白名單':
+          RunApp('SwitchMode', 'mainland');
+          break;
         case 'Game-Mode':
           RunApp('SwitchMode', 'game');
           break;
@@ -285,7 +291,7 @@ jQuery(document).ready(function($) {
 function onBoot(mode) {
   switch (mode) {
     case 'index':
-      RunApp('GetExec', 'cat ss-mode', true, 'SS 模式', '模式');
+      // RunApp('GetExec', 'cat ss-mode', true, 'SS 模式', '模式');
       getApp('SSConfig', 'Clean', 'SS 配置');
       getApp('ConnectTest', false, 'Baidu', 'baidu');
       getApp('ConnectTest', false, 'Google', 'google');
