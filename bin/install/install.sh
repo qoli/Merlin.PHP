@@ -1,5 +1,5 @@
 #!/bin/sh
-lan=nvram get lan_ipaddr_rt
+lan=`nvram get lan_ipaddr_rt`
 echo
 echo '■ script - 2016-06-28 03:46:39'
 echo
