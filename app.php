@@ -38,20 +38,13 @@ function ChmodCheck() {
 
 function ConnectTest($way){
 	$o = array();
+	$lan = trim(shell_exec('nvram get lan_ipaddr_rt'));
 	switch ($way) {
 		case 'baidu':
-			$o = array('延遲' => shell_exec("curl -o /dev/null -s -w %{time_total} --connect-timeout 10 https://www.baidu.com"));
-			break;
-		case 'google2':
-			$o = array('延遲' => shell_exec("curl -o /dev/null -s -w %{time_total} --connect-timeout 5 http://www.google.com"));
+			$o = array('延遲' => shell_exec("curl -o /dev/null -s -w %{time_total} --connect-timeout 6 https://www.baidu.com"));
 			break;
 		case 'google':
-			$o = array('延遲' => shell_exec("curl -o /dev/null -s -w %{time_total} --connect-timeout 10 --socks5-hostname 192.168.1.1:23456 https://www.google.com/"));
-			break;
-		case 'ps':
-			$o = array('延遲' => shell_exec("curl -o /dev/null -s -w %{time_total} --connect-timeout 10 --socks5-hostname 192.168.1.1:23456 https://status.playstation.com/"));
-		case 'baidup':
-			$o = array('延遲' => shell_exec("curl -o /dev/null -s -w %{time_total} --connect-timeout 10 --socks5-hostname 192.168.1.1:23456 https://www.baidu.com"));
+			$o = array('延遲' => shell_exec("curl -o /dev/null -s -w %{time_total} --connect-timeout 10 --socks5-hostname ".$lan.":23456 https://www.google.com/"));
 			break;
 	}
 

@@ -1,4 +1,5 @@
 #!/bin/sh
+lan=nvram get lan_ipaddr_rt
 echo
 echo '■ script - 2016-06-28 03:46:39'
 echo
@@ -37,7 +38,7 @@ case $answer in
 	echo
 	echo '■ install done'
 	echo
-	echo '■ open http://192.168.1.1:81 and enjoy.'
+	echo '■ open http://'$lan':81 and enjoy.'
   ;;
   N|n)
 	echo
