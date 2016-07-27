@@ -277,7 +277,6 @@ jQuery(document).ready(function($) {
     $netspeed = $('#netspeed');
     update_delay();
     setInterval(update_delay, 2000);
-    netspeed();
     setInterval(netspeed, 2000);
   }
 
@@ -358,7 +357,7 @@ function netspeed() {
       $netspeed.text(data)
     },
     error: function() {
-      $netspeed.text('error');
+      $netspeed.text('netspeed');
     }
   });
 }
