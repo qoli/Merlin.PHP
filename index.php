@@ -11,6 +11,8 @@ if ($Param[0] == 'home') {
 }
 $Param[0] = count($Param)-1;
 
+$GLOBALS['lanIP'] = trim(shell_exec("nvram get lan_ipaddr_rt"));
+
 // dump($_SERVER);
 
 if (file_exists('pages/'.$Param[1].'.php')) {
