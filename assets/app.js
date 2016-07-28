@@ -246,6 +246,10 @@ jQuery(document).ready(function($) {
           getApp('ss_rebuild', 'Clean');
           break;
 
+        case '修正輔助腳本的運行權限':
+          getApp('ChmodCheck', 'Clean');
+          break;
+
         case 'ss_basic':
           getApp('ss_basic', 'Clean');
           break;

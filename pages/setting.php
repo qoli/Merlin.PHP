@@ -17,6 +17,7 @@
 				<br/>
 				<!-- <button class="need-transition btn btn-default active" >標準字體</button> -->
 				<button class="need-transition btn btn-default" >重新載入 ShadowSocks 配置</button>
+				<button class="need-transition btn btn-default" >修正輔助腳本的運行權限</button>
 			</div>
 		</div>
 

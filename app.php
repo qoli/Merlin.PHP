@@ -25,7 +25,7 @@ if ($q == 'unknow') {
 	$o($q);
 }
 
-ChmodCheck();
+// ChmodCheck();
 
 function ChmodCheck() {
 	shell_exec("chmod +x /opt/share/www/bin/autoupdate/update.sh");
@@ -33,6 +33,8 @@ function ChmodCheck() {
 	shell_exec("chmod +x /opt/share/www/bin/autoupdate/reinstall.sh");
 	shell_exec("chmod +x /opt/share/www/bin/script/ssconfig.sh");
 	shell_exec("chmod +x /opt/share/www/bin/script/netspeed.sh");
+	$o = array('chmox +x' => 'done');
+	echo json_encode($o);
 }
 
 
