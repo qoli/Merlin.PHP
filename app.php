@@ -336,6 +336,9 @@ class merlin_php
 				// dump($data,'data');
 				// dump($o,'o');
 				$o = explode("\n",$data);
+				if (end($o) == '') {
+					array_pop($o);
+				}
 				echo json_encode($o);
 				break;
 		}
