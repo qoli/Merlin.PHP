@@ -295,12 +295,11 @@ jQuery(document).ready(function($) {
 function onBoot(mode) {
   switch (mode) {
     case 'index':
+      getApp('BaseInformation', "Clean", '網絡信息');
+      getApp('ConnectTest', false,'網絡測試');
+      getApp('GetShadowSockConfig', false, 'ShadowSocks 配置信息');
+      // RunApp('SystemCommand', 'nvram get wan0_dns', true, 'DNS 設定', '撥號所用 DNS');
       // RunApp('GetExec', 'cat ss-mode', true, 'SS 模式', '模式');
-      getApp('SSConfig', 'Clean', 'SS 配置');
-      getApp('ConnectTest', false, 'Baidu', 'baidu');
-      getApp('ConnectTest', false, 'Google', 'google');
-      RunApp('SystemCommand', 'nvram get wan0_dns', true, 'DNS 設定', '撥號所用 DNS');
-      // RunApp('SystemCommand','nvram get wan0_xdns',true);
       break;
 
     default:

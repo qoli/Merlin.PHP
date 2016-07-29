@@ -1,20 +1,5 @@
 #!/bin/sh
 
-# cd bin/autorun
-# echo "Run Path: "${path/autorun/ }
-
-# eval `dbus export ss`
-
-# dbus set ss_basic_server=""
-# dbus set ss_basic_port=""
-# dbus set ss_basic_password=""
-# dbus set ss_basic_method=""
-# dbus set ss_basic_rss_protocol=""
-# dbus set ss_basic_rss_obfs=""
-# dbus set ss_basic_use_rss=""
-# dbus set ss_basic_rss_obfs_param=""
-# dbus set ss_basic_onetime_auth=""
-
 # 導出 ss 配置 json
 
 cd /opt/share/www/config

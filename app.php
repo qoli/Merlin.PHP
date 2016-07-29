@@ -33,13 +33,38 @@ function ChmodCheck() {
 	shell_exec("chmod +x /opt/share/www/bin/autoupdate/reinstall.sh");
 	shell_exec("chmod +x /opt/share/www/bin/script/ssconfig.sh");
 	shell_exec("chmod +x /opt/share/www/bin/script/netspeed.sh");
-	$o = array('chmox +x' => 'done');
+	$o = array('修正運行權限' => 'update.sh, check.sh, reinstall.sh, ssconfig.sh, netspeed.sh');
 	echo json_encode($o);
 }
 
 
+/**
+* BaseInformation
+* 基本網絡信息網絡測試
+**/
+function BaseInformation() {
+	if ((trim(shell_exec('nvram get wan0_dns'))) == '' ){
+		$o = array(
+			'狀態' => '連線中斷',
+			'區域網' => shell_exec('nvram get lan_ipaddr_rt')
+		);
+	} else {
+		$o = array(
+			'網路類型' => shell_exec('nvram get wan_wan_proto'),
+			'DNS' => shell_exec('nvram get wan0_dns'),
+			'區域網' => shell_exec('nvram get lan_ipaddr_rt'),
+		);
+	}
+	echo json_encode($o);
+}
+
+/**
+* ConnectTest
+*	$way(baidu,google,'');
+* 網絡測試
+**/
+
 function ConnectTest($way){
-	$o = array();
 	$lan = trim(shell_exec('nvram get lan_ipaddr_rt'));
 	switch ($way) {
 		case 'baidu':
@@ -48,6 +73,13 @@ function ConnectTest($way){
 		case 'google':
 			$o = array('延遲' => shell_exec("curl -o /dev/null -s -w %{time_total} --connect-timeout 10 --socks5-hostname ".$lan.":23456 https://www.google.com/"));
 			break;
+		default:
+			$o = array(
+				'Baidu' => shell_exec("curl -o /dev/null -s -w %{time_total} --connect-timeout 6 https://www.baidu.com"),
+				'Google' => shell_exec("curl -o /dev/null -s -w %{time_total} --connect-timeout 10 --socks5-hostname ".$lan.":23456 https://www.google.com/"),
+				);
+			break;
+
 	}
 
 	echo json_encode($o);
@@ -64,7 +96,12 @@ function IP ($isJSON = true) {
 	echo $return;
 }
 
-function SSConfig () {
+
+/**
+*	GetShadowSockConfig
+*	獲得 ShadowSock 配置信息
+**/
+function GetShadowSockConfig () {
 	// $mode = trim(shell_exec('cat ss-mode'));
 	$number = trim(shell_exec('nvram get ss_mode'));
 
@@ -122,10 +159,25 @@ function SSConfig () {
 
 }
 
+/**
+*
+*
+**/
+
 function SSPID () {
 	$PID = array('PID' => shell_exec("cat /var/run/shadowsocks.pid"));
 	echo json_encode($PID);
 }
+
+/**
+*	SwitchMode
+*	$mode(gfw,mainland,game,v2);
+* 切換 SS 模式
+* gfw 黑名單；
+* mainland 大陸白名單；
+* game 遊戲模式（UDP）；
+* v2 koolshare 的遊戲模式 v2；
+**/
 
 function SwitchMode($mode) {
 	// echo $mode;
@@ -261,6 +313,35 @@ class merlin_php
 		exit;
 	}
 
+	function _export($data,$type = 'text') {
+		switch ($type) {
+			case 'array':
+				$o = $data;
+				echo json_encode($o);
+				break;
+
+			case 'json':
+				# code...
+				break;
+
+			case 'pre':
+				echo "<pre>";
+				echo $data;
+				echo "</pre>";
+				break;
+
+			default:
+				# type == text
+				// $o = array('text' => $data);
+				// dump($data,'data');
+				// dump($o,'o');
+				$o = explode("\n",$data);
+				echo json_encode($o);
+				break;
+		}
+		// return json_encode($o);
+	}
+
 }
 
 
@@ -307,13 +388,19 @@ class ssconfig extends merlin_php
 		shell_exec('dbus set ss_basic_rss_protocol="'.$this->config->$id->protocol.'"');
 		shell_exec('dbus set ss_basic_rss_obfs="'.$this->config->$id->obfs.'"');
 		shell_exec('dbus set ss_basic_use_rss="0"');
+		shell_exec('dbus set ssconf_basic_node="'.$this->config->$id->number.'"');
 		// shell_exec('dbus set shadowsocks_server_ip="'.$this->config->$id->server.'"');
 
 		return $this->config->$id;
 	}
 
+	function workng_ss() {
+
+	}
+
 	function rebuild() {
-		shell_exec('/opt/share/www/bin/script/ssconfig.sh');
+		$o = shell_exec('/opt/share/www/bin/script/ssconfig.sh');
+		return($o);
 	}
 
 	function get_ss_basic() {
@@ -348,11 +435,8 @@ function ss_config($id = 0) {
 
 function ss_rebuild() {
 	$ssconfig = new ssconfig();
-	$ssconfig->rebuild();
-	$json = array(
-		'config' => 'done'
-		);
-	echo json_encode($json);
+	// echo $ssconfig->_be_json($ssconfig->rebuild());
+	$ssconfig->_export($ssconfig->rebuild());
 }
 
 function ss_basic() {
