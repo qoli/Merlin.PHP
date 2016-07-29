@@ -10,7 +10,7 @@
 	</div>
 	<div class="clearfix" ></div>
 	<hr/>
-	<div id="ControlPanel" class="animated fadeInLeft command">
+	<div id="ControlPanel" class="animated fadeInLeft command ControlPanel">
 		<div class="row">
 			<div class="col-md-3" >
 				<span class="mini-title">重啟服務</span>

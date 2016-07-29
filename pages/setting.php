@@ -10,7 +10,7 @@
 	</div>
 	<div class="clearfix" ></div>
 	<hr/>
-	<div class="animated fadeInLeft">
+	<div class="animated fadeInLeft ControlPanel">
 		<div class="row">
 			<div class="col-md-12" >
 				<span class="mini-title">ShadowSocks</span>
@@ -18,6 +18,13 @@
 				<!-- <button class="need-transition btn btn-default active" >標準字體</button> -->
 				<button class="need-transition btn btn-default" >重新載入 ShadowSocks 配置</button>
 				<button class="need-transition btn btn-default" >修正輔助腳本的運行權限</button>
+			</div>
+
+			<div class="col-md-12" >
+				<span class="mini-title">Merlin.PHP</span>
+				<br/>
+				<button class="need-transition btn btn-default" ><i class="fa fa-toggle-on green" aria-hidden="true"></i> Remote 功能</button>
+				<p class="help-block">「Remote 功能」是一個管理遠程伺服器（VPS）的功能，提供一些簡單的指令以查詢伺服器狀態。</p>
 			</div>
 		</div>
 

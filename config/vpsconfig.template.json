@@ -1,0 +1,9 @@
+{
+	"1":
+	{
+  "server": "x.x.x.x",
+  "name": "root",
+  "pass": "password",
+  "active": true
+	}
+}

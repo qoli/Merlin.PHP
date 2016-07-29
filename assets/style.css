@@ -61,6 +61,19 @@ u {
   text-decoration: none;
 }
 
+.ControlPanel .col-md-12,.ControlPanel .col-md-3,.ControlPanel .col-md-4,.ControlPanel .col-md-5,.ControlPanel .col-md-6,.ControlPanel .col-md-2 {
+  margin-bottom: 0.3em;
+}
+
+.ControlPanel .help-block {
+  font-size: 0.8em;
+  margin-top: -0.3em;
+}
+
+.ControlPanel button {
+  margin-bottom: 0.3em;
+}
+
 #setting .active {
   box-shadow: inset 0 0px 0px rgba(0, 0, 0, .125);
   background-color: #3ac637;

@@ -2,6 +2,9 @@
 <html lang="zh-yue-Hant" class="han-init">
 	<head>
 		<meta charset="utf-8">
+		<!-- baee path -->
+		<base href="http://<?=$_SERVER['HTTP_HOST'];?>/">
+		<!-- mobile web app - start -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="white">
@@ -24,12 +27,15 @@
 		<meta name="msapplication-TileColor" content="#da532c">
 		<meta name="msapplication-TileImage" content="images/mstile-144x144.png">
 		<meta name="theme-color" content="#ffffff">
+		<!-- mobile web app - end -->
 		<title>Merlin Tools</title>
-		<link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-		<link href="//cdn.bootcss.com/animate.css/3.3.0/animate.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css">
-		<!-- <link href="//cdn.bootcss.com/Han/3.2.5/han.min.css" rel="stylesheet"> -->
+		<link href="assets/bootstrap.min.css" rel="stylesheet">
+		<link href="assets/animate.min.css" rel="stylesheet">
+		<link href="assets/font-awesome.min.css" rel="stylesheet">
+
 		<link rel="stylesheet" href="assets/style.css">
+
+
 	</head>
 	<body class="body-center" id="update" >
 		<div id="scrolling" class="animated hide" ></div>
@@ -42,7 +48,7 @@
 		</div>
 		<div class="clearfix" ></div>
 		<hr/>
-		<div id="ControlPanel" class="animated fadeInLeft command">
+		<div id="ControlPanel" class="animated fadeInLeft ControlPanel">
 			<div class="row">
 				<div class="col-md-2" >
 					<span class="mini-title">更新</span>

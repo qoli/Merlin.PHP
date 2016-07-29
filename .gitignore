@@ -5,7 +5,7 @@ sftp-config.json
 
 .idea
 
-config/config.json
+config/vpsconfig.json
 
 .DS_Store
 

@@ -33,16 +33,6 @@
 		<link href="assets/animate.min.css" rel="stylesheet">
 		<link href="assets/font-awesome.min.css" rel="stylesheet">
 
-		<!--
-		<link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-		<link href="////cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="////cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css"> -->
-
-
-		<!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-		<link href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"> -->
-
 		<link rel="stylesheet" href="assets/style.css">
 		<?php
 		// require "_ui.php";

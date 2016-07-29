@@ -52,14 +52,6 @@ jQuery(document).ready(function($) {
         case '線路列表':
           getApp('ss_config', 'Clean');
           break;
-
-        case '重啟 VPS':
-
-          break;
-        case '查詢伺服器狀態':
-          RunApp('remote', '/etc/init.d/game-server status', true, '遠程反饋');
-          break;
-
         default:
           console.log("nothing");
           break;
@@ -129,9 +121,30 @@ jQuery(document).ready(function($) {
   // 遠程工具
   if ($("#remote").length > 0) {
 
-    tipBox('此功能正在開發中');
+    // tipBox('此功能正在開發中');
 
     sl = $('#server-list');
+
+    $('.btn,.control').click(function(event) {
+      e = $(this).text();
+      e = e.trim();
+      console.log('Click: "' + e + '"');
+      switch (e) {
+        case '重啟':
+          RunApp('remote_command', 'reboot', true, '遠程反饋');
+          break;
+        case 'ShadowSocks':
+          RunApp('remote_command', '/etc/init.d/game-server status', true, '遠程反饋');
+          break;
+        case 'Game-V2':
+          RunApp('remote_command', '/etc/init.d/game-server status', true, '遠程反饋');
+          break;
+
+        default:
+          console.log("nothing");
+          break;
+      }
+    });
 
     // 獲取可用服務器
     setTimeout(function() {
@@ -174,12 +187,53 @@ jQuery(document).ready(function($) {
 
     }, 1000);
 
-    // m.append('<h5>HI</h5>')
-    // m.append("<span><b>狀態: </b> 開發中</span><br/>");
+    getApp('remote_clist',true,'可用伺服器');
+  }
 
-    getApp('remoteConfig');
+  // 遠程 - 編輯配置檔
+  if ($("#remote-edit").length > 0) {
 
-    LoadingBox(false);
+    $('.btn,.control').click(function(event) {
+      e = $(this).text();
+      e = e.trim();
+      console.log('Click: "' + e + '"');
+      switch (e) {
+        case '測試連線':
+
+            $b = $(this);
+            $b.attr('disabled', '');
+            $b.text('Testing');
+
+            $.ajax({
+              url: '/app.php?fun=remote_connectTest'
+            })
+            .done(function(data) {
+              t = '測試：'+data
+              console.log(t);
+              tipBox(t, 2800);
+              setTimeout(function(){
+                $b.text(e);
+                $b.removeAttr('disabled');
+                console.log("1234124");
+              },800)
+            })
+            .fail(function() {
+              console.log("error");
+            })
+            .always(function() {
+              console.log("complete");
+            });
+
+
+
+          break;
+
+        default:
+          console.log("nothing");
+          break;
+      }
+    });
+
   }
 
   // 更新
@@ -330,6 +384,7 @@ function update_news(url) {
   $.ajax({
     url: url,
     dataType: "text",
+    timeout: 8000,
     beforeSend: function() {
       LoadingBox(true, '加載內容……');
     },
@@ -350,6 +405,16 @@ function update_news(url) {
     },
     complete: function(data) {
       LoadingBox(false);
+    },
+    fail: function(data) {
+      LoadingBox(false);
+    },
+    timeout: function(data) {
+      errorMessage = '# 錯誤 \n 遠程內容載入失敗\n\n' +
+        '# 目標內容：\n' + url +
+        '\n\n# 回報文字：\n' + data.responseText
+
+      $NewsBox.html(markdown.toHTML(errorMessage));
     }
   });
 }

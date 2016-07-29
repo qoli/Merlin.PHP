@@ -6,20 +6,26 @@
 	</div>
 	<div class="pull-left">
 		<h1>遠程控制</h1>
-		<span class="model desc"><i class="fa fa-terminal"></i>  / merlin.php /  <b class="animated animated2 infinite fadeIn">remote.php</b></span>
+		<span class="model desc"><i class="fa fa-terminal"></i>  / merlin.php /  <b class="animated animated2 infinite fadeIn">Remote.php</b></span>
 	</div>
 	<div class="clearfix" ></div>
 	<hr/>
-	<div id="ControlPanel" class="animated fadeInLeft command">
+	<div id="ControlPanel" class="animated fadeInLeft ControlPanel">
 		<div class="row">
-			<div class="col-md-3" >
+			<div class="col-md-2" >
 				<span class="mini-title">VPS</span>
 				<br/>
-				<button class="btn btn-default" >重啟 VPS</button>
-				<button class="btn btn-default" >查詢伺服器狀態</button>
+				<a class="btn btn-default" href="/index.php/remote-edit">伺服器配置檔</a>
 				<!-- <button class="btn btn-default" ><i class="fa fa-cog" aria-hidden="true"></i> 遠程設定</button> -->
 			</div>
-			<div class="col-md-3" >
+			<div class="col-md-4" >
+				<span class="mini-title">指令和查詢</span>
+				<br/>
+				<button class="btn btn-default" >重啟</button>
+				<button class="btn btn-default" >ShadowSocks</button>
+				<button class="btn btn-default" >Game-V2</button>
+			</div>
+<!-- 			<div class="col-md-3 hide" >
 				<span class="mini-title">操作</span>
 				<br/>
 				<div class="dropdown">
@@ -28,11 +34,11 @@
 					<span class="caret"></span>
 					</button>
 					<ul id="server-list" class="dropdown-menu" aria-labelledby="dropdownMenu1">
-						<li><a id="server-config" class="server-config" href="javascript: void(0)"><i class="fa fa-cog fa-spin" aria-hidden="true"></i> 編輯伺服器列表</a></li>
+						<li><a id="server-config" class="server-config" href="/index.php/remote-edit"><i class="fa fa-cog fa-spin" aria-hidden="true"></i> 編輯伺服器列表</a></li>
 						<li role="separator" class="divider"></li>
 					</ul>
 				</div>
-			</div>
+			</div> -->
 		</div>
 		<div class="clearfix" ></div>
 	</div>
