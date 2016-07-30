@@ -1,8 +1,10 @@
 <?php
 require_once 'library/MainFunction.php';
+require_once 'library/AppFunction.php';
 
 // GLOBALS 變量
 $GLOBALS['lanIP'] = trim(shell_exec("nvram get lan_ipaddr_rt"));
+$GLOBALS['version'] = "0.4";
 
 // PATH_INFO 初始化
 if (!isset($_SERVER['PATH_INFO']) or $_SERVER['PATH_INFO'] == "") {
@@ -18,6 +20,7 @@ $Param[0] = count($Param)-1;
 
 if (file_exists('pages/'.$Param[1].'.php')) {
 	require 'pages/_head.php';
+	require 'pages/_setting-config.php';
 	require 'pages/'.$Param[1].'.php';
 	require 'pages/_end.php';
 }	else {

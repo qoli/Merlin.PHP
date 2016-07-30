@@ -22,22 +22,22 @@
 				<span class="mini-title">指令和查詢</span>
 				<br/>
 				<button class="btn btn-default" >重啟</button>
-				<button class="btn btn-default" >ShadowSocks</button>
+				<!-- <button class="btn btn-default" >ShadowSocks</button> -->
 				<button class="btn btn-default" >Game-V2</button>
 			</div>
-<!-- 			<div class="col-md-3 hide" >
-				<span class="mini-title">操作</span>
-				<br/>
-				<div class="dropdown">
-					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-					<i class="fa fa-server" aria-hidden="true"></i> 伺服器
-					<span class="caret"></span>
-					</button>
-					<ul id="server-list" class="dropdown-menu" aria-labelledby="dropdownMenu1">
-						<li><a id="server-config" class="server-config" href="/index.php/remote-edit"><i class="fa fa-cog fa-spin" aria-hidden="true"></i> 編輯伺服器列表</a></li>
-						<li role="separator" class="divider"></li>
-					</ul>
-				</div>
+			<!-- 			<div class="col-md-3 hide" >
+					<span class="mini-title">操作</span>
+					<br/>
+					<div class="dropdown">
+							<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							<i class="fa fa-server" aria-hidden="true"></i> 伺服器
+							<span class="caret"></span>
+							</button>
+							<ul id="server-list" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+									<li><a id="server-config" class="server-config" href="/index.php/remote-edit"><i class="fa fa-cog fa-spin" aria-hidden="true"></i> 編輯伺服器列表</a></li>
+									<li role="separator" class="divider"></li>
+							</ul>
+					</div>
 			</div> -->
 		</div>
 		<div class="clearfix" ></div>
@@ -59,10 +59,14 @@
 				<br/>
 			</div>
 			<!-- ⬇️ 小屏幕不可見 -->
-			<div class="col-md-12 text-center over-hidden md-lg visible-lg-block" >
+			<div class="col-md-12 md-lg visible-lg-block visible-md-block contentBox" >
+				<h5>指令和查詢說明</h5>
+				<p><b>重啟</b><br>reboot</p>
+				<p><b>ShadowSocks</b><br>/etc/init.d/game-server</p>
+				<p><b>Game-V2</b><br>/etc/init.d/game-server status</p>
 			</div>
 			<!-- ⬇️ 大屏幕不可見 -->
-			<div class="col-sm-12 text-center over-hidden sm-xs hidden-lg" >
+			<div class="col-sm-12 over-hidden sm-xs hidden-lg" >
 			</div>
 		</div>
 	</div>

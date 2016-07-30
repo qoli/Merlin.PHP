@@ -294,7 +294,8 @@ class merlin_php
                 break;
 
             case 'json':
-                # code...
+                $o = $data;
+                echo json_encode($o);
                 break;
 
             case 'pre':
@@ -436,12 +437,8 @@ class remote extends merlin_php
     function __construct() {
 
         if (!file_exists($this->config_files)) {
-            // 初始化配置模板
-            // echo '初始化配置模板';
             $d = file_get_contents($this->config_template);
             file_put_contents($this->config_files, $d);
-            // $this->_review($d, 'Config build form template');
-            // exit;
         }
 
         // 讀取配置文件
@@ -501,7 +498,7 @@ class remote extends merlin_php
 
     function saveConfig($id,$data) {
         $this->config->$id->server = $data['ip'];
-        $this->config->$id->user = $data['user'];
+        $this->config->$id->name = $data['user'];
         $this->config->$id->pass = $data['pass'];
         return file_put_contents($this->config_files,json_encode($this->config));
     }
@@ -561,6 +558,77 @@ function json_update($json_file,$name,$var) {
     file_put_contents($json_file,json_encode($j));
     echo json_encode($j);
 }
+
+/**
+* setting
+*
+**/
+class setting extends merlin_php
+{
+    public $config;
+    public $config_total;
+    private $config_files = 'config/setting-config.json';
+    private $config_template = 'config/setting.template.json';
+    function __construct()
+    {
+        if (!file_exists($this->config_files)) {
+            $d = file_get_contents($this->config_template);
+            file_put_contents($this->config_files, $d);
+        }
+
+        // 讀取配置文件
+        $this->config = json_decode(file_get_contents($this->config_files));
+        $this->config_total = count((array)$this->config);
+    }
+
+    function set($name, $value) {
+        $this->config->$name = $value;
+        $o =  file_put_contents($this->config_files, json_encode($this->config));
+        if (!$o) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function get($name) {
+        return $this->config->$name;
+    }
+
+    function getAll() {
+        return $this->config;
+    }
+
+    function rebuild() {
+        $d = file_get_contents($this->config_template);
+        return file_put_contents($this->config_files, $d);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

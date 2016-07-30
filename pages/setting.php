@@ -13,35 +13,49 @@
 	<div class="animated fadeInLeft ControlPanel">
 		<div class="row">
 			<div class="col-md-12" >
+				<span class="mini-title">Merlin.PHP</span>
+				<br/>
+				<button class="DriveBySettingConfig setting-remote-value need-transition btn btn-default" data-config="remote" ><i class="fa fa-toggle-off gray" aria-hidden="true"></i> Remote 功能</button>
+				<p class="help-block"><b>「Remote 功能」</b>是一個管理遠程伺服器（VPS）的功能，提供一些簡單的指令以查詢伺服器狀態。</p>
+				<hr class="division" >
+				<button class="DriveBySettingConfig need-transition btn btn-default" data-config="debug" ><i class="fa fa-toggle-off gray" aria-hidden="true"></i> Debug</button>
+				<p class="help-block">「Debug」顯示 Debug 相關輸出和功能。</p>
+				<!-- <hr class="division" >
+				<button class="need-transition btn btn-default" ><i class="fa fa-toggle-off gray" aria-hidden="true"></i> 大字體模式</button>
+				<p class="help-block">「大字體模式」啟用此選項后，將會增大 Merlin.PHP 正在啟用的字號大小。</p> -->
+			</div>
+		</div>
+	<hr/>
+	<div class="animated fadeInLeft ControlPanel">
+		<div class="row">
+			<div class="col-md-12" >
 				<span class="mini-title">ShadowSocks</span>
 				<br/>
 				<!-- <button class="need-transition btn btn-default active" >標準字體</button> -->
 				<button class="need-transition btn btn-default" >重新載入 ShadowSocks 配置</button>
+				<p class="help-block"><b>「重新載入 ShadowSocks 配置」</b>在線路選擇界面遇到激活多個線路的情況，或者信息不準確的情況，請使用此功能修正。</p>
+				<hr class="division" >
 				<button class="need-transition btn btn-default" >修正輔助腳本的運行權限</button>
-			</div>
-
-			<div class="col-md-12" >
-				<span class="mini-title">Merlin.PHP</span>
-				<br/>
-				<button class="need-transition btn btn-default" ><i class="fa fa-toggle-on green" aria-hidden="true"></i> Remote 功能</button>
-				<p class="help-block">「Remote 功能」是一個管理遠程伺服器（VPS）的功能，提供一些簡單的指令以查詢伺服器狀態。</p>
+				<p class="help-block"><b>「修正輔助腳本的運行權限」</b>遇到報告腳本無法運行的錯誤時候，請使用此功能修正。</p>
 			</div>
 		</div>
-
-		<?php
-			$g = _GET('d',0);
-			if ($g == 0) {
-				$hideDebug = 'hide';
-			}
-		?>
-
-		<div class="row debug <?=$hideDebug;?>">
+	</div>
+		<div class="row setting-debug">
+		<hr/>
 			<div class="col-md-12" >
 				<span class="mini-title">Debug</span>
 				<br/>
 				<!-- <button class="need-transition btn btn-default active" >標準字體</button> -->
 				<button class="need-transition btn btn-default" >ss_basic</button>
 				<button class="need-transition btn btn-default" >ss_config</button>
+			</div>
+		</div>
+	</div>
+	<hr/>
+		<div class="row">
+			<div class="col-md-12" >
+				<!-- <button class="need-transition btn btn-default active" >標準字體</button> -->
+				<a href="/index.php/setting" class="need-transition btn btn-default" >確定</a>
 			</div>
 		</div>
 	</div>

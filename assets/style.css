@@ -61,6 +61,12 @@ u {
   text-decoration: none;
 }
 
+.division {
+  margin: 6px 0;
+  // border: none;
+  width: 5em;
+}
+
 .ControlPanel .col-md-12,.ControlPanel .col-md-3,.ControlPanel .col-md-4,.ControlPanel .col-md-5,.ControlPanel .col-md-6,.ControlPanel .col-md-2 {
   margin-bottom: 0.3em;
 }
@@ -68,6 +74,8 @@ u {
 .ControlPanel .help-block {
   font-size: 0.8em;
   margin-top: -0.3em;
+  margin-bottom: 0;
+  line-height: 1.6;
 }
 
 .ControlPanel button {

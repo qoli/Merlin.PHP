@@ -187,7 +187,7 @@ jQuery(document).ready(function($) {
 
     }, 1000);
 
-    getApp('remote_clist',true,'可用伺服器');
+    getApp('remote_clist', true, '可用伺服器');
   }
 
   // 遠程 - 編輯配置檔
@@ -200,22 +200,21 @@ jQuery(document).ready(function($) {
       switch (e) {
         case '測試連線':
 
-            $b = $(this);
-            $b.attr('disabled', '');
-            $b.text('Testing');
+          $b = $(this);
+          $b.attr('disabled', '');
+          $b.text('Testing');
 
-            $.ajax({
+          $.ajax({
               url: '/app.php?fun=remote_connectTest'
             })
             .done(function(data) {
-              t = '測試：'+data
+              t = '測試：' + data
               console.log(t);
               tipBox(t, 2800);
-              setTimeout(function(){
+              setTimeout(function() {
                 $b.text(e);
                 $b.removeAttr('disabled');
-                console.log("1234124");
-              },800)
+              }, 800)
             })
             .fail(function() {
               console.log("error");
@@ -304,6 +303,14 @@ jQuery(document).ready(function($) {
           getApp('ChmodCheck', 'Clean');
           break;
 
+        case 'Remote 功能':
+          settingBoolSwtich(this);
+          break;
+
+        case 'Debug':
+          settingBoolSwtich(this);
+          break;
+
         case 'ss_basic':
           getApp('ss_basic', 'Clean');
           break;
@@ -350,7 +357,7 @@ function onBoot(mode) {
   switch (mode) {
     case 'index':
       getApp('BaseInformation', "Clean", '網絡信息');
-      getApp('ConnectTest', false,'網絡測試');
+      getApp('ConnectTest', false, '網絡測試');
       getApp('GetShadowSockConfig', false, 'ShadowSocks 配置信息');
       // RunApp('SystemCommand', 'nvram get wan0_dns', true, 'DNS 設定', '撥號所用 DNS');
       // RunApp('GetExec', 'cat ss-mode', true, 'SS 模式', '模式');
@@ -376,6 +383,68 @@ var getUrlParameter = function getUrlParameter(sParam) {
     }
   }
 };
+
+function settingBoolSwtich(obj) {
+
+  settingName = $(obj).attr('data-config');
+
+  $.ajax({
+      url: '/api.php?class=setting&function=get',
+      type: 'POST',
+      data: {
+        POST: "'" + settingName + "'"
+      },
+    })
+    .done(function(data) {
+      if (data == 1) {
+        Bool = 0;
+      } else {
+        Bool = 1;
+      }
+      dataPOST = {
+        name: "'" + settingName + "'",
+        value: Bool
+      }
+      api('setting', 'set', dataPOST, obj, function(e) {
+        if (Bool) {
+          toggleSetOn(obj);
+        } else {
+          toggleSetOff(obj);
+        }
+      });
+    })
+    .fail(function() {
+      console.log("settingBoolSwtich: error");
+    })
+    .always(function() {
+      console.log("settingBoolSwtich: complete");
+    });
+
+
+
+}
+
+function api(className, functionName, dataPOST, obj, callback) {
+  $.ajax({
+      url: '/api.php?class=' + className + '&function=' + functionName,
+      type: 'POST',
+      data: dataPOST
+    })
+    .done(function(data) {
+      console.log("API-"+className+"-"+functionName+": "+data+" + POST ⬇️");
+      console.log(dataPOST);
+      if (typeof callback === "function") {
+        callback(data);
+      }
+    })
+    .fail(function() {
+      console.log("api: error");
+    })
+    .always(function() {
+      console.log("api: complete");
+    });
+
+}
 
 function update_news(url) {
   uArray = url.split('/');
