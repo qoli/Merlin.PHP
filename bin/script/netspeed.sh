@@ -13,4 +13,4 @@ down_time=`expr $down_time2 - $down_time1`
 up_time=`expr $up_time / 1024`
 down_time=`expr $down_time / 1024`
 
-echo 上傳：$up_time kb/s ． 下載：$down_time kb/s
+echo TX: $up_time kb/s ． RX: $down_time kb/s
