@@ -39,7 +39,7 @@
 					<p class="help-block"><b>「重新載入 ShadowSocks 配置」</b>在線路選擇界面遇到激活多個線路的情況，或者信息不準確的情況，請使用此功能修正。</p>
 					<hr class="division" >
 					<button class="need-transition btn btn-default" >修正輔助腳本的運行權限</button>
-					<p class="help-block"><b>「修正輔助腳本的運行權限」</b>遇到報告腳本無法運行的錯誤時候，請使用此功能修正。</p>
+					<p class="help-block"><b>「修正輔助腳本的運行權限」</b>遇到報告腳本無法運行的錯誤時候或網速無法顯示，請使用此功能修正。</p>
 				</div>
 			</div>
 		</div>
