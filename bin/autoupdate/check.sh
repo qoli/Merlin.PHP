@@ -35,5 +35,12 @@ case $way in
   	echo '與 github.com 的通信失敗'
     ;;
 esac
+
+chmod +x /opt/share/www/bin/autoupdate/update.sh
+chmod +x /opt/share/www/bin/autoupdate/check.sh
+chmod +x /opt/share/www/bin/autoupdate/reinstall.sh
+chmod +x /opt/share/www/bin/script/ssconfig.sh
+chmod +x /opt/share/www/bin/script/netspeed.sh
+
 echo
 date

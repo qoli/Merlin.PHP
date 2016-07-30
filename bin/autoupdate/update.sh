@@ -43,4 +43,9 @@ echo
 cd bin/autoupdate/
 echo $local_md5 '->' $(cat md5)
 echo
+chmod +x /opt/share/www/bin/autoupdate/update.sh
+chmod +x /opt/share/www/bin/autoupdate/check.sh
+chmod +x /opt/share/www/bin/autoupdate/reinstall.sh
+chmod +x /opt/share/www/bin/script/ssconfig.sh
+chmod +x /opt/share/www/bin/script/netspeed.sh
 date
