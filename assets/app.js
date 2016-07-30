@@ -134,7 +134,7 @@ jQuery(document).ready(function($) {
           RunApp('remote_command', 'reboot', true, '遠程反饋');
           break;
         case 'ShadowSocks':
-          RunApp('remote_command', '/etc/init.d/game-server status', true, '遠程反饋');
+          RunApp('remote_command', '/etc/init.d/shadowsocks status', true, '遠程反饋');
           break;
         case 'Game-V2':
           RunApp('remote_command', '/etc/init.d/game-server status', true, '遠程反饋');

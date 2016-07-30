@@ -12,17 +12,17 @@
 	<hr/>
 	<div id="ControlPanel" class="animated fadeInLeft ControlPanel">
 		<div class="row">
-			<div class="col-md-2" >
+			<div class="col-md-3" >
 				<span class="mini-title">VPS</span>
 				<br/>
 				<a class="btn btn-default" href="/index.php/remote-edit">伺服器配置檔</a>
 				<!-- <button class="btn btn-default" ><i class="fa fa-cog" aria-hidden="true"></i> 遠程設定</button> -->
 			</div>
-			<div class="col-md-4" >
+			<div class="col-md-9" >
 				<span class="mini-title">指令和查詢</span>
 				<br/>
 				<button class="btn btn-default" >重啟</button>
-				<!-- <button class="btn btn-default" >ShadowSocks</button> -->
+				<button class="btn btn-default" >ShadowSocks</button>
 				<button class="btn btn-default" >Game-V2</button>
 			</div>
 			<!-- 			<div class="col-md-3 hide" >
