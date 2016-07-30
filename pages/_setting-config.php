@@ -3,8 +3,8 @@
 $s = new setting();
 $o = $s->getAll();
 
-function display($v) {
-	if ($v) {
+function display($v = '') {
+	if ($v or $v != '') {
 		return 'block';
 	} else {
 		return 'none';
@@ -20,6 +20,10 @@ function display($v) {
 
 .setting-debug {
 	display: <?=display($o->debug);?>
+}
+
+.setting-dev {
+	display: <?=display($o->dev);?>
 }
 
 </style>

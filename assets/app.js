@@ -311,6 +311,10 @@ jQuery(document).ready(function($) {
           settingBoolSwtich(this);
           break;
 
+        case '開發版本':
+          settingBoolSwtich(this);
+          break;
+
         case 'ss_basic':
           getApp('ss_basic', 'Clean');
           break;

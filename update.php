@@ -32,10 +32,11 @@
 		<link href="assets/bootstrap.min.css" rel="stylesheet">
 		<link href="assets/animate.min.css" rel="stylesheet">
 		<link href="assets/font-awesome.min.css" rel="stylesheet">
-
 		<link rel="stylesheet" href="assets/style.css">
-
-
+		<?php
+		require_once 'library/AppFunction.php';
+		require 'pages/_setting-config.php';
+		?>
 	</head>
 	<body class="body-center" id="update" >
 		<div id="scrolling" class="animated hide" ></div>
@@ -50,13 +51,19 @@
 		<hr/>
 		<div id="ControlPanel" class="animated fadeInLeft ControlPanel">
 			<div class="row">
-				<div class="col-md-2" >
+				<div class="col-md-12" >
 					<span class="mini-title">更新</span>
 					<br/>
 					<button class="btn btn-default" >檢查</button>
 					<button class="btn btn-default" >實行更新</button>
 				</div>
-				<div class="col-md-2" >
+				<div class="col-md-12 setting-dev" >
+					<span class="mini-title">更新</span>
+					<br/>
+					<button class="btn btn-default" >檢查（開發）</button>
+					<button class="btn btn-default" >實行更新（開發）</button>
+				</div>
+				<div class="col-md-12" >
 					<span class="mini-title">安裝</span>
 					<br/>
 					<button class="btn btn-default" >重新安裝</button>
@@ -65,43 +72,27 @@
 			<div class="clearfix" ></div>
 		</div>
 		<hr/>
-		<div>
-			<div class="row">
-				<div class="col-md-12" >
-					<span class="mini-title"><i class="fa fa-terminal"></i> / merlin.php / </span>
-					<div class="contentBox" >
-						<iframe id="iframeBox" class="iframe hide" src="/exec.php" frameborder="0" allowfullscreen></iframe>
-						<div id="MessageDIV" ></div>
-						<div id="loadingDIV" class="animated animated2 infinite fadeIn" data-isOPEN="true">
-							<h5 id="loading-Name">載入中</h5>
-							<div class="" >
-								<p><span style="margin-top: -5px;" id="loading" class="rotating glyphicon glyphicon-refresh" aria-hidden="true"></span></p>
-							</div>
-						</div>
+		<div class="row">
+			<div class="col-md-12" >
+				<span class="mini-title"><i class="fa fa-terminal"></i> / merlin.php / </span>
+				<div class="contentBox" >
+					<iframe id="iframeBox" class="iframe hide" src="/exec.php" frameborder="0" allowfullscreen></iframe>
+					<div id="MessageDIV" ></div>
+					<div id="loadingDIV" class="animated animated2 infinite fadeIn" data-isOPEN="true">
+						<h5 id="loading-Name">載入中</h5>
+						<div><p><span style="margin-top: -5px;" id="loading" class="rotating glyphicon glyphicon-refresh" aria-hidden="true"></span></p></div>
 					</div>
-					<br/>
 				</div>
-				<!-- ⬇️ 小屏幕不可見 -->
-				<div class="col-md-12 text-center over-hidden md-lg visible-lg-block" >
-				</div>
-				<!-- ⬇️ 大屏幕不可見 -->
-				<div class="col-sm-12 text-center over-hidden sm-xs hidden-lg" ></div>
 			</div>
 		</div>
-		<footer class="footer">
-			<div class="footer-container">
-				<!-- <hr/> -->
-				<p class="text-muted">
-					<i id="delay_icon" class="fa fa-circle red" aria-hidden="true"></i> Google：<span id="delay_time">testing</span>
-				</p>
-			</div>
-		</footer>
 	</body>
-	<script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-	<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+	<script src="assets/jquery.min.js"></script>
+	<script src="assets/bootstrap.min.js"></script>
+	<script src="assets/underscore-min.js"></script>
 	<script src="assets/logs.js"></script>
 	<script src="assets/ui.js"></script>
 	<script src="assets/app.js"></script>
 	<script src="assets/standalone.js"></script>
+	<script>if (window.module) module = window.module;</script>
 </html>
