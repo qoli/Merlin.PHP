@@ -1,4 +1,4 @@
-# 幫助檔案 2016年07月27日
+# 幫助檔案 2016年07月30日
 
 ##### 使用之前
 
@@ -47,6 +47,8 @@
 **Google Timeout？**
 
 當顯示 Google Timeout 的時候，說明了 SS 沒有正常工作。請先嘗試快速重啟 ShadowSocks 后，如果失敗，請切換伺服器或者 DNS 等手段嘗試恢復，並且確定服務器是否正常工作。
+
+若在非 DNS2SOCKS 下工作時候，Google Test 為紅燈狀態。因為此測試需要 23456 Socks5 參與。
 
 **我為什麼選擇了 Game-V2 之後，顯示 Google Timeout？**
 
