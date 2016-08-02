@@ -91,8 +91,8 @@ function GetShadowSockConfig () {
 		$Config = json_decode($c);
 		$Config_Output = array(
 			'模式' => $mode,
-			'server' => $Config->server,
-			'server port' => $Config->server_port
+			'Server' => $Config->server,
+			'Server Port' => $Config->server_port
 			);
 		echo json_encode($Config_Output);
 		break;
@@ -101,8 +101,8 @@ function GetShadowSockConfig () {
 		$Config = json_decode($c);
 		$Config_Output = array(
 			'模式' => $mode,
-			'server' => $Config->server,
-			'server port' => $Config->server_port,
+			'Server' => $Config->server,
+			'Server Port' => $Config->server_port,
 			'PID' => shell_exec("cat /var/run/shadowsocks.pid")
 			);
 		echo json_encode($Config_Output);
@@ -110,9 +110,9 @@ function GetShadowSockConfig () {
 		default:
 		$Config_Output = array(
 			'模式' => trim(shell_exec('cat ss-mode')),
-			'server' => shell_exec('dbus get ss_basic_server'),
-			'server_port' => shell_exec('dbus get ss_basic_port'),
-			'mode number' => shell_exec('nvram get ss_mode'),
+			'Server' => shell_exec('dbus get ss_basic_server'),
+			'Server Port' => shell_exec('dbus get ss_basic_port'),
+			'Mode Number' => shell_exec('nvram get ss_mode'),
 			'PID' => shell_exec("cat /var/run/shadowsocks.pid"),
 			'DNS2SOCKS PID' => shell_exec("cat /var/run/sslocal1.pid")
 			);
@@ -227,6 +227,16 @@ function FastReboot() {
 		$PID_L = shell_exec('cat /var/run/redsocks2.pid');
 		$json = array('Mode' => $mode,'ss-local PID' => trim($PID_R_O).' -> '.$PID_R, 'Red Socks PID' => trim($PID_R_O).' -> '.$PID_L);
 		break;
+		case 'game':
+		$PID_R_O=shell_exec('cat /var/run/shadowsocks.pid');
+		shell_exec('kill -9 '.$PID_R_O);
+		shell_exec('ss-redir -b 0.0.0.0 -u -c /koolshare/ss/game/ss.json -f /var/run/shadowsocks.pid');
+		$PID_R=shell_exec('cat /var/run/shadowsocks.pid');
+		$PID_L_O = shell_exec('cat /var/run/sslocal1.pid');
+		shell_exec('kill -9 '.$PID_L_O);
+		shell_exec('ss-local -b 0.0.0.0 -l 23456 -c /koolshare/ss/game/ss.json -u -f /var/run/sslocal1.pid');
+		$PID_L = shell_exec('cat /var/run/sslocal1.pid');
+		$json = array('Mode' => $mode,'ss-redir PID' => trim($PID_R_O).' -> '.$PID_R, 'DNS2SOCKS PID' => trim($PID_L_O).' -> '.$PID_L);
 		break;
 		case 'v2':
 		$PID_P_O = shell_exec('cat /tmp/var/pdu.pid');
@@ -237,20 +247,7 @@ function FastReboot() {
 		$PID_P = shell_exec('cat /tmp/var/pdu.pid');
 		$json = array('Mode' => $mode,'PDU PID' => trim($PID_P_O).' -> '.trim($PID_P),'koolgame PID' => trim($PID_G_O).' -> '.trim($PID_G));
 		break;
-		case 'game':
-						// $c=shell_exec('ps|grep ss-redir');
-		$PID_R_O=shell_exec('cat /var/run/shadowsocks.pid');
-		shell_exec('kill -9 '.$PID_R_O);
-		shell_exec('ss-redir -b 0.0.0.0 -u -c /koolshare/ss/game/ss.json -f /var/run/shadowsocks.pid');
-		$PID_R=shell_exec('cat /var/run/shadowsocks.pid');
-		$PID_L_O = shell_exec('cat /var/run/sslocal1.pid');
-		shell_exec('kill -9 '.$PID_L_O);
-		shell_exec('ss-local -b 0.0.0.0 -l 23456 -c /koolshare/ss/game/ss.json -u -f /var/run/sslocal1.pid');
-		$PID_L = shell_exec('cat /var/run/sslocal1.pid');
-		$json = array('Mode' => $mode,'ss-redir PID' => trim($PID_R_O).' -> '.$PID_R, 'DNS2SOCKS PID' => trim($PID_R_O).' -> '.$PID_L);
-		break;
 		default:
-
 		break;
 	}
 	shell_exec('service restart_dnsmasq');

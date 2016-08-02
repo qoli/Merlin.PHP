@@ -7,7 +7,7 @@ cd /opt/share/www/config
 eval `dbus export ssconf_basic`
 
 path=$(cd `dirname $0`; pwd)
-echo "Run Path: "${path}
+# echo "Run Path: "${path}
 
 rm ss-configs.json
 
@@ -37,7 +37,7 @@ do
 		isWork="0"
 	fi
 
-	echo $server_ip "("$isWork"):" $array1
+	echo ""$array9 ": (working: "$isWork") " $array1
 
 cat >>ss-configs.json <<EOF
 

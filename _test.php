@@ -6,44 +6,11 @@ require_once 'library/Requests.php';
 require_once 'library/AppFunction.php';
 Requests::register_autoloader();
 
-// $d = file_get_contents('config/setting.template.json');
-// file_put_contents('config/setting-config.json', $d);
-// $c = file_get_contents('config/setting-config.json');
-$s = new setting();
+exec("ls /mnt/",$o);
 
-$o = $s->set('remote', 0);
-$o = $s->getAll();
-// dump($d);
 dump($o);
 
-echo @display($o->dev);
-
-function display($v = '') {
-	if ($v or $v != '') {
-		return 'block';
-	} else {
-		return 'none';
-	}
+foreach ($o as $key => $value) {
+	exec("ls /mnt/".$value,$k);
+	dump($k,$value);
 }
-
-exit;
-
-$s = new setting();
-$o = $s->getAll();
-
-?>
-<style name="setting-config" type="text/css">
-
-.setting-remote {
-	display: <?=display($o->remote);?>
-}
-
-.setting-debug {
-	display: <?=display($o->debug);?>
-}
-
-.setting-dev {
-	display: <?=display($o->dev);?>
-}
-
-</style>

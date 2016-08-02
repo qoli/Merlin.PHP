@@ -361,10 +361,14 @@ function onBoot(mode) {
   switch (mode) {
     case 'index':
       getApp('BaseInformation', "Clean", '網絡信息');
-      getApp('ConnectTest', false, '網絡測試');
+      getApp('ConnectTest', false, '延遲');
       getApp('GetShadowSockConfig', false, 'ShadowSocks 配置信息');
       // RunApp('SystemCommand', 'nvram get wan0_dns', true, 'DNS 設定', '撥號所用 DNS');
       // RunApp('GetExec', 'cat ss-mode', true, 'SS 模式', '模式');
+      break;
+
+    case 'dashboard':
+      getApp('BaseInformation', "Clean", '網絡信息');
       break;
 
     default:
@@ -372,21 +376,6 @@ function onBoot(mode) {
       break;
   }
 }
-
-var getUrlParameter = function getUrlParameter(sParam) {
-  var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-    sURLVariables = sPageURL.split('&'),
-    sParameterName,
-    i;
-
-  for (i = 0; i < sURLVariables.length; i++) {
-    sParameterName = sURLVariables[i].split('=');
-
-    if (sParameterName[0] === sParam) {
-      return sParameterName[1] === undefined ? true : sParameterName[1];
-    }
-  }
-};
 
 function settingBoolSwtich(obj) {
 
@@ -483,7 +472,7 @@ function update_news(url) {
       LoadingBox(false);
     },
     timeout: function(data) {
-      errorMessage = '# 錯誤 \n 遠程內容載入失敗\n\n' +
+      errorMessage = '# 超時 \n 遠程內容載入失敗\n\n' +
         '# 目標內容：\n' + url +
         '\n\n# 回報文字：\n' + data.responseText
 
@@ -496,6 +485,10 @@ function heredoc(fn) {
   return fn.toString().split('\n').slice(1, -1).join('\n') + '\n'
 }
 
+/**
+* netspeed
+* 實時網速
+**/
 function netspeed() {
   $.ajax({
     url: '/app.php?fun=GetExec&q=/opt/share/www/bin/script/netspeed.sh%20eth0',
