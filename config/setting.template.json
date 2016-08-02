@@ -1,5 +1,7 @@
 {
   "remote": 1,
   "debug": 0,
-  "dev": 0
+  "dev": 0,
+  "dashboard" : 1,
+  "dashboard_index": 0
 }

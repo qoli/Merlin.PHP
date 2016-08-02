@@ -10,6 +10,17 @@
 	</div>
 	<div class="clearfix" ></div>
 	<hr/>
+	<div id="ControlPanel" class="animated fadeInLeft ControlPanel">
+		<div class="row">
+			<div class="col-md-3" >
+				<span class="mini-title">Dashboard</span>
+				<br/>
+				<button class="btn btn-default" ><i class="fa fa-refresh" aria-hidden="true"></i> 刷新</button>
+			</div>
+		</div>
+		<div class="clearfix" ></div>
+	</div>
+	<hr/>
 	<div>
 		<div class="row">
 			<div class="col-md-12" >

@@ -16,7 +16,7 @@ jQuery(document).ready(function($) {
     $('.btn,.control').click(function(event) {
       e = $(this).text();
       e = e.trim();
-      console.log('Click: "' + e + '"');
+      console.log('🖱 Click: "' + e + '"');
       switch (e) {
         case 'Network':
           RunApp('SystemNetwork');
@@ -128,7 +128,7 @@ jQuery(document).ready(function($) {
     $('.btn,.control').click(function(event) {
       e = $(this).text();
       e = e.trim();
-      console.log('Click: "' + e + '"');
+      console.log('🖱 Click: "' + e + '"');
       switch (e) {
         case '重啟':
           RunApp('remote_command', 'reboot', true, '遠程反饋');
@@ -196,7 +196,7 @@ jQuery(document).ready(function($) {
     $('.btn,.control').click(function(event) {
       e = $(this).text();
       e = e.trim();
-      console.log('Click: "' + e + '"');
+      console.log('🖱 Click: "' + e + '"');
       switch (e) {
         case '測試連線':
 
@@ -243,7 +243,7 @@ jQuery(document).ready(function($) {
     $('.btn,.control').click(function(event) {
       e = $(this).text();
       e = e.trim();
-      console.log('Click: "' + e + '"');
+      console.log('🖱 Click: "' + e + '"');
       switch (e) {
         case '檢查':
           iframeBox('/exec.php?command=./bin/autoupdate/check.sh');
@@ -258,6 +258,27 @@ jQuery(document).ready(function($) {
         case '重新安裝':
           iframeBox('/exec.php?command=./bin/autoupdate/reinstall.sh');
           LoadingBox(false);
+          break;
+
+        default:
+          console.log("nothing");
+          break;
+      }
+    });
+  }
+
+  // 更新
+  if ($("#dashboard").length > 0) {
+    // LoadingBox(false);
+    onBoot('dashboard');
+
+    $('.btn,.control').click(function(event) {
+      e = $(this).text();
+      e = e.trim();
+      console.log('🖱 Click: "' + e + '"');
+      switch (e) {
+        case '刷新':
+          onBoot('dashboard');
           break;
 
         default:
@@ -292,7 +313,7 @@ jQuery(document).ready(function($) {
     $('.btn,.control').click(function(event) {
       e = $(this).text();
       e = e.trim();
-      console.log('Click: "' + e + '"');
+      console.log('🖱 Click: "' + e + '"');
       switch (e) {
 
         case '重新載入 ShadowSocks 配置':
@@ -307,12 +328,24 @@ jQuery(document).ready(function($) {
           settingBoolSwtich(this);
           break;
 
+        case 'Dashboard 功能':
+          settingBoolSwtich(this);
+          break;
+
+        case '以 Dashboard 為首頁':
+          settingBoolSwtich(this);
+          break;
+
         case 'Debug':
           settingBoolSwtich(this);
           break;
 
         case '開發版本':
           settingBoolSwtich(this);
+          break;
+
+        case '重建設定配置檔':
+
           break;
 
         case 'ss_basic':
@@ -369,6 +402,9 @@ function onBoot(mode) {
 
     case 'dashboard':
       getApp('BaseInformation', "Clean", '網絡信息');
+      dashboard();
+      dash_clients();
+      dash_onetime();
       break;
 
     default:
@@ -410,7 +446,7 @@ function settingBoolSwtich(obj) {
       console.log("settingBoolSwtich: error");
     })
     .always(function() {
-      console.log("settingBoolSwtich: complete");
+      // console.log("settingBoolSwtich: complete");
     });
 
 
@@ -424,17 +460,17 @@ function api(className, functionName, dataPOST, obj, callback) {
       data: dataPOST
     })
     .done(function(data) {
-      console.log("API-"+className+"-"+functionName+": "+data+" + POST ⬇️");
+      console.log("✉️ API: " + className + "." + functionName + " ➡️ " + data + " 🎀 POST ⬇️");
       console.log(dataPOST);
       if (typeof callback === "function") {
         callback(data);
       }
     })
     .fail(function() {
-      console.log("api: error");
+      console.log("API: error");
     })
     .always(function() {
-      console.log("api: complete");
+      // console.log("API: complete");
     });
 
 }
@@ -486,9 +522,112 @@ function heredoc(fn) {
 }
 
 /**
-* netspeed
-* 實時網速
-**/
+ * dashboard
+ * 信息面板
+ **/
+function dashboard() {
+  console.log("dashboard on run");
+  $.ajax({
+    url: '/app.php?fun=GetExec&q=/opt/share/www/bin/script/dashboard.sh',
+    dataType: "json",
+    success: function(data) {
+      // console.log(data);
+      // console.log(data.nvram_space);
+      isTitle = 'dashboard'
+      if (isTitle != 'no') {
+        m.append('<h5>' + isTitle + '</h5>');
+      };
+      for (var k in data) {
+        if (!_.isObject(data[k])) {
+          m.append("<span><b>" + k + ":</b> " + data[k] + "</span><br/>");
+        } else {
+          m.append("<span><b>" + k + ":</b></span><br/>");
+          for (var i in data[k]) {
+            m.append("<span>　<b>" + i + ":</b> " + data[k][i] + "</span><br/>");
+          };
+        }
+      }
+      m.append('<br/>');
+
+    },
+    error: function() {
+      // $netspeed.text('netspeed');
+    }
+  });
+}
+
+function dash_clients() {
+  $.ajax({
+    url: '/app.php?fun=GetExec&q=/opt/share/www/bin/script/clients.sh',
+    dataType: "json",
+    success: function(data) {
+      // console.log(data);
+      // console.log(data.nvram_space);
+      isTitle = 'clients'
+      if (isTitle != 'no') {
+        m.append('<h5>' + isTitle + '</h5>');
+      };
+      for (var k in data) {
+        if (!_.isObject(data[k])) {
+          m.append("<span><b>" + k + ":</b> " + data[k] + "</span><br/>");
+        } else {
+          m.append("<span><b>" + k + ":</b></span><br/>");
+          for (var i in data[k]) {
+            m.append("<span>　<b>" + i + ":</b> " + data[k][i] + "</span><br/>");
+          };
+        }
+      }
+      m.append('<br/>');
+
+    },
+    error: function() {
+      $netspeed.text('clients');
+    },
+    complete: function() {
+      $netspeed.text('clients');
+    }
+  });
+
+}
+
+function dash_onetime() {
+  $.ajax({
+    url: '/app.php?fun=GetExec&q=/opt/share/www/bin/script/onetime.sh',
+    dataType: "json",
+    success: function(data) {
+      // console.log(data);
+      // console.log(data.nvram_space);
+      isTitle = 'onetime'
+      if (isTitle != 'no') {
+        m.append('<h5>' + isTitle + '</h5>');
+      };
+      for (var k in data) {
+        if (!_.isObject(data[k])) {
+          m.append("<span><b>" + k + ":</b> " + data[k] + "</span><br/>");
+        } else {
+          m.append("<span><b>" + k + ":</b></span><br/>");
+          for (var i in data[k]) {
+            m.append("<span>　<b>" + i + ":</b> " + data[k][i] + "</span><br/>");
+          };
+        }
+      }
+      m.append('<br/>');
+
+    },
+    error: function() {
+      $netspeed.text('clients');
+    },
+    complete: function() {
+      $netspeed.text('clients');
+    }
+  });
+
+}
+
+/**
+ * netspeed
+ * 實時網速
+ **/
 function netspeed() {
   $.ajax({
     url: '/app.php?fun=GetExec&q=/opt/share/www/bin/script/netspeed.sh%20eth0',
@@ -583,6 +722,7 @@ function getApp(f, isClear, isTitle, q) {
       LoadingBox(true, '處理中：' + f);
     },
     success: function(data) {
+      // console.log('/app.php?fun=' + f + '&q=' + q + "| getApp: " + data)
       if (isTitle != 'no') {
         m.append('<h5>' + isTitle + '</h5>');
       };

@@ -15,6 +15,12 @@
 			<div class="col-md-12" >
 				<span class="mini-title">Merlin.PHP</span>
 				<br/>
+				<button class="DriveBySettingConfig setting-dashboard_index-value need-transition btn btn-default" data-config="dashboard_index" ><i class="fa fa-toggle-off gray" aria-hidden="true"></i> 以 Dashboard 為首頁</button>
+				<p class="help-block"><b>「以 Dashboard 為首頁」</b>激活后將以 Dashboard 作為首頁，否則以 ShadowSocks 作為進入首頁。</p>
+				<hr class="division" >
+				<button class="DriveBySettingConfig setting-dashboard-value need-transition btn btn-default" data-config="dashboard" ><i class="fa fa-toggle-off gray" aria-hidden="true"></i> Dashboard 功能</button>
+				<p class="help-block"><b>「Dashboard 功能」</b>向你提供路由器的摘要信息。</p>
+				<hr class="division" >
 				<button class="DriveBySettingConfig setting-remote-value need-transition btn btn-default" data-config="remote" ><i class="fa fa-toggle-off gray" aria-hidden="true"></i> Remote 功能</button>
 				<p class="help-block"><b>「Remote 功能」</b>是一個管理遠程伺服器（VPS）的功能，提供一些簡單的指令以查詢伺服器狀態。</p>
 				<hr class="division" >
@@ -40,6 +46,9 @@
 					<hr class="division" >
 					<button class="need-transition btn btn-default" >修正輔助腳本的運行權限</button>
 					<p class="help-block"><b>「修正輔助腳本的運行權限」</b>遇到報告腳本無法運行的錯誤時候或網速無法顯示，請使用此功能修正。</p>
+					<hr class="division" >
+					<button class="need-transition btn btn-default" >重建設定配置檔</button>
+					<p class="help-block"><b>「重建設定配置檔」</b>當設定部份內容不能正常工作時候，請使用此功能。</p>
 				</div>
 			</div>
 		</div>
