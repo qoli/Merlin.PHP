@@ -119,6 +119,11 @@ u {
   color: #555;
 }
 
+#NewsBox li {
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
 #NewsBox strong,#NewsBox b {
   font-weight: 700;
   color: #333;
