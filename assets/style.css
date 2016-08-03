@@ -96,8 +96,8 @@ u {
 
 .tips {
   position: fixed;
-  bottom: 10vh;
-  // top: 3vh;
+  // bottom: 10vh;
+  top: 6vh;
   width: 260px;
   left: 50%;
   margin-left: -130px;
