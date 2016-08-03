@@ -7,13 +7,16 @@ require_once 'library/AppFunction.php';
 Requests::register_autoloader();
 
 $headers = array('Content-Type' => 'application/javascript');
-// $options = array('login_authorization' => base64_encode("admin:2202832"));
-// $request = Requests::post('http://192.168.1.1/login.cgi', $headers, $options);
-// $headers = array('Cookie' => $request->headers['set-cookie']);
-$o = Requests::get('http://192.168.1.1/update_clients.asp',$headers);
-// $o = Requests::get('http://192.168.1.1/Advanced_WAN_Content.asp',$headers);
+$options = array('login_authorization' => base64_encode("admin:2202832"));
+$request = Requests::post('http://192.168.1.1/login.cgi', $headers, $options);
+$headers = array('Cookie' => $request->headers['set-cookie']);
+// $o = Requests::get('http://192.168.1.1/update_clients.asp',$headers);
+$o = Requests::get('http://192.168.1.1/update.cgi',$headers);
 
 $networkmap = $o->body;
+
+dump($networkmap);
+exit;
 
 if (strpos($networkmap,'<HTML><HEAD><script>top.location.href') !== false) {
 	echo "登入失敗";

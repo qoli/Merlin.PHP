@@ -269,7 +269,7 @@ jQuery(document).ready(function($) {
 
   // 更新
   if ($("#dashboard").length > 0) {
-    // LoadingBox(false);
+    LoadingBox(false);
     onBoot('dashboard');
 
     $('.btn,.control').click(function(event) {
@@ -279,6 +279,9 @@ jQuery(document).ready(function($) {
       switch (e) {
         case '刷新':
           onBoot('dashboard');
+          dashboard();
+          dash_clients();
+          dash_onetime();
           break;
 
         default:
@@ -402,9 +405,6 @@ function onBoot(mode) {
 
     case 'dashboard':
       getApp('BaseInformation', "Clean", '網絡信息');
-      dashboard();
-      dash_clients();
-      dash_onetime();
       break;
 
     default:
@@ -630,7 +630,7 @@ function dash_onetime() {
  **/
 function netspeed() {
   $.ajax({
-    url: '/app.php?fun=GetExec&q=/opt/share/www/bin/script/netspeed.sh%20eth0',
+    url: '/app.php?fun=GetExec&q=/opt/share/www/bin/script/netspeed.sh%20ppp0',
     dataType: "text",
     success: function(data) {
       $netspeed.text(data)

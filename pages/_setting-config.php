@@ -26,4 +26,8 @@ function display($v = '') {
 	display: <?=display($o->dev);?>
 }
 
+.setting-dashboard {
+	display: <?=display($o->dashboard);?>
+}
+
 </style>
