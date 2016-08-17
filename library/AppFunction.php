@@ -283,6 +283,11 @@ function flush_buffers()
 	ob_start('ob_callback');
 }
 
+/**
+ * [ob_callback description]
+ * @param  [type] $buffer [description]
+ * @return [type]         [description]
+ */
 function ob_callback($buffer)
 {
 	return $buffer . str_repeat(' ', max(0, 4097 - strlen($buffer)));
@@ -294,6 +299,9 @@ function ob_callback($buffer)
 class merlin_php
 {
 
+/**
+ * [__construct description]
+ */
 	function __construct() {
 				# code...
 	}
@@ -302,6 +310,7 @@ class merlin_php
 		dump($data,$title);
 				// exit;
 	}
+
 
 	function _export($data,$type = 'text') {
 		switch ($type) {

@@ -1,4 +1,11 @@
-dev = false
+var dev = false
+
+$.ajaxSetup({
+  cache: false
+});
+
+// Chart Global Config
+// Chart.defaults.global.defaultFontSize = '10px';
 
 jQuery(document).ready(function($) {
 
@@ -279,7 +286,7 @@ jQuery(document).ready(function($) {
       switch (e) {
         case '刷新':
           onBoot('dashboard');
-          dashboard();
+
           dash_clients();
           dash_onetime();
           break;
@@ -318,6 +325,14 @@ jQuery(document).ready(function($) {
       e = e.trim();
       console.log('🖱 Click: "' + e + '"');
       switch (e) {
+
+        case 'Web 界面':
+          RunApp('SystemCommand', '/opt/etc/init.d/S80lighttpd restart');
+          break;
+
+        case '重新啟動':
+          RunApp('SystemCommand', 'reboot');
+          break;
 
         case '重新載入 ShadowSocks 配置':
           getApp('ss_rebuild', 'Clean');
@@ -399,12 +414,12 @@ function onBoot(mode) {
       getApp('BaseInformation', "Clean", '網絡信息');
       getApp('ConnectTest', false, '延遲');
       getApp('GetShadowSockConfig', false, 'ShadowSocks 配置信息');
-      // RunApp('SystemCommand', 'nvram get wan0_dns', true, 'DNS 設定', '撥號所用 DNS');
-      // RunApp('GetExec', 'cat ss-mode', true, 'SS 模式', '模式');
       break;
 
     case 'dashboard':
-      getApp('BaseInformation', "Clean", '網絡信息');
+      dashboard();
+      dash_clients();
+      dash_onetime();
       break;
 
     default:
@@ -521,18 +536,51 @@ function heredoc(fn) {
   return fn.toString().split('\n').slice(1, -1).join('\n') + '\n'
 }
 
+function NumberFixed(num) {
+  return num.toFixed(2);
+}
+
 /**
  * dashboard
  * 信息面板
  **/
 function dashboard() {
   console.log("dashboard on run");
+
+  i = 0;
+
+  setInterval(function() {
+
+    $.ajax({
+      url: '/app.php?fun=GetExec&q=/opt/share/www/bin/script/dashboard.sh',
+      dataType: "json",
+      success: function(data) {
+
+        // console.log(data);
+        num_c = data['cpu usage'];
+        // console.log("CPU:" + num_c);
+        $('#cpuusage').html(num_c + '%');
+        $('.cpu-load-bar-inner').width(ui_MiniNumber(num_c,6,12) + '%');
+        num_r = data['Memory %'];
+        // console.log("RAM:" + num_r);
+        $('#ram').html(formatFloat(num_r,2) + '%');
+        $('.ram-load-bar-inner').width(ui_MiniNumber(num_r,6,12) + '%');
+
+      },
+      error: function() {
+        console.log("DASH - ERROR");
+      }
+    });
+
+  }, 2000)
+
   $.ajax({
     url: '/app.php?fun=GetExec&q=/opt/share/www/bin/script/dashboard.sh',
     dataType: "json",
     success: function(data) {
-      // console.log(data);
-      // console.log(data.nvram_space);
+
+      console.log(data);
+      console.log(data.nvram_space);
       isTitle = 'dashboard'
       if (isTitle != 'no') {
         m.append('<h5>' + isTitle + '</h5>');
@@ -554,6 +602,7 @@ function dashboard() {
       // $netspeed.text('netspeed');
     }
   });
+
 }
 
 function dash_clients() {
@@ -581,10 +630,10 @@ function dash_clients() {
 
     },
     error: function() {
-      $netspeed.text('clients');
+      // $netspeed.text('clients');
     },
     complete: function() {
-      $netspeed.text('clients');
+      // $netspeed.text('clients');
     }
   });
 
@@ -615,10 +664,10 @@ function dash_onetime() {
 
     },
     error: function() {
-      $netspeed.text('clients');
+      // $netspeed.text('clients');
     },
     complete: function() {
-      $netspeed.text('clients');
+      // $netspeed.text('clients');
     }
   });
 

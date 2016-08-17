@@ -34,6 +34,17 @@
 				<p class="help-block">「大字體模式」啟用此選項后，將會增大 Merlin.PHP 正在啟用的字號大小。</p> -->
 			</div>
 		</div>
+		<!-- <hr/> -->
+		<div class="animated fadeInLeft ControlPanel hide ">
+			<div class="row">
+				<div class="col-md-12" >
+					<span class="mini-title">路由器</span>
+					<br/>
+					<button class="need-transition btn btn-default" >重新啟動</button>
+					<button class="need-transition btn btn-default" >Web 界面</button>
+				</div>
+			</div>
+		</div>
 		<hr/>
 		<div class="animated fadeInLeft ControlPanel">
 			<div class="row">
