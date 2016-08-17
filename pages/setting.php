@@ -15,9 +15,9 @@
 			<div class="col-md-12" >
 				<span class="mini-title">Merlin.PHP</span>
 				<br/>
-				<button class="DriveBySettingConfig setting-dashboard_index-value need-transition btn btn-default" data-config="dashboard_index" ><i class="fa fa-toggle-off gray" aria-hidden="true"></i> 以 Dashboard 為首頁</button>
+<!-- 				<button class="DriveBySettingConfig setting-dashboard_index-value need-transition btn btn-default" data-config="dashboard_index" ><i class="fa fa-toggle-off gray" aria-hidden="true"></i> 以 Dashboard 為首頁</button>
 				<p class="help-block"><b>「以 Dashboard 為首頁」</b>激活后將以 Dashboard 作為首頁，否則以 ShadowSocks 作為進入首頁。</p>
-				<hr class="division" >
+				<hr class="division" > -->
 				<button class="DriveBySettingConfig setting-dashboard-value need-transition btn btn-default" data-config="dashboard" ><i class="fa fa-toggle-off gray" aria-hidden="true"></i> Dashboard 功能</button>
 				<p class="help-block"><b>「Dashboard 功能」</b>向你提供路由器的摘要信息。</p>
 				<hr class="division" >
