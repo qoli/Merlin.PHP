@@ -10,22 +10,29 @@
 	</div>
 	<div class="clearfix" ></div>
 	<hr/>
-	<div id="ControlPanel" class="animated fadeInLeft ControlPanel">
-		<div class="row">
-			<div class="col-md-3" >
-				<span class="mini-title">Dashboard</span>
-				<br/>
-				<button class="btn btn-default" ><i class="fa fa-refresh" aria-hidden="true"></i> 刷新</button>
-			</div>
-		</div>
-		<div class="clearfix" ></div>
-	</div>
-	<hr/>
 	<div>
 		<div class="row">
 			<div class="col-md-12" >
-				<span class="mini-title"><i class="fa fa-terminal"></i> / merlin.php / </span>
+				<span class="mini-title"><i class="fa fa-terminal"></i> /</span>
 				<div class="contentBox" >
+					<div class="Dash-Bar" >
+						<h5>CPU / <span id="cpuusage">CPU %</span></h5>
+						<div class="wrapper col-md-6 col-xs-8">
+							<div class="load-bar">
+								<div class="cpu-load-bar-inner load-bar-inner need-transition" data-loading="0"> </div>
+							</div>
+						</div>
+					</div>
+					<div class="clearfix" ></div>
+					<div class="Dash-Bar" >
+						<h5>RAM / <span id="ram">RAM %</span></h5>
+						<div class="wrapper col-md-6 col-xs-8">
+							<div class="load-bar">
+								<div class="load-bar-inner ram-load-bar-inner need-transition" data-loading="0"> </div>
+							</div>
+						</div>
+					</div>
+					<div class="clearfix" ></div>
 					<div id="MessageDIV" ></div>
 					<div id="loadingDIV" class="animated animated2 infinite fadeIn" data-isOPEN="true">
 						<h5 id="loading-Name">載入中</h5>

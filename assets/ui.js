@@ -28,30 +28,56 @@ jQuery(document).ready(function($) {
 
 	if ($(".DriveBySettingConfig").length > 0) {
 		$(".DriveBySettingConfig").each(function(index, el) {
-			  val = $(this).attr('data-config');
-			  DriveBySettingConfig(this,val);
+			val = $(this).attr('data-config');
+			DriveBySettingConfig(this, val);
 		});
 	}
 
 });
 
+function formatFloat(num, pos) {
+	var size = Math.pow(10, pos);
+	return Math.round(num * size) / size;
+}
+
+function ui_MiniNumber(number, mini_desktop, mini_mobile) {
+
+	var u = navigator.userAgent;
+	var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+	var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+
+	m = mini_desktop;
+
+	if (isAndroid || isiOS) {
+		m = mini_mobile;
+	};
+
+	if (number <= m) {
+		return m;
+	} else {
+		return number;
+	}
+}
+
 function DriveBySettingConfig(obj, getValue) {
 
 	$.ajax({
-		url: '/api.php?class=setting&function=get',
-		type: 'POST',
-		data: {POST: "'"+getValue+"'"},
-	})
-	.done(function(data) {
-		if (data == 1) {
-			toggleSetOn(obj)
-		} else {
-			toggleSetOff(obj)
-		}
-	})
-	.fail(function() {
-		tipBox('DriveBySettingConfig Failed')
-	})
+			url: '/api.php?class=setting&function=get',
+			type: 'POST',
+			data: {
+				POST: "'" + getValue + "'"
+			},
+		})
+		.done(function(data) {
+			if (data == 1) {
+				toggleSetOn(obj)
+			} else {
+				toggleSetOff(obj)
+			}
+		})
+		.fail(function() {
+			tipBox('DriveBySettingConfig Failed')
+		})
 
 }
 
@@ -64,15 +90,15 @@ function toggleSetOn(obj) {
 }
 
 function tipBox(name, delay) {
-  name = name || '載入中';
-  delay = delay || 2400;
-  tip = $('#tips');
-  tip.text(name);
-  tip.removeClass('hide')
-  $('#tips').fadeIn();
-  setTimeout(function() {
-    $('#tips').fadeOut();
-  }, delay)
+	name = name || '載入中';
+	delay = delay || 2400;
+	tip = $('#tips');
+	tip.text(name);
+	tip.removeClass('hide')
+	$('#tips').fadeIn();
+	setTimeout(function() {
+		$('#tips').fadeOut();
+	}, delay)
 }
 
 function ui_openmenu() {

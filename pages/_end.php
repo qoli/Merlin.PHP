@@ -4,6 +4,8 @@
 <script src="assets/jquery.min.js"></script>
 <script src="assets/bootstrap.min.js"></script>
 <script src="assets/underscore-min.js"></script>
+<!-- <script src="assets/Chart.min.js"></script>
+<script src="assets/Chart.bundle.min.js"></script> -->
 <script src="assets/logs.js"></script>
 <script src="assets/ui.js"></script>
 <script src="assets/app.js"></script>
