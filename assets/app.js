@@ -336,10 +336,12 @@ jQuery(document).ready(function($) {
 
         case '重新載入 ShadowSocks 配置':
           getApp('ss_rebuild', 'Clean');
+          tipBox('載入完畢')
           break;
 
         case '修正輔助腳本的運行權限':
           getApp('ChmodCheck', 'Clean');
+          tipBox('修正完畢')
           break;
 
         case 'Remote 功能':
@@ -363,7 +365,7 @@ jQuery(document).ready(function($) {
           break;
 
         case '重建設定配置檔':
-
+          tipBox('重建完畢')
           break;
 
         case 'ss_basic':

@@ -175,24 +175,24 @@ function SSPID () {
 function SwitchMode($mode) {
 		// echo $mode;
 	echo '<pre>';
-	system("/koolshare/ss/stop.sh");
+	system("/koolshare/ss/stop.sh stop_all");
 	sleep(1);
 	switch ($mode) {
 		case 'gfw':
 		shell_exec('dbus set ss_basic_mode=1');
-		system('/koolshare/ss/ipset/start.sh');
+		system('/koolshare/ss/ipset/start.sh start_all');
 		break;
 		case 'mainland':
 		shell_exec('dbus set ss_basic_mode=2');
-		system('/koolshare/ss/redchn/start.sh');
+		system('/koolshare/ss/redchn/start.sh start_all');
 		break;
 		case 'game':
 		shell_exec('dbus set ss_basic_mode=3');
-		system('/koolshare/ss/game/start.sh');
+		system('/koolshare/ss/game/start.sh start_all');
 		break;
 		case 'v2':
 		shell_exec('dbus set ss_basic_mode=4');
-		system('/koolshare/ss/koolgame/start.sh');
+		system('/koolshare/ss/koolgame/start.sh start_all');
 		break;
 		default:
 		break;
