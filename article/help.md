@@ -1,4 +1,4 @@
-# 幫助檔案 2016年07月30日
+# 幫助檔案 2016年08月19日
 
 ##### 使用之前
 
@@ -27,8 +27,6 @@
 
 
 ##### FAQ 🙋🏻
-
-#####
 
 **Warning: shell_exec() 的警告？**
 
@@ -59,6 +57,10 @@
 **我為什麼選擇了 Game-V2 之後，顯示 Google Timeout？**
 
 請你確認你的伺服器（線路）是否支持 Game-V2 模式，具體請參考：http://koolshare.cn/thread-38263-1-1.html
+
+**為什麼我重啟路由器后會消失了？**
+
+請確認你的外接硬盤是否是 EXT4，NTFS / FAT32 可能會導致這個問題。具體參考：https://github.com/qoli/Merlin.PHP/issues/11
 
 
 
