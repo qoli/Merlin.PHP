@@ -283,6 +283,26 @@ function flush_buffers()
 	ob_start('ob_callback');
 }
 
+
+function get_clients() {
+	$headers = array('Content-Type' => 'application/javascript');
+	$o = Requests::get('http://192.168.1.1/update_clients.asp',$headers);
+
+	$networkmap = $o->body;
+
+	if (strpos($networkmap,'<HTML><HEAD><script>top.location.href') !== false) {
+		echo "登入失敗";
+		exit;
+	}
+
+	$networkmap = str_replace('originDataTmp = originData;','',$networkmap);
+	$networkmap = str_replace("networkmap_fullscan = '0';",'',$networkmap);
+	$networkmap = str_replace('if(networkmap_fullscan == 1) genClientList();','',$networkmap);
+
+	echo $networkmap;
+}
+
+
 /**
  * [ob_callback description]
  * @param  [type] $buffer [description]
