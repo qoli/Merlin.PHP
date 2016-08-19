@@ -4,7 +4,8 @@
 
 **修正**
 
-* 適配 KoolShare ss 2.x 版本
+* 適配 KoolShare ss 2.x 版本。
+* 改善 Dashboard 界面。
 
 ##### 0.5.1 2016-08-17
 

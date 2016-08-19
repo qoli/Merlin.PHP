@@ -420,7 +420,7 @@ function onBoot(mode) {
 
     case 'dashboard':
       dashboard();
-      dash_clients();
+      // dash_clients();
       dash_onetime();
       break;
 
@@ -562,11 +562,55 @@ function dashboard() {
         num_c = data['cpu usage'];
         // console.log("CPU:" + num_c);
         $('#cpuusage').html(num_c + '%');
-        $('.cpu-load-bar-inner').width(ui_MiniNumber(num_c,6,12) + '%');
+        $('.cpu-load-bar-inner').width(ui_MiniNumber(num_c, 6, 12) + '%');
         num_r = data['Memory %'];
         // console.log("RAM:" + num_r);
-        $('#ram').html(formatFloat(num_r,2) + '%');
-        $('.ram-load-bar-inner').width(ui_MiniNumber(num_r,6,12) + '%');
+        $('#ram').html(formatFloat(num_r, 2) + '%');
+        $('.ram-load-bar-inner').width(ui_MiniNumber(num_r, 6, 12) + '%');
+        $('#UPDATE-TIME').html(data['date']);
+        $('#CPU-temperature').html(data['CPU temperature'].replace('�C', ''));
+        $('#CPU-TOP-5').html(data['CPU TOP 5'].replace(/,/g, '<br>'));
+        $('#MemTotal').html(data['MemTotal']);
+        $('#MemFree').html(data['MemFree']);
+        $('#Buffers').html(data['Buffers']);
+        $('#Cached').html(data['Cached']);
+        $('#VmallocTotal').html(data['VmallocTotal']);
+        $('#Load-Average').html(data['load average']);
+        $('#procs_running').html(data['在可运行状态的进程数目']);
+        $('#up-time').html(data['up time']);
+        $('#離線迅雷').html(data['離線迅雷']);
+        $('#hdd1').html(data['sda1 %']);
+        $('.hdd1-load-bar-inner').width(data['sda1 %']);
+
+        $('#hdd2').html(data['sdb1 %']);
+        $('.hdd2-load-bar-inner').width(data['sdb1 %']);
+
+        $('#sda1').html(data['sda1 %']);
+        $('#sda1-Used').html(data['sda1 Used']);
+        $('#sda1-Available').html(data['sda1 Available']);
+
+        $('#sdb1').html(data['sdb1 %']);
+        $('#sdb1-Used').html(data['sdb1 Used']);
+        $('#sdb1-Available').html(data['sdb1 Available']);
+
+        clist = $('#Clients .list');
+
+        $.ajax({
+          url: '/app.php?fun=get_clients',
+          dataType: "script",
+          success: function(data) {
+            clist.html("")
+            eval(data);
+            for (var i = originData.fromNetworkmapd.length - 1; i >= 0; i--) {
+              if (originData.fromNetworkmapd[i] != '') {
+                clist.append('<li>' + originData.fromNetworkmapd[i] + '</li>')
+              };
+            };
+          },
+          error: function() {
+            console.log("ajax error");
+          }
+        });
 
       },
       error: function() {
@@ -575,35 +619,6 @@ function dashboard() {
     });
 
   }, 2000)
-
-  $.ajax({
-    url: '/app.php?fun=GetExec&q=/opt/share/www/bin/script/dashboard.sh',
-    dataType: "json",
-    success: function(data) {
-
-      console.log(data);
-      console.log(data.nvram_space);
-      isTitle = 'dashboard'
-      if (isTitle != 'no') {
-        m.append('<h5>' + isTitle + '</h5>');
-      };
-      for (var k in data) {
-        if (!_.isObject(data[k])) {
-          m.append("<span><b>" + k + ":</b> " + data[k] + "</span><br/>");
-        } else {
-          m.append("<span><b>" + k + ":</b></span><br/>");
-          for (var i in data[k]) {
-            m.append("<span>　<b>" + i + ":</b> " + data[k][i] + "</span><br/>");
-          };
-        }
-      }
-      m.append('<br/>');
-
-    },
-    error: function() {
-      // $netspeed.text('netspeed');
-    }
-  });
 
 }
 
