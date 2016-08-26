@@ -67,6 +67,7 @@
 					<span class="mini-title">安裝</span>
 					<br/>
 					<button class="btn btn-default" >重新安裝</button>
+					<p class="help-block">在重新安裝中刷新頁面將可能損壞程式。</p>
 				</div>
 			</div>
 			<div class="clearfix" ></div>
@@ -95,4 +96,14 @@
 	<script src="assets/app.js"></script>
 	<script src="assets/standalone.js"></script>
 	<script>if (window.module) module = window.module;</script>
+	<script type="text/javascript">
+
+	$(window).load(function(){
+		setInterval(function(){
+			var $contents = $('#iframeBox').contents();
+			$contents.scrollTop($contents.height());
+		}, 1200);
+	});
+
+	</script>
 </html>

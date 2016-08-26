@@ -22,7 +22,7 @@ fi
 case $way in
   0)
     echo 'The version is up-to-date.'
-		echo
+    echo
 		cd bin/autoupdate/
 		echo $local_md5 '->' $(cat md5)
     ;;

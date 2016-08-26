@@ -47,7 +47,7 @@ jQuery(document).ready(function($) {
           RunApp('SwitchMode', 'v2');
           break;
         case 'STOP':
-          RunApp('SystemCommand', '/koolshare/ss/stop.sh');
+          RunApp('SystemCommand', '/koolshare/ss/stop.sh stop_all');
           // iframeBox('/exec.php?command=/koolshare/ss/stop.sh');
           break;
         case 'ShadowSocks':
@@ -578,7 +578,11 @@ function dashboard() {
         $('#Load-Average').html(data['load average']);
         $('#procs_running').html(data['在可运行状态的进程数目']);
         $('#up-time').html(data['up time']);
-        $('#離線迅雷').html(data['離線迅雷']);
+        text_x = '無'
+        if (data['離線迅雷'] >= 1) {
+          text_x = '運行中'
+        }
+        $('#離線迅雷').html(text_x+"("+data['離線迅雷']+")");
         $('#hdd1').html(data['sda1 %']);
         $('.hdd1-load-bar-inner').width(data['sda1 %']);
 
@@ -592,6 +596,8 @@ function dashboard() {
         $('#sdb1').html(data['sdb1 %']);
         $('#sdb1-Used').html(data['sdb1 Used']);
         $('#sdb1-Available').html(data['sdb1 Available']);
+
+        $('#oraynewph').html(data['oraynewph']);
 
         clist = $('#Clients .list');
 

@@ -35,13 +35,15 @@
 									</div>
 								</div>
 								<div class="clearfix" ></div>
-								<p><b>開機時間：</b><span id="up-time">TIME</span> ． <b>運作中線程：</b><span id="procs_running">procs</span> ． <b>離線迅雷：</b><span id="離線迅雷">迅雷線程數</span></p>
-								<h5>CPU 溫度 /</h5>
+								<p><b>開機時間：</b><span id="up-time">TIME</span> ． <b>運作中線程：</b><span id="procs_running">procs</span><br>
+								<b>離線迅雷：</b><span id="離線迅雷">迅雷線程數</span> ． <b>花生殼 PID：</b><span id="oraynewph">oraynewph</span>
+								</p>
+								<label>CPU 溫度 /</label>
 								<p><span id="CPU-temperature">TEMPERATURE</span>°</p>
-								<h5>CPU 佔用前 5 /</h5>
-								<p><span id="CPU-TOP-5">TOP5</span></p>
-								<h5>Load Average /</h5>
+								<label>Load Average /</label>
 								<p><span id="Load-Average">0.0</span></p>
+								<label>TOP 5 /</label>
+								<p><span id="CPU-TOP-5">TOP5</span></p>
 								<br>
 								<div class="Dash-Bar" >
 									<h5>RAM / <span id="ram">RAM %</span></h5>
