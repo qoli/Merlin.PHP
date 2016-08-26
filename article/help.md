@@ -85,3 +85,9 @@
 
 ##### 提交問題
 [https://github.com/qoli/Merlin.PHP/issues](https://github.com/qoli/Merlin.PHP/issues)
+
+
+
+##### Telegram 群組
+
+[https://telegram.me/joinchat/D2anAwo4OdXMfMcD0uAr3Q](https://telegram.me/joinchat/D2anAwo4OdXMfMcD0uAr3Q)
