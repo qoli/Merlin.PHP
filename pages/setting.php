@@ -15,7 +15,7 @@
 			<div class="col-md-12" >
 				<span class="mini-title">Merlin.PHP</span>
 				<br/>
-<!-- 				<button class="DriveBySettingConfig setting-dashboard_index-value need-transition btn btn-default" data-config="dashboard_index" ><i class="fa fa-toggle-off gray" aria-hidden="true"></i> 以 Dashboard 為首頁</button>
+				<!-- 				<button class="DriveBySettingConfig setting-dashboard_index-value need-transition btn btn-default" data-config="dashboard_index" ><i class="fa fa-toggle-off gray" aria-hidden="true"></i> 以 Dashboard 為首頁</button>
 				<p class="help-block"><b>「以 Dashboard 為首頁」</b>激活后將以 Dashboard 作為首頁，否則以 ShadowSocks 作為進入首頁。</p>
 				<hr class="division" > -->
 				<button class="DriveBySettingConfig setting-dashboard-value need-transition btn btn-default" data-config="dashboard" ><i class="fa fa-toggle-off gray" aria-hidden="true"></i> Dashboard 功能</button>
@@ -26,23 +26,6 @@
 				<hr class="division" >
 				<button class="DriveBySettingConfig need-transition btn btn-default" data-config="debug" ><i class="fa fa-toggle-off gray" aria-hidden="true"></i> Debug</button>
 				<p class="help-block"><b>「Debug」</b>顯示 Debug 相關輸出和功能。</p>
-				<!-- 				<hr class="division" >
-				<button class="DriveBySettingConfig need-transition btn btn-default" data-config="dev" ><i class="fa fa-toggle-off gray" aria-hidden="true"></i> 開發版本</button>
-				<p class="help-block"><b>「開發版本」</b>將會在在線更新中，升級到開發版本。</p> -->
-				<!-- <hr class="division" >
-				<button class="need-transition btn btn-default" ><i class="fa fa-toggle-off gray" aria-hidden="true"></i> 大字體模式</button>
-				<p class="help-block">「大字體模式」啟用此選項后，將會增大 Merlin.PHP 正在啟用的字號大小。</p> -->
-			</div>
-		</div>
-		<!-- <hr/> -->
-		<div class="animated fadeInLeft ControlPanel hide ">
-			<div class="row">
-				<div class="col-md-12" >
-					<span class="mini-title">路由器</span>
-					<br/>
-					<button class="need-transition btn btn-default" >重新啟動</button>
-					<button class="need-transition btn btn-default" >Web 界面</button>
-				</div>
 			</div>
 		</div>
 		<hr/>
@@ -65,12 +48,18 @@
 		</div>
 		<div class="row setting-debug">
 			<hr/>
-			<div class="col-md-12" >
+			<div class="col-md-4" >
 				<span class="mini-title">Debug</span>
 				<br/>
 				<!-- <button class="need-transition btn btn-default active" >標準字體</button> -->
 				<button class="need-transition btn btn-default" >ss_basic</button>
 				<button class="need-transition btn btn-default" >ss_config</button>
+			</div>
+			<div class="col-md-4" >
+				<span class="mini-title">路由器（重新啟動）</span>
+				<br/>
+				<button class="need-transition btn btn-default" >重新啟動</button>
+				<button class="need-transition btn btn-default" >Web 界面</button>
 			</div>
 		</div>
 	</div>

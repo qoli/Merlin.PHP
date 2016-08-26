@@ -68,6 +68,8 @@
 					<br/>
 					<button class="btn btn-default" >重新安裝</button>
 					<p class="help-block">在重新安裝中刷新頁面將可能損壞程式。</p>
+					<button class="btn btn-default" >重置 ShadowSocks</button>
+					<p class="help-block">將小寶固件的 SS 還原到 1.5.7 版本。</p>
 				</div>
 			</div>
 			<div class="clearfix" ></div>

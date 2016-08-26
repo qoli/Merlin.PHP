@@ -5,7 +5,7 @@
 		<li> <a class="Menu" target="_self" href="index.php/home"><i class="fa fa-circle-o" aria-hidden="true"></i> ShadowSocks</a> </li>
 		<li class="setting-dashboard"> <a class="Menu" target="_self" href="index.php/dashboard"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a> </li>
 		<li class="setting-remote" > <a class="Menu" target="_self" href="index.php/remote"><i class="fa fa-server" aria-hidden="true"></i> Remote</a> </li>
-		<li class=""> <a class="Menu" target="_self" href="index.php/plugin"><i class="fa fa-th-large" aria-hidden="true"></i> Plugin</a> </li>
+		<!-- <li class=""> <a class="Menu" target="_self" href="index.php/plugin"><i class="fa fa-th-large" aria-hidden="true"></i> Plugin</a> </li> -->
 		<li> <a class="Menu" target="_self" href="index.php/setting"><i class="fa fa-cog" aria-hidden="true"></i> 設定</a> </li>
 		<!-- <li> <a class="Menu" target="_self" href="index.php/shadowvpn"><i class="fa fa-shield" aria-hidden="true"></i> ShadowVPN</a> </li> -->
 
