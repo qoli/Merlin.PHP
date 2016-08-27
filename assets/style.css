@@ -28,6 +28,10 @@
     src: local('Open Sans Bold Italic'),url('/fonts/700i.woff') format('woff')
 }
 
+.dropdown {
+  display: inline-block;
+}
+
 body {
   font-family: "Open Sans","Clear Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
   padding-bottom: 80px;
@@ -47,7 +51,7 @@ pre {
 
 iframe {
   width: 100%;
-  height: calc(100vh - 420px);
+  height: calc(100vh - 460px);
   min-height: 120px;
   padding: 0.8em;
   border: 1px solid #efefef;

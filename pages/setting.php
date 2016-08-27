@@ -25,7 +25,7 @@
 				<p class="help-block"><b>「Remote 功能」</b>是一個管理遠程伺服器（VPS）的功能，提供一些簡單的指令以查詢伺服器狀態。</p>
 				<hr class="division" >
 				<button class="DriveBySettingConfig need-transition btn btn-default" data-config="debug" ><i class="fa fa-toggle-off gray" aria-hidden="true"></i> Debug</button>
-				<p class="help-block"><b>「Debug」</b>顯示 Debug 相關輸出和功能。</p>
+				<p class="help-block"><b>「Debug」</b>顯示 Debug 相關輸出和功能，以及部份正在開發的功能。</p>
 			</div>
 		</div>
 		<hr/>
@@ -48,14 +48,16 @@
 		</div>
 		<div class="row setting-debug">
 			<hr/>
-			<div class="col-md-4" >
+			<div class="col-md-12" >
 				<span class="mini-title">Debug</span>
 				<br/>
 				<!-- <button class="need-transition btn btn-default active" >標準字體</button> -->
 				<button class="need-transition btn btn-default" >ss_basic</button>
 				<button class="need-transition btn btn-default" >ss_config</button>
+				<button class="need-transition btn btn-default" >導出 nvram 到 nv1.txt</button>
+				<button class="need-transition btn btn-default" >導出 nvram 到 nv2.txt</button>
 			</div>
-			<div class="col-md-4" >
+			<div class="col-md-12" >
 				<span class="mini-title">路由器（重新啟動）</span>
 				<br/>
 				<button class="need-transition btn btn-default" >重新啟動</button>

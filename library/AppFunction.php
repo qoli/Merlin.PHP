@@ -24,17 +24,25 @@ function BaseInformation() {
 			);
 	} else {
 
+		if (shell_exec('nvram get wan0_dnsenable_x') == 1) {
+			$dns_txt = '自動獲取';
+		} else {
+			$dns_txt = '手工設定';
+		}
 		$o = array(
 			'網路類型' => shell_exec('nvram get wan0_proto'),
-			'WAN IP' => shell_exec('nvram get wan0_ipaddr'),
+			'公開' => shell_exec('nvram get wan0_ipaddr'),
+			'區域網' => shell_exec('nvram get lan_ipaddr_rt'),
+			'子網路遮罩' => shell_exec('nvram get lan_netmask'),
 			'DNS' => shell_exec('nvram get wan0_dns'),
-			'LAN IP' => shell_exec('nvram get lan_ipaddr_rt'),
+			'MTU' => shell_exec('nvram get lan_wan_mtu'),
+			'獲取模式' => $dns_txt
 			);
 	}
 	echo json_encode($o);
 }
 
-/**
+/**@
 * ConnectTest
 * $way(baidu,google,'');
 * 網絡測試
@@ -639,6 +647,10 @@ class setting extends merlin_php
 
 	function get($name) {
 		return $this->config->$name;
+	}
+
+	function getBynvram($name) {
+		return shell_exec('nvram get '.$name);
 	}
 
 	function getAll() {

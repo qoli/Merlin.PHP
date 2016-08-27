@@ -22,6 +22,7 @@ fi
 case $way in
   0)
     echo 'The version is up-to-date.'
+    echo '現在已經是最新版本。'
     echo
 		cd bin/autoupdate/
 		echo $local_md5 '->' $(cat md5)

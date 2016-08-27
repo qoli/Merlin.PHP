@@ -18,10 +18,10 @@
 					<div>
 						<!-- Nav tabs -->
 						<ul class="nav nav-tabs" role="tablist">
-							<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">CPU / RAM</a></li>
-							<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">硬盤</a></li>
-							<li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">客戶端</a></li>
-							<li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">摘要</a></li>
+							<li role="presentation" class="active"><a href="#tab-home" aria-controls="tab-home" role="tab" data-toggle="tab">CPU / RAM</a></li>
+							<li role="presentation"><a href="#tab-hdd" aria-controls="tab-hdd" role="tab" data-toggle="tab">硬盤</a></li>
+							<li role="presentation"><a href="#tab-network" aria-controls="tab-network" role="tab" data-toggle="tab">客戶端</a></li>
+							<li role="presentation"><a href="#tab-info" aria-controls="tab-info" role="tab" data-toggle="tab">摘要</a></li>
 						</ul>
 						<!-- Tab panes -->
 						<div class="tab-content">
@@ -57,7 +57,7 @@
 								<p><b>總共：</b><span id="MemTotal">Total</span> ． <b>空閒：</b><span id="MemFree">Free</span><br><b>Buffers：</b><span id="Buffers">Buffers</span> ． <b>Cached：</b><span id="Cached">Cached</span><br><b>VmallocTotal：</b><span id="VmallocTotal">VmallocTotal</span></p>
 								<br>
 							</div>
-							<div role="tabpanel" class="tab-pane" id="profile">
+							<div role="tabpanel" class="tab-pane" id="tab-hdd">
 								<div class="Dash-Bar col-md-3 col-xs-6" style="padding-left: 0;padding-right:30px;" >
 									<h5>HDD 1 / <span id="hdd1">HDD %</span></h5>
 									<div class="wrapper">
@@ -65,7 +65,7 @@
 											<div class="load-bar-inner hdd1-load-bar-inner need-transition" data-loading="0"> </div>
 										</div>
 									</div>
-									<p><b>已用：</b><span id="sda1-Used">Used</span><br><b>空閒：</b><span id="sda1-Available">Available</span></p>
+									<p><b>總計：</b><span id="sda1-Total">Total</span><br><b>已用：</b><span id="sda1-Used">Used</span><br><b>空閒：</b><span id="sda1-Available">Available</span></p>
 								</div>
 								<div class="Dash-Bar col-md-3 col-xs-6" style="padding-left: 30px;padding-right:0px;" >
 									<h5>HDD 2 / <span id="hdd2">HDD %</span></h5>
@@ -74,11 +74,11 @@
 											<div class="load-bar-inner hdd2-load-bar-inner need-transition" data-loading="0"> </div>
 										</div>
 									</div>
-									<p><b>已用：</b><span id="sdb1-Used">Used</span><br><b>空閒：</b><span id="sdb1-Available">Available</span></p>
+									<p><b>總計：</b><span id="sdb1-Total">Total</span><br><b>已用：</b><span id="sdb1-Used">Used</span><br><b>空閒：</b><span id="sdb1-Available">Available</span></p>
 								</div>
 								<div class="clearfix" ></div>
 							</div>
-							<div role="tabpanel" class="tab-pane" id="messages">
+							<div role="tabpanel" class="tab-pane" id="tab-network">
 							<div id="Clients" >
 								<h5>Network map</h5>
 								<ul class="list">
@@ -86,7 +86,7 @@
 								</ul>
 							</div>
 							</div>
-							<div role="tabpanel" class="tab-pane" id="settings">
+							<div role="tabpanel" class="tab-pane" id="tab-info">
 								<div id="MessageDIV" ></div>
 							</div>
 						</div>

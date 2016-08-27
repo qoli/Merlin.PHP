@@ -33,6 +33,13 @@ jQuery(document).ready(function($) {
 		});
 	}
 
+	if ($(".DriveBynvramConfig").length > 0) {
+		$(".DriveBynvramConfig").each(function(index, el) {
+			val = $(this).attr('data-config');
+			DriveBynvramConfig(this, val);
+		});
+	}
+
 });
 
 function formatFloat(num, pos) {
@@ -69,6 +76,30 @@ function DriveBySettingConfig(obj, getValue) {
 			},
 		})
 		.done(function(data) {
+			if (data == 1) {
+				toggleSetOn(obj)
+			} else {
+				toggleSetOff(obj)
+			}
+		})
+		.fail(function() {
+			tipBox('DriveBySettingConfig Failed')
+		})
+
+}
+
+function DriveBynvramConfig(obj, getValue) {
+
+	$.ajax({
+			url: '/api.php?class=setting&function=getBynvram',
+			type: 'POST',
+			data: {
+				POST: "'" + getValue + "'"
+			},
+		})
+		.done(function(data) {
+			data = data.replace(/[^0-9]/ig,"")
+			console.log("DriveBynvramConfig -  " + getValue + ": " + data);
 			if (data == 1) {
 				toggleSetOn(obj)
 			} else {

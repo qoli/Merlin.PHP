@@ -48,7 +48,21 @@ jQuery(document).ready(function($) {
           break;
         case 'STOP':
           RunApp('SystemCommand', '/koolshare/ss/stop.sh stop_all');
-          // iframeBox('/exec.php?command=/koolshare/ss/stop.sh');
+          break;
+        case '運營商 DNS':
+          RunApp('SystemCommand', './bin/script/setdns.sh');
+          break;
+        case '阿里云 223.5.5.5 223.6.6.6':
+          RunApp('SystemCommand', './bin/script/setdns.sh 223.5.5.5 223.6.6.6');
+          break;
+        case 'Google 8.8.8.8 8.8.4.4':
+          RunApp('SystemCommand', './bin/script/setdns.sh 8.8.8.8 8.8.4.4');
+          break;
+        case '腾讯云 119.29.29.29 8.8.4.4':
+          RunApp('SystemCommand', './bin/script/setdns.sh 119.29.29.29 8.8.4.4');
+          break;
+        case '114 114.114.114.114 114.114.115.115':
+          RunApp('SystemCommand', './bin/script/setdns.sh 114.114.114.114 114.114.115.115');
           break;
         case 'ShadowSocks':
           getApp('FastReboot', 'Clean', 'ShadowSocks 快速重啟');
@@ -267,6 +281,11 @@ jQuery(document).ready(function($) {
           LoadingBox(false);
           break;
 
+        case '重置 ShadowSocks':
+          iframeBox('/exec.php?command=./bin/script/ssback.sh');
+          LoadingBox(false);
+          break;
+
         default:
           console.log("nothing");
           break;
@@ -325,6 +344,14 @@ jQuery(document).ready(function($) {
       e = e.trim();
       console.log('🖱 Click: "' + e + '"');
       switch (e) {
+
+        case '導出 nvram 到 nv1.txt':
+          RunApp('SystemCommand', 'nvram show >~/nv1.txt');
+          break;
+
+        case '導出 nvram 到 nv2.txt':
+          RunApp('SystemCommand', 'nvram show >~/nv2.txt');
+          break;
 
         case 'Web 界面':
           RunApp('SystemCommand', '/opt/etc/init.d/S80lighttpd restart');
@@ -568,7 +595,7 @@ function dashboard() {
         $('#ram').html(formatFloat(num_r, 2) + '%');
         $('.ram-load-bar-inner').width(ui_MiniNumber(num_r, 6, 12) + '%');
         $('#UPDATE-TIME').html(data['date']);
-        $('#CPU-temperature').html(data['CPU temperature'].replace('�C', ''));
+        $('#CPU-temperature').html(data['CPU temperature']);
         $('#CPU-TOP-5').html(data['CPU TOP 5'].replace(/,/g, '<br>'));
         $('#MemTotal').html(data['MemTotal']);
         $('#MemFree').html(data['MemFree']);
@@ -582,7 +609,7 @@ function dashboard() {
         if (data['離線迅雷'] >= 1) {
           text_x = '運行中'
         }
-        $('#離線迅雷').html(text_x+"("+data['離線迅雷']+")");
+        $('#離線迅雷').html(text_x + "(" + data['離線迅雷'] + ")");
         $('#hdd1').html(data['sda1 %']);
         $('.hdd1-load-bar-inner').width(data['sda1 %']);
 
@@ -590,12 +617,14 @@ function dashboard() {
         $('.hdd2-load-bar-inner').width(data['sdb1 %']);
 
         $('#sda1').html(data['sda1 %']);
-        $('#sda1-Used').html(data['sda1 Used']);
-        $('#sda1-Available').html(data['sda1 Available']);
+        $('#sda1-Total').html(formatFloat(data['sda1 Total'] / 1024 / 1024, 2) + ' GB');
+        $('#sda1-Used').html(formatFloat(data['sda1 Used'] / 1024 / 1024, 2) + ' GB');
+        $('#sda1-Available').html(formatFloat(data['sda1 Available'] / 1024 / 1024, 2) + ' GB');
 
         $('#sdb1').html(data['sdb1 %']);
-        $('#sdb1-Used').html(data['sdb1 Used']);
-        $('#sdb1-Available').html(data['sdb1 Available']);
+        $('#sdb1-Total').html(formatFloat(data['sdb1 Total'] / 1024 / 1024, 2) + ' GB');
+        $('#sdb1-Used').html(formatFloat(data['sdb1 Used'] / 1024 / 1024, 2) + ' GB');
+        $('#sdb1-Available').html(formatFloat(data['sdb1 Available'] / 1024 / 1024, 2) + ' GB');
 
         $('#oraynewph').html(data['oraynewph']);
 
@@ -609,6 +638,7 @@ function dashboard() {
             eval(data);
             for (var i = originData.fromNetworkmapd.length - 1; i >= 0; i--) {
               if (originData.fromNetworkmapd[i] != '') {
+                // clist.append('<li>' + originData.fromNetworkmapd[i].replace(/0>/g,' ') + '</li>')
                 clist.append('<li>' + originData.fromNetworkmapd[i] + '</li>')
               };
             };
@@ -795,6 +825,11 @@ function getApp(f, isClear, isTitle, q) {
     },
     success: function(data) {
       // console.log('/app.php?fun=' + f + '&q=' + q + "| getApp: " + data)
+      // <dl class="dl-horizontal">
+      //   <dt>...</dt>
+      //   <dd>...</dd>
+      // </dl>
+      //
       if (isTitle != 'no') {
         m.append('<h5>' + isTitle + '</h5>');
       };
