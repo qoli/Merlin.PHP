@@ -31,7 +31,13 @@ do
 	array9=`dbus get ssconf_basic_name_$nu`
 	server_ip=`dbus get shadowsocks_server_ip`
 
-	if [ "$server_ip" == $array1 ];then
+	# if [  ! -z $(echo $array1 | awk '$0~/^[0-9]*$/')];then
+	# 	echo '數字 - '$array1
+	# fi
+
+	ip=$(ping -c 1 $array1 -w 1 | awk -F'[()]' '/PING/{print $2}')
+
+	if [ "$server_ip" == $ip ];then
 		isWork="1"
 	else
 		isWork="0"

@@ -173,34 +173,51 @@ function SSPID () {
 /**
 *   SwitchMode
 *   $mode(gfw,mainland,game,v2);
+*   $parameter(all,dns)
 * 切換 SS 模式
 * gfw 黑名單；
 * mainland 大陸白名單；
 * game 遊戲模式（UDP）；
 * v2 koolshare 的遊戲模式 v2；
+* Usage: /koolshare/ss/redchn/start.sh (start_all|restart_kcptun|restart_wb_list|restart_dns)
 **/
 
-function SwitchMode($mode) {
-		// echo $mode;
+function SwitchMode($mode,$parameter = 'all') {
+
+	switch ($parameter) {
+		case 'all':
+			$pa = 'start_all';
+			break;
+
+		case 'dns':
+			$ps = 'restart_dns';
+			break;
+
+		default:
+			$pa = 'start_all';
+			break;
+	}
+
 	echo '<pre>';
-	system("/koolshare/ss/stop.sh stop_all");
+	// system("/koolshare/ss/stop.sh stop_all");
+	system("/koolshare/ss/stop.sh stop_part");
 	sleep(1);
 	switch ($mode) {
 		case 'gfw':
 		shell_exec('dbus set ss_basic_mode=1');
-		system('/koolshare/ss/ipset/start.sh start_all');
+		system('/koolshare/ss/ipset/start.sh '.$pa);
 		break;
 		case 'mainland':
 		shell_exec('dbus set ss_basic_mode=2');
-		system('/koolshare/ss/redchn/start.sh start_all');
+		system('/koolshare/ss/redchn/start.sh '.$pa);
 		break;
 		case 'game':
 		shell_exec('dbus set ss_basic_mode=3');
-		system('/koolshare/ss/game/start.sh start_all');
+		system('/koolshare/ss/game/start.sh '.$pa);
 		break;
 		case 'v2':
 		shell_exec('dbus set ss_basic_mode=4');
-		system('/koolshare/ss/koolgame/start.sh start_all');
+		system('/koolshare/ss/koolgame/start.sh '.$pa);
 		break;
 		default:
 		break;

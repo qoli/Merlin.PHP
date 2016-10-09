@@ -25,7 +25,7 @@
 						</ul>
 						<!-- Tab panes -->
 						<div class="tab-content">
-							<div role="tabpanel" class="tab-pane active" id="home">
+							<div role="tabpanel" class="tab-pane active" id="tab-home">
 								<div class="Dash-Bar" >
 									<h5>CPU / <span id="cpuusage">CPU %</span></h5>
 									<div class="wrapper col-md-6 col-xs-8">

@@ -39,6 +39,7 @@ case $answer in
 	echo '■ install done'
 	echo
 	echo '■ open http://'$lan':81 and enjoy.'
+	echo '■ PS 打開后，進入設定 》使用修正輔助腳本的運行權限功能。'
   ;;
   N|n)
 	echo
