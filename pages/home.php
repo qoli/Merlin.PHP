@@ -26,7 +26,7 @@
 					<button class="btn btn-default dropdown-toggle" type="button" id="dropdowndns" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> DNS 設定 <span class="caret"></span> </button>
 					<ul id="dns-list" class="dropdown-menu" aria-labelledby="dropdowndns">
 						<li role="presentation" class="dropdown-header">自動設定</li>
-						<li> <a class="DriveBynvramConfig" data-config="wan_dnsenable_x" class="control" href="javascript: void(0)"><i class="fa fa-toggle-off gray" aria-hidden="true"></i> 運營商 DNS</a></li>
+						<li> <a class="DriveBynvramConfig control" data-config="wan_dnsenable_x" href="javascript: void(0)"><i class="fa fa-toggle-off gray" aria-hidden="true"></i> 運營商 DNS</a></li>
 						<li role="separator" class="divider"></li>
 						<li role="presentation" class="dropdown-header">手動設定</li>
 						<li> <a class="control" href="javascript: void(0)"><b>114</b> <small>114.114.114.114 114.114.115.115</small></a> </li>
