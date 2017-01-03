@@ -12,3 +12,5 @@ config/vpsconfig.json
 electron/App/
 
 config/ss-configs.json
+
+config.codekit
