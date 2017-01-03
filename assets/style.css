@@ -71,7 +71,7 @@ h5 {
     top: 5vh;
     left: 6vw;
     width: 88vw;
-    height: 85vh;
+    max-height: 80vh;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
   }
