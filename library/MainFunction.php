@@ -389,7 +389,7 @@ function uni_decode($str, $code = 'utf-8') {
  * @param any $String 一切变量
  * @return bool 返回写入结果
  */
-function _MarkLog($String, $Folder = '') {
+function _MarkLog($String, $Folder = '/opt/share/www/') {
     $h = fopen('Logs.txt', 'ab');
     $o = fwrite($h, $String . "\n");
     return $o;

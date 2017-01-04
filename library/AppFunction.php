@@ -128,7 +128,8 @@ function GetShadowSockConfig () {
 		break;
 	}
 
-		// dump($Config);
+
+	// dump($Config);
 
 }
 

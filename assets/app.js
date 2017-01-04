@@ -92,13 +92,17 @@ jQuery(document).ready(function($) {
             // console.log(data[key].working);
             if (data[key].server != undefined) {
 
-              if (data[key].working == 1) {
+              var ws = readCookie("working_server");
+
+              if (data[key].server == ws) {
                 status = 'fa-toggle-on green'
               } else {
                 status = 'fa-toggle-off gray'
               }
 
               sl.append('<li><a class="ss-config server-' + key + '" data-server="' + key + '" onclick="event.stopPropagation();" href="javascript: void(0)"><i class="animated need-transition fa ' + status + '" aria-hidden="true"></i> ' + data[key].name + ' <small>(' + data[key].server + ')</small></a></li>');
+
+              console.log(status + ':' + data[key].server);
             }
           };
 
@@ -830,6 +834,11 @@ function getApp(f, isClear, isTitle, q) {
       //   <dd>...</dd>
       // </dl>
       //
+
+      if (f == 'GetShadowSockConfig') {
+        createCookie("working_server",data.Server,180);
+      }
+
       if (isTitle != 'no') {
         m.append('<h5>' + isTitle + '</h5>');
       };
@@ -888,4 +897,29 @@ function show() {
     })
   }
 
+}
+
+function createCookie(name,value,days) {
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        var expires = "; expires=" + date.toUTCString();
+    }
+    else var expires = "";
+    document.cookie = name + "=" + value + expires + "; path=/";
+}
+
+function readCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+
+function eraseCookie(name) {
+    createCookie(name,"",-1);
 }

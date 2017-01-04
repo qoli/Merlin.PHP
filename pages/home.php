@@ -22,7 +22,7 @@
 				<span class="mini-title">操作</span>
 				<br/>
 				<button class="btn btn-default" >網路測試</button>
-				<div class="dropdown">
+				<div class="dropdown need-transition">
 					<button class="btn btn-default dropdown-toggle" type="button" id="dropdowndns" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> DNS 設定 <span class="caret"></span> </button>
 					<ul id="dns-list" class="dropdown-menu" aria-labelledby="dropdowndns">
 						<li role="presentation" class="dropdown-header">自動設定</li>
@@ -35,7 +35,7 @@
 						<li> <a class="control" href="javascript: void(0)"><b>腾讯云</b> <small>119.29.29.29 8.8.4.4</small></a> </li>
 					</ul>
 				</div>
-				<div class="dropdown">
+				<div class="dropdown need-transition">
 					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> 模式 <span class="caret"></span> </button>
 					<ul id="server-list" class="dropdown-menu" aria-labelledby="dropdownMenu1">
 						<li role="presentation" class="dropdown-header">SS 模式</li>
