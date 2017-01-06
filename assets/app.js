@@ -617,13 +617,21 @@ function dashboard() {
         $('#hdd1').html(data['sda1 %']);
         $('.hdd1-load-bar-inner').width(data['sda1 %']);
 
-        $('#hdd2').html(data['sdb1 %']);
-        $('.hdd2-load-bar-inner').width(data['sdb1 %']);
+        $('#hdd2').html(data['sda2 %']);
+        $('.hdd2-load-bar-inner').width(data['sda2 %']);
+
+        $('#hdd3').html(data['sdb1 %']);
+        $('.hdd3-load-bar-inner').width(data['sdb1 %']);
 
         $('#sda1').html(data['sda1 %']);
         $('#sda1-Total').html(formatFloat(data['sda1 Total'] / 1024 / 1024, 2) + ' GB');
         $('#sda1-Used').html(formatFloat(data['sda1 Used'] / 1024 / 1024, 2) + ' GB');
         $('#sda1-Available').html(formatFloat(data['sda1 Available'] / 1024 / 1024, 2) + ' GB');
+
+        $('#sda2').html(data['sda2 %']);
+        $('#sda2-Total').html(formatFloat(data['sda2 Total'] / 1024 / 1024, 2) + ' GB');
+        $('#sda2-Used').html(formatFloat(data['sda2 Used'] / 1024 / 1024, 2) + ' GB');
+        $('#sda2-Available').html(formatFloat(data['sda2 Available'] / 1024 / 1024, 2) + ' GB');
 
         $('#sdb1').html(data['sdb1 %']);
         $('#sdb1-Total').html(formatFloat(data['sdb1 Total'] / 1024 / 1024, 2) + ' GB');

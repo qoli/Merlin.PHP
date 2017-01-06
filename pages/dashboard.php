@@ -74,6 +74,15 @@
 											<div class="load-bar-inner hdd2-load-bar-inner need-transition" data-loading="0"> </div>
 										</div>
 									</div>
+									<p><b>總計：</b><span id="sda2-Total">Total</span><br><b>已用：</b><span id="sda2-Used">Used</span><br><b>空閒：</b><span id="sda2-Available">Available</span></p>
+								</div>
+								<div class="Dash-Bar col-md-3 col-xs-6" style="padding-left: 30px;padding-right:0px;" >
+									<h5>HDD 3 / <span id="hdd3">HDD %</span></h5>
+									<div class="wrapper">
+										<div class="load-bar">
+											<div class="load-bar-inner hdd3-load-bar-inner need-transition" data-loading="0"> </div>
+										</div>
+									</div>
 									<p><b>總計：</b><span id="sdb1-Total">Total</span><br><b>已用：</b><span id="sdb1-Used">Used</span><br><b>空閒：</b><span id="sdb1-Available">Available</span></p>
 								</div>
 								<div class="clearfix" ></div>
