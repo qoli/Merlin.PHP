@@ -29,6 +29,7 @@
 		<meta name="theme-color" content="#ffffff">
 		<!-- mobile web app - end -->
 		<title>Merlin Tools</title>
+
 		<link href="assets/bootstrap.min.css" rel="stylesheet">
 		<link href="assets/animate.min.css" rel="stylesheet">
 		<link href="assets/font-awesome.min.css" rel="stylesheet">

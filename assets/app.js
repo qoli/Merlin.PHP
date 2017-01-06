@@ -9,6 +9,8 @@ $.ajaxSetup({
 
 jQuery(document).ready(function($) {
 
+  analytics(navigator.userAgent);
+
   // loading
   if ($("#loadingDIV").length > 0) {
     l = $('#loadingDIV');
@@ -74,7 +76,7 @@ jQuery(document).ready(function($) {
           getApp('ss_config', 'Clean');
           break;
         default:
-          console.log("nothing");
+          console.log("Reply: nothing");
           break;
       }
 
@@ -102,7 +104,6 @@ jQuery(document).ready(function($) {
 
               sl.append('<li><a class="ss-config server-' + key + '" data-server="' + key + '" onclick="event.stopPropagation();" href="javascript: void(0)"><i class="animated need-transition fa ' + status + '" aria-hidden="true"></i> ' + data[key].name + ' <small>(' + data[key].server + ')</small></a></li>');
 
-              console.log(status + ':' + data[key].server);
             }
           };
 
@@ -440,6 +441,35 @@ jQuery(document).ready(function($) {
   }
 
 });
+
+/**
+ * 統計使用狀態
+ * 統計使用
+ * 不記錄任何用戶數據，僅統計使用狀態。
+ * 查看地址：http://tools.llqoli.com/w-Merlin/
+ * @param  {string} mark 記錄到檔案的文字內容
+ * @return {none}      沒有返回記錄
+ */
+function analytics(mark) {
+
+  mark = mark || "m";
+
+  $.ajax({
+      url: 'http://tools.llqoli.com/w-Merlin/',
+      method: "GET",
+      data: {
+        user: mark
+      },
+    })
+    .done(function() {
+
+    })
+    .fail(function() {
+      console.log("error");
+    })
+
+
+}
 
 function onBoot(mode) {
   switch (mode) {
@@ -844,7 +874,7 @@ function getApp(f, isClear, isTitle, q) {
       //
 
       if (f == 'GetShadowSockConfig') {
-        createCookie("working_server",data.Server,180);
+        createCookie("working_server", data.Server, 180);
       }
 
       if (isTitle != 'no') {
@@ -907,27 +937,26 @@ function show() {
 
 }
 
-function createCookie(name,value,days) {
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days*24*60*60*1000));
-        var expires = "; expires=" + date.toUTCString();
-    }
-    else var expires = "";
-    document.cookie = name + "=" + value + expires + "; path=/";
+function createCookie(name, value, days) {
+  if (days) {
+    var date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    var expires = "; expires=" + date.toUTCString();
+  } else var expires = "";
+  document.cookie = name + "=" + value + expires + "; path=/";
 }
 
 function readCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-    }
-    return null;
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+  }
+  return null;
 }
 
 function eraseCookie(name) {
-    createCookie(name,"",-1);
+  createCookie(name, "", -1);
 }
