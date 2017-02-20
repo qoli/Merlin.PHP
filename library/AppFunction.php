@@ -206,15 +206,15 @@ function SwitchMode($mode,$parameter = 'all') {
 	switch ($mode) {
 		case 'gfw':
 		shell_exec('dbus set ss_basic_mode=1');
-		system('/koolshare/ss/ipset/start.sh '.$pa);
+		system('/koolshare/ss/start.sh '.$pa);
 		break;
 		case 'mainland':
 		shell_exec('dbus set ss_basic_mode=2');
-		system('/koolshare/ss/redchn/start.sh '.$pa);
+		system('/koolshare/ss/start.sh '.$pa);
 		break;
 		case 'game':
 		shell_exec('dbus set ss_basic_mode=3');
-		system('/koolshare/ss/game/start.sh '.$pa);
+		system('/koolshare/ss/start.sh '.$pa);
 		break;
 		case 'v2':
 		shell_exec('dbus set ss_basic_mode=4');

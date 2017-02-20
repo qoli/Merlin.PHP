@@ -12,11 +12,11 @@
 	<hr/>
 	<div id="ControlPanel" class="animated fadeInLeft command ControlPanel">
 		<div class="row">
-			<div class="col-md-3" >
+			<div class="col-md-1" >
 				<span class="mini-title">重啟服務</span>
 				<br/>
 				<button class="btn btn-default" >Network</button>
-				<button class="btn btn-default" >ShadowSocks</button>
+				<!-- <button class="btn btn-default" >ShadowSocks</button> -->
 			</div>
 			<div class="col-md-9" >
 				<span class="mini-title">操作</span>
