@@ -66,8 +66,6 @@ function ConnectTest($way){
 
 	}
 
-	dump($o);
-
 	echo json_encode($o);
 }
 
