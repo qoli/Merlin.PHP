@@ -66,6 +66,8 @@ function ConnectTest($way){
 
 	}
 
+	dump($o);
+
 	echo json_encode($o);
 }
 
@@ -147,7 +149,7 @@ function GetShadowSockConfig () {
 }
 **/
 
-function RomoteIP() {
+function RemoteIP() {
 	$headers = array('Accept' => 'application/json');
 	$request = Requests::get('http://ipinfo.io', $headers);
 
