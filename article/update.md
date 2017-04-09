@@ -5,6 +5,8 @@
 **修正**
 
 * Google 驗證從首頁轉移到「http://google.com/generate_204」
+* 國內測延遲從 Baidu 遷移到 Miui 的 generate_204 服務
+* MTU 顯示從 null 更名到「自動設定」
 
 ##### 0.5.9 2017-02-20
 

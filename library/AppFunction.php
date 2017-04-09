@@ -25,17 +25,24 @@ function BaseInformation() {
 	} else {
 
 		if (shell_exec('nvram get wan0_dnsenable_x') == 1) {
-			$dns_txt = '自動獲取';
+			$dns_txt = '自動設定';
 		} else {
 			$dns_txt = '手工設定';
 		}
+
+		if (shell_exec('nvram get lan_wan_mtu') == "") {
+			$mtu = '自動獲取';
+		} else {
+			$mtu = shell_exec('nvram get lan_wan_mtu');
+		}
+
 		$o = array(
 			'網路類型' => shell_exec('nvram get wan0_proto'),
 			'公開' => shell_exec('nvram get wan0_ipaddr'),
 			'區域網' => shell_exec('nvram get lan_ipaddr_rt'),
 			'子網路遮罩' => shell_exec('nvram get lan_netmask'),
 			'DNS' => shell_exec('nvram get wan0_dns'),
-			'MTU' => shell_exec('nvram get lan_wan_mtu'),
+			'MTU' => $mtu,
 			'獲取模式' => $dns_txt
 			);
 	}
@@ -52,17 +59,17 @@ function ConnectTest($way){
 	$lan = trim(shell_exec('nvram get lan_ipaddr_rt'));
 	switch ($way) {
 		case 'baidu':
-		$o = array('延遲' => shell_exec("curl -o /dev/null -s -w %{time_total} --connect-timeout 10 https://www.baidu.com"));
-		break;
+			$o = array('延遲' => shell_exec("curl -o /dev/null -s -w %{time_total} --connect-timeout 10 http://connect.rom.miui.com/generate_204"));
+			break;
 		case 'google':
-		$o = array('延遲' => shell_exec("curl -o /dev/null -s -w %{time_total} --connect-timeout 10 --socks5-hostname ".$lan.":23456 http://google.com/generate_204"));
-		break;
+			$o = array('延遲' => shell_exec("curl -o /dev/null -s -w %{time_total} --connect-timeout 10 --socks5-hostname ".$lan.":23456 http://google.com/generate_204"));
+			break;
 		default:
-		$o = array(
-			'Baidu' => shell_exec("curl -o /dev/null -s -w %{time_total} --connect-timeout 6 https://www.baidu.com"),
-			'Google' => shell_exec("curl -o /dev/null -s -w %{time_total} --connect-timeout 10 --socks5-hostname ".$lan.":23456 http://google.com/generate_204"),
-			);
-		break;
+			$o = array(
+				'Miui' => shell_exec("curl -o /dev/null -s -w %{time_total} --connect-timeout 6 http://connect.rom.miui.com/generate_204"),
+				'Google' => shell_exec("curl -o /dev/null -s -w %{time_total} --connect-timeout 10 --socks5-hostname ".$lan.":23456 http://google.com/generate_204"),
+				);
+			break;
 
 	}
 
