@@ -9,4 +9,15 @@
 <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 <script>if (window.module) module = window.module;</script>
 
+<script type="text/javascript">
+
+$(window).load(function(){
+	setInterval(function(){
+		var $contents = $('#iframeBox').contents();
+		$contents.scrollTop($contents.height());
+	}, 1200);
+});
+
+</script>
+
 </html>

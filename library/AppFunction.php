@@ -190,11 +190,15 @@ function SSPID () {
 * Usage: /koolshare/ss/redchn/start.sh (start_all|restart_kcptun|restart_wb_list|restart_dns)
 **/
 
-function SwitchMode($mode,$parameter = 'all') {
+function SwitchMode($mode, $parameter = 'all') {
+
+	// sh /koolshare/ss/ssconfig.sh restart
+
+	$ss_command = '/koolshare/ss/ssconfig.sh';
 
 	switch ($parameter) {
 		case 'all':
-			$pa = 'start_all';
+			$pa = 'restart';
 			break;
 
 		case 'dns':
@@ -202,30 +206,30 @@ function SwitchMode($mode,$parameter = 'all') {
 			break;
 
 		default:
-			$pa = 'start_all';
+			$pa = 'restart';
 			break;
 	}
 
 	echo '<pre>';
 	// system("/koolshare/ss/stop.sh stop_all");
-	system("/koolshare/ss/stop.sh stop_part");
+	// system("/koolshare/ss/stop.sh stop_part");
 	sleep(1);
 	switch ($mode) {
 		case 'gfw':
 		shell_exec('dbus set ss_basic_mode=1');
-		system('/koolshare/ss/start.sh '.$pa);
+		system($ss_command.' '.$pa);
 		break;
 		case 'mainland':
 		shell_exec('dbus set ss_basic_mode=2');
-		system('/koolshare/ss/start.sh '.$pa);
+		system($ss_command.' '.$pa);
 		break;
 		case 'game':
 		shell_exec('dbus set ss_basic_mode=3');
-		system('/koolshare/ss/start.sh '.$pa);
+		system($ss_command.' '.$pa);
 		break;
 		case 'v2':
 		shell_exec('dbus set ss_basic_mode=4');
-		system('/koolshare/ss/koolgame/start.sh '.$pa);
+		system($ss_command.' '.$pa);
 		break;
 		default:
 		break;

@@ -40,7 +40,9 @@ jQuery(document).ready(function($) {
           RunApp('SwitchMode', 'gfw');
           break;
         case '大陸白名單':
-          RunApp('SwitchMode', 'mainland');
+          // RunApp('SwitchMode', 'mainland');
+          iframeBox('/exec.php?command=/koolshare/ss/ssconfig.sh restart');
+          LoadingBox(false);
           break;
         case 'Game-Mode':
           RunApp('SwitchMode', 'game');
@@ -60,14 +62,20 @@ jQuery(document).ready(function($) {
         case 'Google 8.8.8.8 8.8.4.4':
           RunApp('SystemCommand', './bin/script/setdns.sh 8.8.8.8 8.8.4.4');
           break;
-        case '腾讯云 119.29.29.29 8.8.4.4':
-          RunApp('SystemCommand', './bin/script/setdns.sh 119.29.29.29 8.8.4.4');
+        case '腾讯云 119.29.29.29 182.254.116.116':
+          RunApp('SystemCommand', './bin/script/setdns.sh 119.29.29.29 182.254.116.116');
           break;
         case '114 114.114.114.114 114.114.115.115':
           RunApp('SystemCommand', './bin/script/setdns.sh 114.114.114.114 114.114.115.115');
           break;
         case 'ShadowSocks':
-          getApp('FastReboot', 'Clean', 'ShadowSocks 快速重啟');
+          // getApp('FastReboot', 'Clean', 'ShadowSocks 快速重啟');
+          iframeBox('/exec.php?command=/koolshare/ss/ssconfig.sh restart');
+          LoadingBox(false);
+          break;
+        case '關閉日誌':
+          iframeBox(false);
+          onBoot('index');
           break;
         case '網路測試':
           onBoot('index');
@@ -808,13 +816,18 @@ function update_delay() {
 function iframeBox(url) {
   url = url || false;
   i = $('#iframeBox');
+  t = $('#CloseTerminal');
 
   if (url == false) {
     i.hide();
+    t.hide();
   } else {
     i.show();
     i.removeClass('hide');
     i.attr('src', url);
+
+    t.show();
+    t.removeClass('hide');
   }
 }
 

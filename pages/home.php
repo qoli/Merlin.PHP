@@ -12,13 +12,14 @@
 	<hr/>
 	<div id="ControlPanel" class="animated fadeInLeft command ControlPanel">
 		<div class="row">
-			<div class="col-md-1" >
+			<div class="col-md-2" >
 				<span class="mini-title">重啟服務</span>
 				<br/>
 				<button class="btn btn-default" >Network</button>
-				<!-- <button class="btn btn-default" >ShadowSocks</button> -->
+				<button class="btn btn-default" >ShadowSocks</button>
+				<button id="CloseTerminal" class="hide btn btn-default" >關閉日誌</button>
 			</div>
-			<div class="col-md-9" >
+			<div class="col-md-10" >
 				<span class="mini-title">操作</span>
 				<br/>
 				<button class="btn btn-default" >網路測試</button>
@@ -32,7 +33,7 @@
 						<li> <a class="control" href="javascript: void(0)"><b>114</b> <small>114.114.114.114 114.114.115.115</small></a> </li>
 						<li> <a class="control" href="javascript: void(0)"><b>Google</b> <small>8.8.8.8 8.8.4.4</small></a> </li>
 						<li> <a class="control" href="javascript: void(0)"><b>阿里云</b> <small>223.5.5.5 223.6.6.6</small></a> </li>
-						<li> <a class="control" href="javascript: void(0)"><b>腾讯云</b> <small>119.29.29.29 8.8.4.4</small></a> </li>
+						<li> <a class="control" href="javascript: void(0)"><b>腾讯云</b> <small>119.29.29.29 182.254.116.116</small></a> </li>
 					</ul>
 				</div>
 				<div class="dropdown need-transition">
@@ -59,6 +60,7 @@
 	<div>
 		<span class="mini-title"><i class="fa fa-terminal"></i> / merlin.php / </span>
 		<div class="contentBox" >
+			<iframe id="iframeBox" class="iframe hide" src="/exec.php" frameborder="0" allowfullscreen></iframe>
 			<div id="MessageDIV" ></div>
 			<div id="loadingDIV" class="animated animated2 infinite fadeIn" data-isOPEN="true">
 				<h5 id="loading-Name">載入中</h5>
@@ -66,5 +68,7 @@
 			</div>
 		</div>
 	</div>
+
+
 	<?php require 'pages/Footer.php'; ?>
 </body>
