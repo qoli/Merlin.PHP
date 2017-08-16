@@ -1,6 +1,7 @@
 var dev = false
 
 $.ajaxSetup({
+  timeout: 2400,
   cache: false
 });
 
@@ -784,6 +785,7 @@ function netspeed() {
   $.ajax({
     url: '/app.php?fun=GetExec&q=/opt/share/www/bin/script/netspeed.sh%20ppp0',
     dataType: "text",
+    timeout: 2400,
     success: function(data) {
       $netspeed.text(data)
     },
@@ -797,6 +799,7 @@ function update_delay() {
   $.ajax({
     url: '/app.php?fun=ConnectTest&q=google',
     dataType: "json",
+    timeout: 2400,
     success: function(data) {
       // console.log("延遲："+data.延遲);
       if (data.延遲 < 0.01) {
@@ -875,6 +878,7 @@ function getApp(f, isClear, isTitle, q) {
   $.ajax({
     url: '/app.php?fun=' + f + '&q=' + q,
     dataType: "json",
+    timeout: 2400,
     beforeSend: function() {
       LoadingBox(true, '處理中：' + f);
     },
@@ -929,7 +933,7 @@ function show() {
   // Animate each line individually
   for (var i = 0; i < items.length; i++) {
     var item = items[i]
-      // Define initial properties
+    // Define initial properties
     dynamics.css(item, {
       opacity: 0,
       translateY: 20
