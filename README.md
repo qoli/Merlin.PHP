@@ -1,5 +1,13 @@
 # Merlin.PHP
 
+
+
+##### 下一代的 Merlin UI 計劃。
+
+https://github.com/qoli/Merlin.c
+
+
+
 面向 ASUS﹣MERLIN 的 SS Web 管理面板。
 
 只支持 http://koolshare.io 下的固件版本。
