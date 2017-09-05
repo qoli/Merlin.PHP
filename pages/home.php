@@ -43,7 +43,7 @@
 						<li> <a class="control" href="javascript: void(0)"><i class="fa fa-arrow-right" aria-hidden="true"></i> GFW-List</a> </li>
 						<li> <a class="control" href="javascript: void(0)"><i class="fa fa-arrow-right" aria-hidden="true"></i> 大陸白名單</a> </li>
 						<li> <a class="control" href="javascript: void(0)"><i class="fa fa-arrow-right" aria-hidden="true"></i> Game-Mode</a> </li>
-						<li> <a class="control" href="javascript: void(0)"><i class="fa fa-arrow-right" aria-hidden="true"></i> Game-V2</a> </li>
+						<!-- <li> <a class="control" href="javascript: void(0)"><i class="fa fa-arrow-right" aria-hidden="true"></i> Game-V2</a> </li> -->
 						<li role="separator" class="divider"></li>
 						<li role="presentation" class="dropdown-header">停止運作</li>
 						<li> <a class="control" href="javascript: void(0)"><i class="fa fa-stop" aria-hidden="true"></i> STOP</a> </li>

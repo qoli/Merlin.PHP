@@ -57,19 +57,22 @@ function BaseInformation() {
 
 function ConnectTest($way){
 	$lan = trim(shell_exec('nvram get lan_ipaddr_rt'));
+
+	$o = null;
+
 	switch ($way) {
 		case 'baidu':
-			$o = array('延遲' => shell_exec("curl -o /dev/null -s -w %{time_total} --connect-timeout 10 http://connect.rom.miui.com/generate_204"));
-			break;
+		$o = array('延遲' => shell_exec("curl -o /dev/null -s -w %{time_total} --connect-timeout 4 http://connect.rom.miui.com/generate_204"));
+		break;
 		case 'google':
-			$o = array('延遲' => shell_exec("curl -o /dev/null -s -w %{time_total} --connect-timeout 10 --socks5-hostname ".$lan.":23456 http://google.com/generate_204"));
-			break;
+		$o = array('延遲' => shell_exec("curl -o /dev/null -s -w %{time_total} --connect-timeout 4 --socks5-hostname ".$lan.":23456 http://google.com/generate_204"));
+		break;
 		default:
-			$o = array(
-				'Miui' => shell_exec("curl -o /dev/null -s -w %{time_total} --connect-timeout 6 http://connect.rom.miui.com/generate_204"),
-				'Google' => shell_exec("curl -o /dev/null -s -w %{time_total} --connect-timeout 10 --socks5-hostname ".$lan.":23456 http://google.com/generate_204"),
-				);
-			break;
+		$o = array(
+			'Miui' => shell_exec("curl -o /dev/null -s -w %{time_total} --connect-timeout 4 http://connect.rom.miui.com/generate_204"),
+			'Google' => shell_exec("curl -o /dev/null -s -w %{time_total} --connect-timeout 4 --socks5-hostname ".$lan.":23456 http://google.com/generate_204"),
+			);
+		break;
 
 	}
 
@@ -100,40 +103,16 @@ function GetShadowSockConfig () {
 		break;
 	}
 
-	switch ($mode) {
-		case 'v2':
-		$c=shell_exec("cat /koolshare/ss/koolgame/ss.json");
-		$Config = json_decode($c);
-		$Config_Output = array(
-			'模式' => $mode,
-			'Server' => $Config->server,
-			'Server Port' => $Config->server_port
-			);
-		echo json_encode($Config_Output);
-		break;
-		case 'game':
-		$c=shell_exec("cat /koolshare/ss/game/ss.json");
-		$Config = json_decode($c);
-		$Config_Output = array(
-			'模式' => $mode,
-			'Server' => $Config->server,
-			'Server Port' => $Config->server_port,
-			'PID' => shell_exec("cat /var/run/shadowsocks.pid")
-			);
-		echo json_encode($Config_Output);
-		break;
-		default:
-		$Config_Output = array(
-			'模式' => trim(shell_exec('cat ss-mode')),
-			'Server' => shell_exec('dbus get ss_basic_server'),
-			'Server Port' => shell_exec('dbus get ss_basic_port'),
-			'Mode Number' => shell_exec('nvram get ss_mode'),
-			'PID' => shell_exec("cat /var/run/shadowsocks.pid"),
-			'DNS2SOCKS PID' => shell_exec("cat /var/run/sslocal1.pid")
-			);
-		echo json_encode($Config_Output);
-		break;
-	}
+
+	$Config_Output = array(
+		'模式' => $mode,
+		'Server' => shell_exec('dbus get ss_basic_server'),
+		'Server Port' => shell_exec('dbus get ss_basic_port'),
+		'Mode Number' => shell_exec('nvram get ss_mode'),
+		'PID' => shell_exec("cat /var/run/shadowsocks.pid"),
+		'DNS2SOCKS PID' => shell_exec("cat /var/run/sslocal1.pid")
+		);
+	echo json_encode($Config_Output);
 
 
 	// dump($Config);
@@ -192,50 +171,31 @@ function SSPID () {
 
 function SwitchMode($mode, $parameter = 'all') {
 
-	// sh /koolshare/ss/ssconfig.sh restart
-
-	$ss_command = '/koolshare/ss/ssconfig.sh';
-
-	switch ($parameter) {
-		case 'all':
-			$pa = 'restart';
-			break;
-
-		case 'dns':
-			$ps = 'restart_dns';
-			break;
-
-		default:
-			$pa = 'restart';
-			break;
-	}
-
 	echo '<pre>';
-	// system("/koolshare/ss/stop.sh stop_all");
-	// system("/koolshare/ss/stop.sh stop_part");
-	sleep(1);
+	echo $mode;
 	switch ($mode) {
 		case 'gfw':
-		shell_exec('dbus set ss_basic_mode=1');
-		system($ss_command.' '.$pa);
+		$number = 1;
 		break;
 		case 'mainland':
-		shell_exec('dbus set ss_basic_mode=2');
-		system($ss_command.' '.$pa);
+		$number = 2;
 		break;
 		case 'game':
-		shell_exec('dbus set ss_basic_mode=3');
-		system($ss_command.' '.$pa);
+		$number = 3;
 		break;
 		case 'v2':
-		shell_exec('dbus set ss_basic_mode=4');
-		system($ss_command.' '.$pa);
+		$number = 4;
+		break;
+		case 'stop':
+		$number = 0;
 		break;
 		default:
+		$number = 0;
 		break;
 	}
-	shell_exec('/opt/share/www/bin/script/ssconfig.sh');
-	system('echo '.$mode.' > ss-mode');
+	shell_exec('dbus set ss_basic_mode='+$number);
+	shell_exec('dbus set ss_acl_default_mode='+$number);
+	// system('nvram set ss_mode='+$number);
 	echo '</pre>';
 }
 
@@ -359,48 +319,48 @@ class merlin_php
 /**
  * [__construct description]
  */
-	function __construct() {
+function __construct() {
 				# code...
-	}
+}
 
-	function _review($data,$title = '錯誤') {
-		dump($data,$title);
+function _review($data,$title = '錯誤') {
+	dump($data,$title);
 				// exit;
-	}
+}
 
 
-	function _export($data,$type = 'text') {
-		switch ($type) {
-			case 'array':
-			$o = $data;
-			echo json_encode($o);
-			break;
+function _export($data,$type = 'text') {
+	switch ($type) {
+		case 'array':
+		$o = $data;
+		echo json_encode($o);
+		break;
 
-			case 'json':
-			$o = $data;
-			echo json_encode($o);
-			break;
+		case 'json':
+		$o = $data;
+		echo json_encode($o);
+		break;
 
-			case 'pre':
-			echo "<pre>";
-			echo $data;
-			echo "</pre>";
-			break;
+		case 'pre':
+		echo "<pre>";
+		echo $data;
+		echo "</pre>";
+		break;
 
-			default:
+		default:
 								# type == text
 								// $o = array('text' => $data);
 								// dump($data,'data');
 								// dump($o,'o');
-			$o = explode("\n",$data);
-			if (end($o) == '') {
-				array_pop($o);
-			}
-			echo json_encode($o);
-			break;
+		$o = explode("\n",$data);
+		if (end($o) == '') {
+			array_pop($o);
 		}
-				// return json_encode($o);
+		echo json_encode($o);
+		break;
 	}
+				// return json_encode($o);
+}
 
 }
 

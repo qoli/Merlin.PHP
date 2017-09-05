@@ -10,8 +10,8 @@
 		<!-- <li> <a class="Menu" target="_self" href="index.php/shadowvpn"><i class="fa fa-shield" aria-hidden="true"></i> ShadowVPN</a> </li> -->
 
 		<li> <a href="http://<?=$GLOBALS['lanIP'];?>/"><i class="fa fa-link" aria-hidden="true"></i> 管理</a> </li>
-		<li> <a href="http://<?=$GLOBALS['lanIP'];?>:8081/"><i class="fa fa-link" aria-hidden="true"></i> 下載大師</a> </li>
-		<li> <a href="http://<?=$GLOBALS['lanIP'];?>:1188/"><i class="fa fa-link" aria-hidden="true"></i> 负载均衡</a> </li>
+		<!-- <li> <a href="http://<?=$GLOBALS['lanIP'];?>:8081/"><i class="fa fa-link" aria-hidden="true"></i> 下載大師</a> </li> -->
+		<!-- <li> <a href="http://<?=$GLOBALS['lanIP'];?>:1188/"><i class="fa fa-link" aria-hidden="true"></i> 负载均衡</a> </li> -->
 		<li class="title"> <i class="fa fa-info-circle" aria-hidden="true"></i> 關於 <span class="mini-text">版本 <?=$GLOBALS['version']?></span></li>
 		<li> <a class="Menu" target="_self" href="update.php"><i class="fa fa-arrow-circle-up" aria-hidden="true"></i> 在線更新</a> </li>
 		<li> <a class="Menu" target="_self" href="/index.php/article?a=update"><i class="fa fa-plus-circle" aria-hidden="true"></i> 更新記錄</a> </li>

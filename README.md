@@ -127,56 +127,6 @@ chmod +x install.sh
 
 
 
-# 過期內容
+# 打包
 
-
-
-## INSTALL CODE
-
-##### IPKG 更新
-
-`ipkg update`
-
-`ipkg upgrade`
-
-##### 安裝 PHP 環境
-
-`ipkg install lighttpd nano http://www.llqoli.com/ipks/gdbm_1.8.3-4_arm.ipk php-fcgi php-curl`
-
-##### 修改端口
-
-打開「/opt/etc/lighttpd/lighttpd.conf」把 server.port 修改為 81，或運行下方代碼也可以。
-
-```shell
-sed -i 's/server.port                = 8081/server.port                = 81/g' "/opt/etc/lighttpd/lighttpd.conf"
-```
-
-**重啟 Web**
-
-`/opt/etc/init.d/S80lighttpd restart`
-
-**加入自動運行**
-
-`app_set_enabled.sh lighttpd yes`
-
-**推薦安裝目錄：** /opt/share/www/
-
-```shell
-cd ~
-wget https://github.com/qoli/Merlin.PHP/archive/master.zip --no-check-certificate
-unzip master.zip
-cd Merlin.PHP-master
-cp * /opt/share/www/ -R
-```
-
-
-
-## STEP
-
-##### 運行上方「**INSTALL CODE**」，以安裝 PHP、Web 服務器相關組件；
-
-##### 打開 http://192.168.1.1:81 ，檢查是否已經成功安裝 Web；
-
-##### 釋放源碼到「/opt/share/www/」，記得先清空原來目錄；
-
-##### 刷新 http://192.168.1.1:81 ，看到界面即可成功運行。
+進入 autoupdate 目錄，運行 `./build.sh`

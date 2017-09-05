@@ -8,6 +8,14 @@ $.ajaxSetup({
 // Chart Global Config
 // Chart.defaults.global.defaultFontSize = '10px';
 
+
+function rebootSS() {
+  setTimeout(function() {
+    iframeBox('/exec.php?command=/koolshare/ss/ssconfig.sh restart');
+    LoadingBox(false);
+  }, 500);
+}
+
 jQuery(document).ready(function($) {
 
   analytics(navigator.userAgent);
@@ -39,20 +47,24 @@ jQuery(document).ready(function($) {
           break;
         case 'GFW-List':
           RunApp('SwitchMode', 'gfw');
+          rebootSS();
           break;
         case '大陸白名單':
-          // RunApp('SwitchMode', 'mainland');
-          iframeBox('/exec.php?command=/koolshare/ss/ssconfig.sh restart');
-          LoadingBox(false);
+          RunApp('SwitchMode', 'mainland');
+          rebootSS();
           break;
         case 'Game-Mode':
           RunApp('SwitchMode', 'game');
+          rebootSS();
           break;
         case 'Game-V2':
           RunApp('SwitchMode', 'v2');
           break;
         case 'STOP':
-          RunApp('SystemCommand', '/koolshare/ss/stop.sh stop_all');
+          // RunApp('SystemCommand', '/koolshare/ss/ssconfig.sh stop');
+          RunApp('SwitchMode', 'stop');
+          iframeBox('/exec.php?command=/koolshare/ss/ssconfig.sh stop');
+          LoadingBox(false);
           break;
         case '運營商 DNS':
           RunApp('SystemCommand', './bin/script/setdns.sh');
@@ -445,8 +457,9 @@ jQuery(document).ready(function($) {
     $delay_icon = $('#delay_icon');
     $netspeed = $('#netspeed');
     update_delay();
-    setInterval(update_delay, 2000);
-    setInterval(netspeed, 2000);
+    netspeed();
+    // setInterval(update_delay, 2000);
+    // setInterval(netspeed, 2000);
   }
 
 });
@@ -782,38 +795,57 @@ function dash_onetime() {
  * 實時網速
  **/
 function netspeed() {
-  $.ajax({
-    url: '/app.php?fun=GetExec&q=/opt/share/www/bin/script/netspeed.sh%20ppp0',
-    dataType: "text",
-    timeout: 2400,
-    success: function(data) {
-      $netspeed.text(data)
-    },
-    error: function() {
-      $netspeed.text('netspeed');
-    }
-  });
+
+  setTimeout(function() {
+
+    $.ajax({
+      url: '/app.php?fun=GetExec&q=/opt/share/www/bin/script/netspeed.sh%20ppp0',
+      dataType: "text",
+      timeout: 2400,
+      success: function(data) {
+        $netspeed.text(data)
+      },
+      error: function() {
+        $netspeed.text('netspeed');
+      },
+      complete: function() {
+        netspeed();
+      }
+    });
+
+  }, 2400);
+
 }
 
 function update_delay() {
-  $.ajax({
-    url: '/app.php?fun=ConnectTest&q=google',
-    dataType: "json",
-    timeout: 2400,
-    success: function(data) {
-      // console.log("延遲："+data.延遲);
-      if (data.延遲 < 0.01) {
-        $delay_time.text('timeout');
+
+  setTimeout(function() {
+
+    $.ajax({
+      url: '/app.php?fun=ConnectTest&q=google',
+      dataType: "json",
+      timeout: 2400,
+      success: function(data) {
+        // console.log("延遲："+data.延遲);
+        if (data.延遲 < 0.01) {
+          $delay_time.text('timeout');
+          $delay_icon.addClass('red');
+        } else {
+          $delay_time.text(data.延遲 + 's');
+          $delay_icon.removeClass('red');
+        }
+      },
+      error: function() {
+        $delay_time.text('error');
         $delay_icon.addClass('red');
-      } else {
-        $delay_time.text(data.延遲 + 's');
-        $delay_icon.removeClass('red');
+      },
+      complete: function() {
+        update_delay();
       }
-    },
-    error: function() {
-      $delay_time.text('error');
-    }
-  });
+    });
+
+  }, 2400);
+
 }
 
 function iframeBox(url) {
@@ -883,12 +915,6 @@ function getApp(f, isClear, isTitle, q) {
       LoadingBox(true, '處理中：' + f);
     },
     success: function(data) {
-      // console.log('/app.php?fun=' + f + '&q=' + q + "| getApp: " + data)
-      // <dl class="dl-horizontal">
-      //   <dt>...</dt>
-      //   <dd>...</dd>
-      // </dl>
-      //
 
       if (f == 'GetShadowSockConfig') {
         createCookie("working_server", data.Server, 180);
@@ -933,7 +959,7 @@ function show() {
   // Animate each line individually
   for (var i = 0; i < items.length; i++) {
     var item = items[i]
-    // Define initial properties
+      // Define initial properties
     dynamics.css(item, {
       opacity: 0,
       translateY: 20
