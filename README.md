@@ -90,21 +90,9 @@ Thx ❤️
 
 ![step1](images/step1.png)
 
-##### 在 admin 後臺面板，安裝「Download Master」；
+##### 使用你熟悉的工具，登入 SSH
 
-1. 打開  'http://192.168.1.1',
-2. select 'USB 相關應用',
-3. Download Master and click 'install' link.
-
-![step2](images/step2.png)
-
-
-
-使用你熟悉的工具，登入 SSH
-
-
-
-##### 運行安裝腳本
+運行安裝腳本
 
 ```shell
 wget --no-check-certificate https://github.com/qoli/Merlin.PHP/raw/master/bin/install/install.sh -O install.sh
@@ -130,3 +118,7 @@ chmod +x install.sh
 # 打包
 
 進入 autoupdate 目錄，運行 `./build.sh`
+
+# SFTP
+
+`ipkg install openssh-sftp-server`

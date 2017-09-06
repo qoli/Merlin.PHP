@@ -4,7 +4,8 @@ echo
 echo '■ script - 2017-09-06 19:12:16'
 echo
 echo '■ INSTALL Merlin.PHP'
-echo '■ 「STEP 0」IPKG'
+echo
+echo '■ 「STEP 0」optware'
 echo
 cd /tmp
 wget -c -O optware-ngu-setup.sh http://t.cn/RpPFqUm
@@ -15,7 +16,7 @@ echo
 echo '■ 「STEP 1」IPKG'
 ipkg update
 ipkg upgrade
-ipkg install lighttpd nano http://www.llqoli.com/ipks/gdbm_1.8.3-4_arm.ipk php-fcgi php-curl
+ipkg install lighttpd nano php-fcgi php-curl
 sed -i 's/server.port                = 8081/server.port                = 81/g' "/opt/etc/lighttpd/lighttpd.conf"
 /opt/etc/init.d/S80lighttpd restart
 app_set_enabled.sh lighttpd yes
