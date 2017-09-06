@@ -4,7 +4,7 @@ require_once 'library/AppFunction.php';
 
 // GLOBALS 變量
 $GLOBALS['lanIP'] = trim(shell_exec("nvram get lan_ipaddr_rt"));
-$GLOBALS['version'] = "0.6.3";
+$GLOBALS['version'] = "0.6.4";
 
 // PATH_INFO 初始化
 if (!isset($_SERVER['PATH_INFO']) or $_SERVER['PATH_INFO'] == "") {
