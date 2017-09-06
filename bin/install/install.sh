@@ -1,7 +1,14 @@
 #!/bin/sh
 lan=`nvram get lan_ipaddr_rt`
 echo
-echo '■ script - 2016-06-28 03:46:39'
+echo '■ script - 2017-09-06 19:12:16'
+echo
+echo '■ INSTALL Merlin.PHP'
+echo '■ 「STEP 0」IPKG'
+echo
+cd /tmp
+wget -c -O optware-ngu-setup.sh http://t.cn/RpPFqUm
+sh ./optware-ngu-setup.sh
 echo
 echo '■ INSTALL Merlin.PHP'
 echo
