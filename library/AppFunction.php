@@ -86,7 +86,7 @@ function ConnectTest($way){
 **/
 function GetShadowSockConfig () {
 		// $mode = trim(shell_exec('cat ss-mode'));
-	$number = trim(shell_exec('nvram get ss_mode'));
+	$number = trim(shell_exec('dbus get ss_basic_mode'));
 
 	switch ($number) {
 		case 1:
@@ -108,7 +108,7 @@ function GetShadowSockConfig () {
 		'模式' => $mode,
 		'Server' => shell_exec('dbus get ss_basic_server'),
 		'Server Port' => shell_exec('dbus get ss_basic_port'),
-		'Mode Number' => shell_exec('nvram get ss_mode'),
+		'Mode Number' => shell_exec('dbus get ss_basic_mode'),
 		'PID' => shell_exec("cat /var/run/shadowsocks.pid"),
 		'DNS2SOCKS PID' => shell_exec("cat /var/run/sslocal1.pid")
 		);
@@ -193,9 +193,9 @@ function SwitchMode($mode, $parameter = 'all') {
 		$number = 0;
 		break;
 	}
-	shell_exec('dbus set ss_basic_mode='+$number);
-	shell_exec('dbus set ss_acl_default_mode='+$number);
-	// system('nvram set ss_mode='+$number);
+	shell_exec('dbus set ss_basic_mode='.$number);
+	shell_exec('dbus set ss_acl_default_mode='.$number);
+	// system('dbus list ss_');
 	echo '</pre>';
 }
 
