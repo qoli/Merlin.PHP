@@ -43,8 +43,8 @@ Thx ❤️
 * 網絡測試和監視。
 * 重新連接網絡（WLAN）。
 * 快速重新連接 SS。
-* Game-Mode 以及 Game-V2 支持。
 * 切換 SS 服務器。
+
 
 
 
@@ -70,10 +70,6 @@ Thx ❤️
 
 
 
-# 安裝
-
-
-
 ## 開發環境
 
 **OS：** ASUS-MERLIN
@@ -82,6 +78,14 @@ Thx ❤️
 
 **硬件：** RT-AC68U
 
+**最後測試固件：** 380.66_4-X7.5
+
+
+
+# 安裝
+
+安裝需求已經移除下載大師的安裝需求，支持 7.6 版本安裝
+
 
 
 ## 安裝步驟
@@ -89,6 +93,8 @@ Thx ❤️
 ##### 在 admin 後臺面板，激活 SSH 功能；
 
 ![step1](images/step1.png)
+
+
 
 ##### 使用你熟悉的工具，登入 SSH
 
@@ -103,7 +109,7 @@ chmod +x install.sh
 
 
 
-# THANK
+# 感謝
 
 - https://www.hqt.ro/lighttpd-web-server-with-php-support-through-optware/
 - https://github.com/evilstreak/markdown-js
@@ -118,6 +124,8 @@ chmod +x install.sh
 # 打包
 
 進入 autoupdate 目錄，運行 `./build.sh`
+
+
 
 # SFTP
 
