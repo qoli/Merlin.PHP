@@ -5,7 +5,7 @@ echo '■ script - 2017-09-06 19:12:16'
 echo
 echo '■ INSTALL Merlin.PHP'
 echo
-echo '■ 「STEP 0」optware'
+echo '■ 「STEP 1」optware'
 echo
 cd /tmp
 wget -c -O optware-ngu-setup.sh http://t.cn/RpPFqUm
@@ -13,7 +13,7 @@ sh ./optware-ngu-setup.sh
 echo
 echo '■ INSTALL Merlin.PHP'
 echo
-echo '■ 「STEP 1」IPKG'
+echo '■ 「STEP 2」software'
 ipkg update
 ipkg upgrade
 ipkg install lighttpd nano php-fcgi php-curl
@@ -21,7 +21,7 @@ sed -i 's/server.port                = 8081/server.port                = 81/g' "
 /opt/etc/init.d/S80lighttpd restart
 app_set_enabled.sh lighttpd yes
 echo
-echo '■ 「STEP 2」CODE'
+echo '■ 「STEP 3」CODE'
 echo
 rm -rf /tmp/m_update
 # rm -rf /opt/share/www/
