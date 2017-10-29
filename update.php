@@ -98,14 +98,15 @@
 	<script src="assets/app.js"></script>
 	<script src="assets/standalone.js"></script>
 	<script>if (window.module) module = window.module;</script>
+
 	<script type="text/javascript">
 
-	$(window).load(function(){
-		setInterval(function(){
-			var $contents = $('#iframeBox').contents();
-			$contents.scrollTop($contents.height());
-		}, 1200);
-	});
+	// $(window).load(function(){
+	// 	setInterval(function(){
+	// 		var $contents = $('#iframeBox').contents();
+	// 		$contents.scrollTop($contents.height());
+	// 	}, 1200);
+	// });
 
 	</script>
 </html>

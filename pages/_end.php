@@ -1,4 +1,4 @@
-<script src="assets/jquery.min.js"></script>
+<script src="assets/jquery-3.2.1.min.js"></script>
 <script src="assets/bootstrap.min.js"></script>
 <script src="assets/underscore-min.js"></script>
 <script src="assets/logs.js"></script>
@@ -11,12 +11,12 @@
 
 <script type="text/javascript">
 
-$(window).load(function(){
-	setInterval(function(){
-		var $contents = $('#iframeBox').contents();
-		$contents.scrollTop($contents.height());
-	}, 1200);
-});
+// $(window).on('load',function(){
+//   setInterval(function(){
+//   	var $contents = $('#iframeBox').contents();
+//   	$contents.scrollTop($contents.height());
+//   }, 2400);
+// })
 
 </script>
 

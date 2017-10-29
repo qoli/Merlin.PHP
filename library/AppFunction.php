@@ -60,17 +60,19 @@ function ConnectTest($way){
 
 	$o = null;
 
+	$timeout_google = "curl -o /dev/null -s -w %{time_total} --connect-timeout 4 --socks5-hostname ".$lan.":23456 http://google.com/generate_204";
+
 	switch ($way) {
 		case 'baidu':
 		$o = array('延遲' => shell_exec("curl -o /dev/null -s -w %{time_total} --connect-timeout 4 http://connect.rom.miui.com/generate_204"));
 		break;
 		case 'google':
-		$o = array('延遲' => shell_exec("curl -o /dev/null -s -w %{time_total} --connect-timeout 4 --socks5-hostname ".$lan.":23456 http://google.com/generate_204"));
+		$o = array('延遲' => shell_exec($timeout_google));
 		break;
 		default:
 		$o = array(
 			'Miui' => shell_exec("curl -o /dev/null -s -w %{time_total} --connect-timeout 4 http://connect.rom.miui.com/generate_204"),
-			'Google' => shell_exec("curl -o /dev/null -s -w %{time_total} --connect-timeout 4 --socks5-hostname ".$lan.":23456 http://google.com/generate_204"),
+			'Google' => shell_exec($timeout_google),
 			);
 		break;
 

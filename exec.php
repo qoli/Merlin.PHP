@@ -1,7 +1,5 @@
 <?php
 
-header('Content-Encoding: none;');
-
 require 'library/MainFunction.php';
 
 echo '<link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">';
@@ -23,15 +21,15 @@ ob_start();
 
 while(!feof($handle)) {
 
-$buffer = fgets($handle);
-$buffer = trim(htmlspecialchars($buffer));
+	$buffer = fgets($handle);
+	$buffer = trim(htmlspecialchars($buffer));
 
-echo $buffer . "<br />";
-echo str_pad('', 4096);
+	echo $buffer . "<br />";
+	echo str_pad('', 4096);
 
-ob_flush();
-flush();
-sleep(0.001);
+	ob_flush();
+	flush();
+	sleep(0.001);
 }
 
 pclose($handle);
