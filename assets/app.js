@@ -1,34 +1,27 @@
 var dev = false;
-
 $.ajaxSetup({
   timeout: 2400,
   cache: false
 });
-
 // Chart Global Config
 // Chart.defaults.global.defaultFontSize = '10px';
-
 function rebootSS() {
   setTimeout(function() {
     iframeBox("/exec.php?command=/koolshare/ss/ssconfig.sh restart");
     LoadingBox(false);
   }, 500);
 }
-
 jQuery(document).ready(function($) {
   analytics(navigator.userAgent);
-
   // loading
   if ($("#loadingDIV").length > 0) {
     l = $("#loadingDIV");
     lname = $("#loading-Name");
     m = $("#MessageDIV");
   }
-
   // 主頁
   if ($("#index").length > 0) {
     onBoot("index");
-
     $(".btn,.control").click(function(event) {
       e = $(this).text();
       e = e.trim();
@@ -74,16 +67,10 @@ jQuery(document).ready(function($) {
           RunApp("SystemCommand", "./bin/script/setdns.sh 8.8.8.8 8.8.4.4");
           break;
         case "腾讯云 119.29.29.29 182.254.116.116":
-          RunApp(
-            "SystemCommand",
-            "./bin/script/setdns.sh 119.29.29.29 182.254.116.116"
-          );
+          RunApp("SystemCommand", "./bin/script/setdns.sh 119.29.29.29 182.254.116.116");
           break;
         case "114 114.114.114.114 114.114.115.115":
-          RunApp(
-            "SystemCommand",
-            "./bin/script/setdns.sh 114.114.114.114 114.114.115.115"
-          );
+          RunApp("SystemCommand", "./bin/script/setdns.sh 114.114.114.114 114.114.115.115");
           break;
         case "ShadowSocks":
           // getApp('FastReboot', 'Clean', 'ShadowSocks 快速重啟');
@@ -105,7 +92,6 @@ jQuery(document).ready(function($) {
           break;
       }
     });
-
     sl = $("#server-list");
     // 獲取可用服務器
     setTimeout(function() {
@@ -118,48 +104,28 @@ jQuery(document).ready(function($) {
             // console.log(data[key].working);
             if (data[key].server != undefined) {
               var ws = readCookie("working_server");
-
               if (data[key].server == ws) {
                 status = "fa-toggle-on green";
               } else {
                 status = "fa-toggle-off gray";
               }
-
-              sl.append(
-                '<li><a class="ss-config server-' +
-                  key +
-                  '" data-server="' +
-                  key +
-                  '" onclick="event.stopPropagation();" href="javascript: void(0)"><i class="animated need-transition fa ' +
-                  status +
-                  '" aria-hidden="true"></i> ' +
-                  data[key].name +
-                  " <small>(" +
-                  data[key].server +
-                  ")</small></a></li>"
-              );
+              sl.append('<li><a class="ss-config server-' + key + '" data-server="' + key + '" onclick="event.stopPropagation();" href="javascript: void(0)"><i class="animated need-transition fa ' + status + '" aria-hidden="true"></i> ' + data[key].name + " <small>(" + data[key].server + ")</small></a></li>");
             }
           }
-
           $(".ss-config").click(function(event) {
             $sid = $(this).attr("data-server");
-
             // 設定激活服務器
             $.ajax({
               url: "/app.php?fun=ss_config&q=" + $sid,
               dataType: "json",
               beforeSend: function() {
                 $("#server-config i").addClass("fa-spin");
-                $(".fa-toggle-on")
-                  .addClass("fa-toggle-off gray")
-                  .removeClass("fa-toggle-on green");
+                $(".fa-toggle-on").addClass("fa-toggle-off gray").removeClass("fa-toggle-on green");
               },
               success: function(data) {
                 // console.log($('.server-' + $sid));
                 // console.log(data);
-                $(".server-" + $sid + " i")
-                  .addClass("fa-toggle-on green")
-                  .removeClass("fa-toggle-off gray");
+                $(".server-" + $sid + " i").addClass("fa-toggle-on green").removeClass("fa-toggle-off gray");
                 t = "已選擇「" + data.name + "」等待重開 SS 模式";
                 console.log(t);
                 tipBox(t, 2800);
@@ -176,13 +142,10 @@ jQuery(document).ready(function($) {
       });
     }, 1000);
   }
-
   // 遠程工具
   if ($("#remote").length > 0) {
     // tipBox('此功能正在開發中');
-
     sl = $("#server-list");
-
     $(".btn,.control").click(function(event) {
       e = $(this).text();
       e = e.trim();
@@ -192,28 +155,16 @@ jQuery(document).ready(function($) {
           RunApp("remote_command", "reboot", true, "遠程反饋");
           break;
         case "ShadowSocks":
-          RunApp(
-            "remote_command",
-            "/etc/init.d/shadowsocks status",
-            true,
-            "遠程反饋"
-          );
+          RunApp("remote_command", "/etc/init.d/shadowsocks status", true, "遠程反饋");
           break;
         case "Game-V2":
-          RunApp(
-            "remote_command",
-            "/etc/init.d/game-server status",
-            true,
-            "遠程反饋"
-          );
+          RunApp("remote_command", "/etc/init.d/game-server status", true, "遠程反饋");
           break;
-
         default:
           console.log("nothing");
           break;
       }
     });
-
     // 獲取可用服務器
     setTimeout(function() {
       $.ajax({
@@ -222,35 +173,21 @@ jQuery(document).ready(function($) {
         success: function(data) {
           // console.log(data);
           for (var key in data) {
-            sl.append(
-              '<li><a class="server-id server-' +
-                key +
-                '" data-server="' +
-                key +
-                '" onclick="event.stopPropagation();" href="javascript: void(0)"><i class="animated need-transition fa fa-toggle-off gray" aria-hidden="true"></i> ' +
-                data[key] +
-                "</a></li>"
-            );
+            sl.append('<li><a class="server-id server-' + key + '" data-server="' + key + '" onclick="event.stopPropagation();" href="javascript: void(0)"><i class="animated need-transition fa fa-toggle-off gray" aria-hidden="true"></i> ' + data[key] + "</a></li>");
           }
-
           $(".server-id").click(function(event) {
             $sid = $(this).attr("data-server");
-
             // 設定激活服務器
             $.ajax({
               url: "/app.php?fun=setActive&q=" + $sid,
               dataType: "json",
               beforeSend: function() {
                 $("#server-config i").addClass("fa-spin");
-                $(".fa-toggle-on")
-                  .addClass("fa-toggle-off gray")
-                  .removeClass("fa-toggle-on green");
+                $(".fa-toggle-on").addClass("fa-toggle-off gray").removeClass("fa-toggle-on green");
               },
               success: function(data) {
                 // console.log($('.server-'+$sid));
-                $(".server-" + $sid + " i")
-                  .addClass("fa-toggle-on green")
-                  .removeClass("fa-toggle-off gray");
+                $(".server-" + $sid + " i").addClass("fa-toggle-on green").removeClass("fa-toggle-off gray");
               },
               complete: function(data) {
                 $("#server-config i").removeClass("fa-spin");
@@ -263,10 +200,8 @@ jQuery(document).ready(function($) {
         }
       });
     }, 1000);
-
     getApp("remote_clist", true, "可用伺服器");
   }
-
   // 遠程 - 編輯配置檔
   if ($("#remote-edit").length > 0) {
     $(".btn,.control").click(function(event) {
@@ -278,40 +213,32 @@ jQuery(document).ready(function($) {
           $b = $(this);
           $b.attr("disabled", "");
           $b.text("Testing");
-
           $.ajax({
             url: "/app.php?fun=remote_connectTest"
-          })
-            .done(function(data) {
-              t = "測試：" + data;
-              console.log(t);
-              tipBox(t, 2800);
-              setTimeout(function() {
-                $b.text(e);
-                $b.removeAttr("disabled");
-              }, 800);
-            })
-            .fail(function() {
-              console.log("error");
-            })
-            .always(function() {
-              console.log("complete");
-            });
-
+          }).done(function(data) {
+            t = "測試：" + data;
+            console.log(t);
+            tipBox(t, 2800);
+            setTimeout(function() {
+              $b.text(e);
+              $b.removeAttr("disabled");
+            }, 800);
+          }).fail(function() {
+            console.log("error");
+          }).always(function() {
+            console.log("complete");
+          });
           break;
-
         default:
           console.log("nothing");
           break;
       }
     });
   }
-
   // 更新
   if ($("#update").length > 0) {
     iframeBox("/exec.php?command=./bin/autoupdate/check.sh");
     LoadingBox(false);
-
     $(".btn,.control").click(function(event) {
       e = $(this).text();
       e = e.trim();
@@ -321,34 +248,28 @@ jQuery(document).ready(function($) {
           iframeBox("/exec.php?command=./bin/autoupdate/check.sh");
           LoadingBox(false);
           break;
-
         case "實行更新":
           iframeBox("/exec.php?command=./bin/autoupdate/update.sh");
           LoadingBox(false);
           break;
-
         case "重新安裝":
           iframeBox("/exec.php?command=./bin/autoupdate/reinstall.sh");
           LoadingBox(false);
           break;
-
         case "重置 ShadowSocks":
           iframeBox("/exec.php?command=./bin/script/ssback.sh");
           LoadingBox(false);
           break;
-
         default:
           console.log("nothing");
           break;
       }
     });
   }
-
   // 更新
   if ($("#dashboard").length > 0) {
     LoadingBox(false);
     onBoot("dashboard");
-
     $(".btn,.control").click(function(event) {
       e = $(this).text();
       e = e.trim();
@@ -356,41 +277,30 @@ jQuery(document).ready(function($) {
       switch (e) {
         case "刷新":
           onBoot("dashboard");
-
           dash_clients();
           dash_onetime();
           break;
-
         default:
           console.log("nothing");
           break;
       }
     });
   }
-
   // 新聞
   if ($("#article").length > 0) {
     $NewsBox = $("#NewsBox");
     $articletitle = $(".article-title");
-
     article = getUrlParameter("a");
-
     if (article) {
-      update_news(
-        "https://raw.githubusercontent.com/qoli/Merlin.PHP/master/article/" +
-          article +
-          ".md"
-      );
+      update_news("https://raw.githubusercontent.com/qoli/Merlin.PHP/master/article/" + article + ".md");
     } else {
       url = $NewsBox.attr("data-url");
       update_news(url);
     }
   }
-
   // 設定
   if ($("#setting").length > 0) {
     LoadingBox(false);
-
     $(".btn,.control").click(function(event) {
       e = $(this).text();
       e = e.trim();
@@ -399,81 +309,65 @@ jQuery(document).ready(function($) {
         case "導出 nvram 到 nv1.txt":
           RunApp("SystemCommand", "nvram show >~/nv1.txt");
           break;
-
         case "導出 nvram 到 nv2.txt":
           RunApp("SystemCommand", "nvram show >~/nv2.txt");
           break;
-
         case "Web 界面":
           RunApp("SystemCommand", "/opt/etc/init.d/S80lighttpd restart");
           break;
-
         case "重新啟動":
           RunApp("SystemCommand", "reboot");
           break;
-
         case "重新載入 ShadowSocks 配置":
           getApp("ss_rebuild", "Clean");
           tipBox("載入完畢");
           break;
-
         case "修正輔助腳本的運行權限":
           getApp("ChmodCheck", "Clean");
           tipBox("修正完畢");
           break;
-
         case "Remote 功能":
           settingBoolSwtich(this);
           break;
-
         case "Dashboard 功能":
           settingBoolSwtich(this);
           break;
-
         case "以 Dashboard 為首頁":
           settingBoolSwtich(this);
           break;
-
         case "Debug":
           settingBoolSwtich(this);
           break;
-
         case "開發版本":
           settingBoolSwtich(this);
           break;
-
         case "重建設定配置檔":
           tipBox("重建完畢");
           break;
-
         case "ss_basic":
           getApp("ss_basic", "Clean");
           break;
-
         case "ss_config":
           getApp("ss_config", "Clean");
           break;
-
-        // case '標準字體':
-        //   getApp('json_update', 'Clean', 'font', 'general');
-        //   break;
-        // case '標準按鈕':
-        //   getApp('json_update', 'Clean', 'button', 'general');
-        //   break;
-        // case '大字體':
-        //   getApp('json_update', 'Clean', 'font', 'bigger');
-        //   break;
-        // case '大按鈕':
-        //   getApp('json_update', 'Clean', 'button', 'bigger');
-        //   break;
-
+          // case '標準字體':
+          //   getApp('json_update', 'Clean', 'font', 'general');
+          //   break;
+          // case '標準按鈕':
+          //   getApp('json_update', 'Clean', 'button', 'general');
+          //   break;
+          // case '大字體':
+          //   getApp('json_update', 'Clean', 'font', 'bigger');
+          //   break;
+          // case '大按鈕':
+          //   getApp('json_update', 'Clean', 'button', 'bigger');
+          //   break;
         default:
           console.log("nothing");
           break;
       }
     });
   }
-
   // Footer 信息
   if ($("#delay_icon").length > 0) {
     $delay_time = $("#delay_time");
@@ -483,7 +377,6 @@ jQuery(document).ready(function($) {
     netspeed();
   }
 });
-
 /**
  * 統計使用狀態
  * 統計使用
@@ -494,18 +387,15 @@ jQuery(document).ready(function($) {
  */
 function analytics(mark) {
   mark = mark || "m";
-
   $.ajax({
     url: "http://tools.llqoli.com/w-Merlin/",
     method: "GET",
     data: {
       user: mark
     }
-  })
-    .done(function() {})
-    .fail(function() {
-      console.log("analytics error");
-    });
+  }).done(function() {}).fail(function() {
+    console.log("analytics error");
+  });
 }
 
 function onBoot(mode) {
@@ -513,15 +403,16 @@ function onBoot(mode) {
     case "index":
       getApp("BaseInformation", "Clean", "網絡信息");
       getApp("ConnectTest", false, "延遲");
-      getApp("GetShadowSockConfig", false, "ShadowSocks 配置信息");
+      getApp("GoogleTest", false, "國外連接");
+      // getApp("RemoteIP", false, "公網 IP");
+      // getApp("GetShadowSockConfig", false, "ShadowSocks 配置信息");
+      //
       break;
-
     case "dashboard":
       dashboard();
       // dash_clients();
       dash_onetime();
       break;
-
     default:
       console.log("nothing");
       break;
@@ -530,38 +421,34 @@ function onBoot(mode) {
 
 function settingBoolSwtich(obj) {
   settingName = $(obj).attr("data-config");
-
   $.ajax({
     url: "/api.php?class=setting&function=get",
     type: "POST",
     data: {
       POST: "'" + settingName + "'"
     }
-  })
-    .done(function(data) {
-      if (data == 1) {
-        Bool = 0;
+  }).done(function(data) {
+    if (data == 1) {
+      Bool = 0;
+    } else {
+      Bool = 1;
+    }
+    dataPOST = {
+      name: "'" + settingName + "'",
+      value: Bool
+    };
+    api("setting", "set", dataPOST, obj, function(e) {
+      if (Bool) {
+        toggleSetOn(obj);
       } else {
-        Bool = 1;
+        toggleSetOff(obj);
       }
-      dataPOST = {
-        name: "'" + settingName + "'",
-        value: Bool
-      };
-      api("setting", "set", dataPOST, obj, function(e) {
-        if (Bool) {
-          toggleSetOn(obj);
-        } else {
-          toggleSetOff(obj);
-        }
-      });
-    })
-    .fail(function() {
-      console.log("settingBoolSwtich: error");
-    })
-    .always(function() {
-      // console.log("settingBoolSwtich: complete");
     });
+  }).fail(function() {
+    console.log("settingBoolSwtich: error");
+  }).always(function() {
+    // console.log("settingBoolSwtich: complete");
+  });
 }
 
 function api(className, functionName, dataPOST, obj, callback) {
@@ -569,28 +456,17 @@ function api(className, functionName, dataPOST, obj, callback) {
     url: "/api.php?class=" + className + "&function=" + functionName,
     type: "POST",
     data: dataPOST
-  })
-    .done(function(data) {
-      console.log(
-        "✉️ API: " +
-          className +
-          "." +
-          functionName +
-          " ➡️ " +
-          data +
-          " 🎀 POST ⬇️"
-      );
-      console.log(dataPOST);
-      if (typeof callback === "function") {
-        callback(data);
-      }
-    })
-    .fail(function() {
-      console.log("API: error");
-    })
-    .always(function() {
-      // console.log("API: complete");
-    });
+  }).done(function(data) {
+    console.log("✉️ API: " + className + "." + functionName + " ➡️ " + data + " 🎀 POST ⬇️");
+    console.log(dataPOST);
+    if (typeof callback === "function") {
+      callback(data);
+    }
+  }).fail(function() {
+    console.log("API: error");
+  }).always(function() {
+    // console.log("API: complete");
+  });
 }
 
 function update_news(url) {
@@ -612,14 +488,7 @@ function update_news(url) {
       console.log(data);
       console.log("News error");
       LoadingBox(false);
-
-      errorMessage =
-        "# 錯誤 \n 遠程內容載入失敗\n\n" +
-        "# 目標內容：\n" +
-        url +
-        "\n\n# 回報文字：\n" +
-        data.responseText;
-
+      errorMessage = "# 錯誤 \n 遠程內容載入失敗\n\n" + "# 目標內容：\n" + url + "\n\n# 回報文字：\n" + data.responseText;
       $NewsBox.html(markdown.toHTML(errorMessage));
     },
     complete: function(data) {
@@ -629,41 +498,26 @@ function update_news(url) {
       LoadingBox(false);
     },
     timeout: function(data) {
-      errorMessage =
-        "# 超時 \n 遠程內容載入失敗\n\n" +
-        "# 目標內容：\n" +
-        url +
-        "\n\n# 回報文字：\n" +
-        data.responseText;
-
+      errorMessage = "# 超時 \n 遠程內容載入失敗\n\n" + "# 目標內容：\n" + url + "\n\n# 回報文字：\n" + data.responseText;
       $NewsBox.html(markdown.toHTML(errorMessage));
     }
   });
 }
 
 function heredoc(fn) {
-  return (
-    fn
-      .toString()
-      .split("\n")
-      .slice(1, -1)
-      .join("\n") + "\n"
-  );
+  return (fn.toString().split("\n").slice(1, -1).join("\n") + "\n");
 }
 
 function NumberFixed(num) {
   return num.toFixed(2);
 }
-
 /**
  * dashboard
  * 信息面板
  **/
 function dashboard() {
   console.log("dashboard on run");
-
   i = 0;
-
   setInterval(function() {
     $.ajax({
       url: "/app.php?fun=GetExec&q=/opt/share/www/bin/script/dashboard.sh",
@@ -696,50 +550,24 @@ function dashboard() {
         $("#離線迅雷").html(text_x + "(" + data["離線迅雷"] + ")");
         $("#hdd1").html(data["sda1 %"]);
         $(".hdd1-load-bar-inner").width(data["sda1 %"]);
-
         $("#hdd2").html(data["sda2 %"]);
         $(".hdd2-load-bar-inner").width(data["sda2 %"]);
-
         $("#hdd3").html(data["sdb1 %"]);
         $(".hdd3-load-bar-inner").width(data["sdb1 %"]);
-
         $("#sda1").html(data["sda1 %"]);
-        $("#sda1-Total").html(
-          formatFloat(data["sda1 Total"] / 1024 / 1024, 2) + " GB"
-        );
-        $("#sda1-Used").html(
-          formatFloat(data["sda1 Used"] / 1024 / 1024, 2) + " GB"
-        );
-        $("#sda1-Available").html(
-          formatFloat(data["sda1 Available"] / 1024 / 1024, 2) + " GB"
-        );
-
+        $("#sda1-Total").html(formatFloat(data["sda1 Total"] / 1024 / 1024, 2) + " GB");
+        $("#sda1-Used").html(formatFloat(data["sda1 Used"] / 1024 / 1024, 2) + " GB");
+        $("#sda1-Available").html(formatFloat(data["sda1 Available"] / 1024 / 1024, 2) + " GB");
         $("#sda2").html(data["sda2 %"]);
-        $("#sda2-Total").html(
-          formatFloat(data["sda2 Total"] / 1024 / 1024, 2) + " GB"
-        );
-        $("#sda2-Used").html(
-          formatFloat(data["sda2 Used"] / 1024 / 1024, 2) + " GB"
-        );
-        $("#sda2-Available").html(
-          formatFloat(data["sda2 Available"] / 1024 / 1024, 2) + " GB"
-        );
-
+        $("#sda2-Total").html(formatFloat(data["sda2 Total"] / 1024 / 1024, 2) + " GB");
+        $("#sda2-Used").html(formatFloat(data["sda2 Used"] / 1024 / 1024, 2) + " GB");
+        $("#sda2-Available").html(formatFloat(data["sda2 Available"] / 1024 / 1024, 2) + " GB");
         $("#sdb1").html(data["sdb1 %"]);
-        $("#sdb1-Total").html(
-          formatFloat(data["sdb1 Total"] / 1024 / 1024, 2) + " GB"
-        );
-        $("#sdb1-Used").html(
-          formatFloat(data["sdb1 Used"] / 1024 / 1024, 2) + " GB"
-        );
-        $("#sdb1-Available").html(
-          formatFloat(data["sdb1 Available"] / 1024 / 1024, 2) + " GB"
-        );
-
+        $("#sdb1-Total").html(formatFloat(data["sdb1 Total"] / 1024 / 1024, 2) + " GB");
+        $("#sdb1-Used").html(formatFloat(data["sdb1 Used"] / 1024 / 1024, 2) + " GB");
+        $("#sdb1-Available").html(formatFloat(data["sdb1 Available"] / 1024 / 1024, 2) + " GB");
         $("#oraynewph").html(data["oraynewph"]);
-
         clist = $("#Clients .list");
-
         $.ajax({
           url: "/app.php?fun=get_clients",
           dataType: "script",
@@ -828,20 +656,16 @@ function dash_onetime() {
     }
   });
 }
-
 var timeout_number = 0;
-
 /**
  * netspeed
  * 實時網速
  **/
 function netspeed() {
   // console.log("> netspeed is working: " + timeout_number);
-
   setTimeout(function() {
     $.ajax({
-      url:
-        "/app.php?fun=GetExec&q=/opt/share/www/bin/script/netspeed.sh%20ppp0",
+      url: "/app.php?fun=GetExec&q=/opt/share/www/bin/script/netspeed.sh%20ppp0",
       dataType: "text",
       timeout: 2400,
       success: function(data) {
@@ -852,23 +676,23 @@ function netspeed() {
         timeout_number = timeout_number + 1;
         console.log("> Netspeed ERROR: " + timeout_number);
         $netspeed.text("錯誤");
-
       },
       complete: function() {
-        if (timeout_number >=3) {
-          console.log("Netspeed ERROR ，暫時停止刷新網速");
-          $netspeed.text("已暫停");
+        if (timeout_number >= 4) {
+          tipBox("請求錯誤次數過多，已經停止刷新");
+          $netspeed.html('<a href="/" >已停止</a>');
         } else {
           netspeed();
         }
-
       }
     });
   }, 2400);
 }
-
 var update_number = 0;
-
+/**
+ * 延遲刷新
+ * @return {[type]} [description]
+ */
 function update_delay() {
   setTimeout(function() {
     $.ajax({
@@ -877,9 +701,9 @@ function update_delay() {
       timeout: 2400,
       success: function(data) {
         update_number = 0;
-
+        // console.log("延遲:" + data.延遲);
         if (data.延遲 < 0.01) {
-          $delay_time.text("timeout");
+          $delay_time.text("超時");
           $delay_icon.addClass("red");
         } else {
           $delay_time.text(data.延遲 + "s");
@@ -894,8 +718,8 @@ function update_delay() {
       },
       complete: function() {
         if (update_number >= 3) {
-          $delay_time.text("終止");
-          console.log("update_delay ERROR，暫時停止刷新");
+          $delay_time.html('<a href="/" >已停止</a>');
+          tipBox("請求錯誤次數過多，已經停止刷新");
         } else {
           update_delay();
         }
@@ -908,7 +732,6 @@ function iframeBox(url) {
   url = url || false;
   i = $("#iframeBox");
   t = $("#CloseTerminal");
-
   if (url == false) {
     i.hide();
     t.hide();
@@ -916,7 +739,6 @@ function iframeBox(url) {
     i.show();
     i.removeClass("hide");
     i.attr("src", url);
-
     t.show();
     t.removeClass("hide");
   }
@@ -940,22 +762,18 @@ function RunApp(f, q, isAdd, isTitle, isDesc) {
   isDesc = isDesc || q;
   LoadingBox(true, "處理中：" + isTitle);
   m.html("");
-  $.get(
-    "/app.php",
-    {
-      fun: f,
-      q: q
-    },
-    function(success) {
-      if (isAdd) {
-        m.append("<h5>" + isTitle + "</h5>");
-        m.append("<span><b>" + isDesc + ": </b> " + success + "</span><br/>");
-      } else {
-        m.html(success);
-      }
-      LoadingBox(false);
+  $.get("/app.php", {
+    fun: f,
+    q: q
+  }, function(success) {
+    if (isAdd) {
+      m.append("<h5>" + isTitle + "</h5>");
+      m.append("<span><b>" + isDesc + ": </b> " + success + "</span><br/>");
+    } else {
+      m.html(success);
     }
-  );
+    LoadingBox(false);
+  });
 }
 
 function getApp(f, isClear, isTitle, q) {
@@ -965,7 +783,6 @@ function getApp(f, isClear, isTitle, q) {
   if (isClear) {
     m.html("");
   }
-
   $.ajax({
     url: "/app.php?fun=" + f + "&q=" + q,
     dataType: "json",
@@ -977,7 +794,6 @@ function getApp(f, isClear, isTitle, q) {
       if (f == "GetShadowSockConfig") {
         createCookie("working_server", data.Server, 180);
       }
-
       if (isTitle != "no") {
         m.append("<h5>" + isTitle + "</h5>");
       }
@@ -992,6 +808,10 @@ function getApp(f, isClear, isTitle, q) {
         }
       }
       m.append("<br/>");
+    },
+    error: function(data) {
+      console.log("> getApp 請求超時。功能：" + f + "，參數：" + q);
+      tipBox("" + f + " 請求超時");
     },
     complete: function(data) {
       LoadingBox(false);
@@ -1012,7 +832,6 @@ function getUrlParameter(sParam) {
 
 function show() {
   var items = $(".urls");
-
   // Animate each line individually
   for (var i = 0; i < items.length; i++) {
     var item = items[i];
@@ -1021,22 +840,17 @@ function show() {
       opacity: 0,
       translateY: 20
     });
-
     // Animate to final properties
-    dynamics.animate(
-      item,
-      {
-        opacity: 1,
-        translateY: 0
-      },
-      {
-        type: dynamics.spring,
-        frequency: 300,
-        friction: 435,
-        duration: 1000,
-        delay: 100 + i * 40
-      }
-    );
+    dynamics.animate(item, {
+      opacity: 1,
+      translateY: 0
+    }, {
+      type: dynamics.spring,
+      frequency: 300,
+      friction: 435,
+      duration: 1000,
+      delay: 100 + i * 40
+    });
   }
 }
 

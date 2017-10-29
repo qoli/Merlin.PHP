@@ -11,12 +11,12 @@
 
 <script type="text/javascript">
 
-// $(window).on('load',function(){
-//   setInterval(function(){
-//   	var $contents = $('#iframeBox').contents();
-//   	$contents.scrollTop($contents.height());
-//   }, 2400);
-// })
+$(window).on('load',function(){
+  setInterval(function(){
+  	var $contents = $('#iframeBox').contents();
+  	$contents.scrollTop($contents.height());
+  }, 2400);
+})
 
 </script>
 

