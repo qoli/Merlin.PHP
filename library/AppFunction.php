@@ -482,8 +482,7 @@ function ss_config($id = 0)
 function ss_rebuild()
 {
 		$ssconfig = new ssconfig();
-		// echo $ssconfig->_be_json($ssconfig->rebuild());
-		$ssconfig->_export($ssconfig->rebuild());
+		$ssconfig->_export($ssconfig->rebuild(),"json");
 }
 
 function ss_basic()

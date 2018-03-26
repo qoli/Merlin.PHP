@@ -1,6 +1,5 @@
 var dev = false;
 $.ajaxSetup({
-  timeout: 2400,
   cache: false
 });
 // Chart Global Config
@@ -29,6 +28,13 @@ jQuery(document).ready(function($) {
       switch (e) {
         case "Network":
           RunApp("SystemNetwork");
+          break;
+        case "GAME Server":
+          console.log('GAME Server')
+          RunApp("SystemCommand", "./bin/script/setdns.sh");
+          setTimeout(function(){
+            iframeBox("/exec.php?command=/koolshare/ss/ssconfig.sh restart");
+          },800)
           break;
         case "Web 界面":
           RunApp("SystemCommand", "/opt/etc/init.d/S80lighttpd restart");
@@ -319,8 +325,10 @@ jQuery(document).ready(function($) {
           RunApp("SystemCommand", "reboot");
           break;
         case "重新載入 ShadowSocks 配置":
-          getApp("ss_rebuild", "Clean");
-          tipBox("載入完畢");
+        window.open('/app.php?fun=ss_rebuild','_blank');
+          // getApp("ss_rebuild", "Clean",'载入 SS 配置',"",8000);
+          // tipBox("載入完畢");
+          // getApp(f, isClear, isTitle, q,timeout)
           break;
         case "修正輔助腳本的運行權限":
           getApp("ChmodCheck", "Clean");
@@ -776,9 +784,10 @@ function RunApp(f, q, isAdd, isTitle, isDesc) {
   });
 }
 
-function getApp(f, isClear, isTitle, q) {
+function getApp(f, isClear, isTitle, q,timeout) {
   isClear = isClear || false;
   isTitle = isTitle || f;
+  timeout = timeout || 1600;
   q = q || "";
   if (isClear) {
     m.html("");
@@ -786,7 +795,7 @@ function getApp(f, isClear, isTitle, q) {
   $.ajax({
     url: "/app.php?fun=" + f + "&q=" + q,
     dataType: "json",
-    timeout: 2400,
+    timeout: timeout,
     beforeSend: function() {
       LoadingBox(true, "處理中：" + f);
     },
