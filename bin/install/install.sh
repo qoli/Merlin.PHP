@@ -27,7 +27,7 @@ rm -rf /tmp/m_update
 # rm -rf /opt/share/www/
 mkdir /tmp/m_update
 cd /tmp/m_update
-wget https://github.com/qoli/Merlin.PHP/raw/master/bin/zip/merlin-php.tar.gz --no-cache --no-check-certificate --no-dns-cache -O merlin-php.tar.gz
+curl -LO  https://github.com/qoli/Merlin.PHP/raw/master/bin/zip/merlin-php.tar.gz
 ls -la
 read -n 1 -p "▣ All is readly, Do you want to install [y/n] ? " answer
 case $answer in
