@@ -101,9 +101,7 @@ Thx ❤️
 運行安裝腳本
 
 ```shell
-curl -LO https://github.com/qoli/Merlin.PHP/raw/master/bin/install/install.sh
-chmod +x install.sh
-./install.sh
+curl -LO https://github.com/qoli/Merlin.PHP/raw/master/bin/install/install.sh && chmod +x install.sh && ./install.sh
 ```
 
 
