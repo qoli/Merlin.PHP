@@ -8,7 +8,7 @@ echo
 echo '■ 「STEP 1」optware'
 echo
 cd /tmp
-wget -c -O optware-ngu-setup.sh http://t.cn/RpPFqUm
+wget -c -O optware-ngu-setup.sh https://github.com/qoli/Merlin.PHP/raw/master/bin/install/ipks/optware-ngu-setup.sh
 sh ./optware-ngu-setup.sh
 echo
 echo '■ INSTALL Merlin.PHP'
