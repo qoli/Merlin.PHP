@@ -27,7 +27,7 @@ case $way in
 		# rm -rf /opt/share/www/
 		mkdir /tmp/m_update
 		cd /tmp/m_update
-		wget https://github.com/qoli/Merlin.PHP/raw/master/bin/zip/merlin-php.tar.gz --no-cache --no-check-certificate --no-dns-cache
+		curl -LO https://github.com/qoli/Merlin.PHP/raw/master/bin/zip/merlin-php.tar.gz
 		echo 'extract...'
   	echo
 		tar zxvf merlin-php.tar.gz

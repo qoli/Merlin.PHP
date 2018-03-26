@@ -5,6 +5,7 @@
 **修正**
 
 * 配合 GitHub 的更改修改一鍵安裝腳本
+* 調整更新腳本
 
 因為 GitHub 的一些 SSL 調整導致 wget 無法使用。更改到 curl 以安裝其他腳本內容。並且把原來寄託在 llqoli.com 的服務器遷移到 Github 上。
 
