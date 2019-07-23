@@ -2,15 +2,15 @@
 
 
 
+## 項目已停止維護
+
+此項目功能已經遷移到 https://github.com/qoli/AtomicR 項目。
+
+
+
 ## 重要說明
 
 * 由於 GitHub 的 SSL 更新，導致低於 **0.6.6** 版本的無法繼續使用 wget 更新內容。請**重新執行一鍵安裝腳本**，將程序安裝到最新版本即可繼續更新了。
-
-
-
-##### 下一代的 Merlin UI 計劃。
-
-https://github.com/qoli/Merlin.c
 
 
 
